@@ -1,0 +1,84 @@
+#!/usr/bin/python
+# coding=utf-8
+
+import sys
+#import misaka as m
+
+reload(sys)
+sys.setdefaultencoding('utf-8')   
+
+class md:
+    title = ""
+    date = ""
+    tags = []
+    body = ""
+    def __init__(self,filename):
+        with open(filename,'r') as fp:
+            self.tags = []
+            tdict = {}
+            tlist = []
+            last = ""
+            while 1:
+                line = fp.readline()
+                #第一个空行之后为body,linux下只用判断\n
+                #if line == "\r" or line[0:3] == "---" or line == "\n" or line == "\n\r":
+                if line == "\n":
+                    self.title = tdict['title']
+                    self.date = tdict['date']
+                    self.body = fp.read()
+                    break
+                else:
+                    tlist = line.split(":",1)
+                    if len(tlist) > 1:
+                        tdict[tlist[0].lower()]=tlist[1].replace("\n","").replace('"','').strip()
+                        #置标志
+                        if tlist[0].lower() == "tags": 
+                            last = "tags"
+                            #tags在一行且存在时
+                            if len(tlist[1]) > 2:
+                                for v in tlist[1].split(","):
+                                    self.tags.append(v.replace("\n","").strip())
+                        #暂不考虑categories
+                        if tlist[0].lower() == "categories": 
+                             last = "categories"
+                    else:
+                        #tags为markdown列表形式时
+                        tlist = line.split("-")
+                        if len(tlist) < 3:
+                            if last == "tags":
+                                self.tags.append(tlist[1].replace("\n","").strip())
+                            else:
+                                pass
+
+                    #print self.td
+
+# with open('adsl20.md','r') as fp:
+#     var = fp.read()
+#     #print var
+
+if __name__ == "__main__":
+    # from timeit import Timer
+    # t1=Timer('md("adsl20.md")','from __main__ import md')
+    # print t1.timeit(1000)
+    #html = m.html(var)
+
+    nmd = md("adsl20.md")
+    #print nmd.body
+    print nmd.title
+    print nmd.date
+    print nmd.tags  
+
+    nmd = md("adsl20.1.md")
+    #print nmd.body
+    print nmd.title
+    print nmd.date
+    print nmd.tags 
+
+    nmd = md("mmore.md")
+    #print nmd.body
+    print nmd.title
+    print nmd.date
+    print nmd.tags 
+
+    #print m.html(nmd.body)
+    #print md("adsl20.md").body
