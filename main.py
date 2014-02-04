@@ -98,12 +98,11 @@ def render_index():
             if (len(sortpost) % postcount)  > 0 :
                 postcount = (len(sortpost) % postcount)
         tmpbody = ""
-        print "p = %s, postcount = %s" % (p,postcount)
+        #print "p = %s, postcount = %s" % (p,postcount)
         for i in xrange(postcount):
             content = {}
             #当前post指针
             postid = p * 8 + i
-            print postid
             content["title"] = sortpost[postid][1]["title"]
             content["tags"] = sortpost[postid][1]["tags"]
             content["url"] = sortpost[postid][1]["url"]
@@ -121,7 +120,7 @@ def render_index():
             outputfile = "index.html"
         else:
             outputfile = "index.%s.html" % p
-        print outputfile
+        #print outputfile
         with open("%s/%s" % (outputdir,outputfile),"w") as fp:
             fp.write(engine.render("index.html",content))
 
@@ -140,8 +139,14 @@ write_post()
 #生成tags列表
 render_tags()
 
+#要清除一下cache
+# os.remove("themes/%s/sidebar.html.cache" % theme)
+# os.remove("themes/%s/base.html.cache" % theme) 
+# os.remove("themes/%s/rightbar.html.cache" % theme) 
+
 #生成index要用的rightside
 render_rightside("")
+
 #生成index
 render_index()
 

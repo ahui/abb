@@ -1,4 +1,4 @@
-timestamp: 1391520193.33
+timestamp: 1391534519.11
 encoding: utf-8
 
 _extend=_buf.extend;_to_str=to_str;_escape=escape; _extend((u'''<!doctype html>\r
@@ -20,7 +20,7 @@ _extend=_buf.extend;_to_str=to_str;_escape=escape; _extend((u'''<!doctype html>\
         <div class="grid_16">\r
           <div id="headimg">\r
             <div id="logo-text">\r
-              <span class="site-name"><a href="http://ahui.us/" title="Ahui的个人博客" rel="home">Ahui的个人博客</a></span>\r
+              <span class="site-name"><a href="''', _escape(_to_str(dir)), u'''index.html" title="Ahui的个人博客" rel="home">Ahui的个人博客</a></span>\r
               <span class="site-description">&#8211;Since 2010 by Ahui.</span>\r
             </div>\r
           </div>     \r
@@ -49,8 +49,7 @@ _extend=_buf.extend;_to_str=to_str;_escape=escape; _extend((u'''<!doctype html>\
       <div class="grid_5">\r
 \r\n''', ));
 include('sidebar.html')
-_extend((u'''\r
-      </div>\r
+_extend((u'''      </div>\r
 \r
     </div>\r
 \r
