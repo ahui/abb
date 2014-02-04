@@ -1,0 +1,39 @@
+timestamp: 1391509643.8
+encoding: utf-8
+
+_extend=_buf.extend;_to_str=to_str;_escape=escape; _extend((u'''                  <div id="sidebar">
+                    <div class="widget widget_search widget-widget_search">
+                      <div class="widget-wrap widget-inside">
+                        <div class="search">
+                          <form method="get" class="searchform" action="http://ahui.us/">
+                            <label for="s" class="assistive-text">Search for:</label>
+                            <input type="text" class="field" name="s" id="s" value="Search" onfocus="if(this.value==this.defaultValue)this.value=\'\';" onblur="if(this.value==\'\')this.value=this.defaultValue;" />
+                            <input type="submit" class="submit" name="submit" id="searchsubmit" value="Search" />
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="widget widget_categories widget-widget_categories">
+                      <div class="widget-wrap widget-inside">
+                        <h3 class="widget-title">标签</h3>
+                        <ul>\n''', ));
+for tag in tags:
+    _extend((u'''                          <li class="cat-item"><a href="../tag/''', _escape(_to_str(tag)), u'''.html">''', _escape(_to_str(tag)), u''' &sdot; (''', _escape(_to_str(tags[tag])), u''')</a></li>\n''', ));
+#endfor
+_extend((u'''                        </ul>
+                    </div>
+                  </div>
+
+                  <div class="widget widget_recent_entries widget-widget_recent_entries">
+                    <div class="widget-wrap widget-inside">
+                      <h3 class="widget-title">最新文章</h3>
+                      <ul> \n''', ));
+for post in posts:
+    _extend((u'''                        <li><a href=\'''', _escape(_to_str(post[1]["url"])), u'''\'>''', _escape(_to_str(post[1]["title"])), u'''</a></li>\n''', ));
+#endfor
+_extend((u'''                      </ul>
+                    </div>
+                  </div>
+                </div>''', ));

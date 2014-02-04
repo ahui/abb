@@ -2,7 +2,6 @@
 # coding=utf-8
 
 import sys
-#import misaka as m
 
 reload(sys)
 sys.setdefaultencoding('utf-8')   
@@ -50,35 +49,9 @@ class md:
                             else:
                                 pass
 
-                    #print self.td
-
-# with open('adsl20.md','r') as fp:
-#     var = fp.read()
-#     #print var
-
 if __name__ == "__main__":
     # from timeit import Timer
     # t1=Timer('md("adsl20.md")','from __main__ import md')
     # print t1.timeit(1000)
-    #html = m.html(var)
+    pass
 
-    nmd = md("adsl20.md")
-    #print nmd.body
-    print nmd.title
-    print nmd.date
-    print nmd.tags  
-
-    nmd = md("adsl20.1.md")
-    #print nmd.body
-    print nmd.title
-    print nmd.date
-    print nmd.tags 
-
-    nmd = md("mmore.md")
-    #print nmd.body
-    print nmd.title
-    print nmd.date
-    print nmd.tags 
-
-    #print m.html(nmd.body)
-    #print md("adsl20.md").body

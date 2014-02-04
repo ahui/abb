@@ -1,0 +1,220 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>魔兽世界台服访问速度之无责任猜想</title>
+  <link href="../css/main.css" rel="stylesheet" type="text/css" />
+  <link href="../css/960.css" rel="stylesheet" type="text/css" />
+  <style type="text/css" id="custom-background-css">
+  body.custom-background { background-color: #e9e9e9; background-image: url('bg-pattern.png'); background-repeat: repeat; background-position: top left; background-attachment: fixed; }
+  </style>
+</head>
+<body class="single single-post postid-1342 single-format-standard custom-background">
+  <div class="wrapper">  
+
+    <div id="header">      
+      <div class="container_16 clearfix">
+        <div class="grid_16">
+          <div id="headimg">
+            <div id="logo-text">
+              <span class="site-name"><a href="http://ahui.us/" title="Ahui的个人博客" rel="home">Ahui的个人博客</a></span>
+              <span class="site-description">&#8211;Since 2010 by Ahui.</span>
+            </div>
+          </div>     
+        </div>
+      </div>     
+    </div>
+
+    <div class="container_16 clearfix">
+      <div id="nav" class="grid_16">
+        <div class="menu clearfix">
+          <ul>
+            <li class="page_item page-item-2"><a href="http://ahui.us/index.php/about/">About</a></li>
+            <li class="page_item page-item-7"><a href="http://ahui.us/index.php/aboutahui/">关于Ahui</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container_16 clearfix">
+
+      <div class="grid_11">
+        <div id="content">    
+          <div class="post type-post status-publish format-standard hentry">
+            <div class="entry-meta-group clearfix">
+              <div class="grid_2 alpha">
+                <time class="entry-date entry-time updated" datetime="2010-07-19 17:13:06">
+                  <a href="#" title="2010-07-19 17:13:06" rel="bookmark">
+                    <span class="entry-date-day">19</span>
+                    <span class="entry-date-month-year">2010-07</span>
+                  </a>
+                </time>
+              </div>
+                <div class="grid_8 omega">
+                  <h1 class="entry-title entry-title-single">魔兽世界台服访问速度之无责任猜想</h1>
+                  <div class="entry-meta">    
+                    <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
+                  <span class="tag-links">
+                    <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
+                    <a href="../tag/game.html" rel="tag">game</a>
+                    <a href="../tag/Network.html" rel="tag">Network</a>
+                    <a href="../tag/wow.html" rel="tag">wow</a>
+                  </span>
+                  </div>
+                  </div>
+                </div>
+
+                <div class="entry-content clearfix">
+                  <p><p>我大多数时候使用的是北京网通现联通的adsl,2M带宽．价格就不提了．</p>
+
+<p>还记得二年前去台服玩魔兽世界的时候，还没有什么代理的概念，都是直连过去，延迟大体上在300~500站变动，300+比较常见．练个级，下个本，感觉上很流畅，这个曾让我迷惑了很久．那个时候国服还在9c手上，二区直连，延迟大体上在60~100间变动，但常出现lag现象，表现为拾取物品要几秒的时候，或者战场pk总提示目标不在眼前:虽然我眼前看到的的确就是目标．以前直以为是网络不太好．现在想想，网通是有点冤，要怪得怪那传说中的小霸王啊~</p>
+
+<p>WLK之后，很明显直连台服已经不行了，于是Ｎ多专业或不专业，收费或不免费的WOW台服代理一下冒了出来．其中有比较长一段时间，小众大众的代理用起来效果都相当好．直到今天初，大部分代理都挂掉，无论用哪种代理，至少我的感觉是连接速度还是很糟糕．</p>
+
+<p>在我手上有了一个香港VPS后，做了个简单测试，想了解下网络连接到底慢在哪里．
+&lt;!--more--&gt;
+先从北京直接tracert台服的官网．已知台服的官网和wow服务器，都是放在hinet机房的，IP段是203.66.1xx.xxx的样子．
+<pre class="brush:plain">
+tracert www.wowtaiwan.com.tw
+通过最多 30 个跃点跟踪
+到 wowtaiwan.com.tw [203.66.142.57] 的路由:
+~
+  4    16 ms    24 ms    16 ms  bt-230-113.bta.net.cn [202.106.230.113]
+  5    17 ms    15 ms    16 ms  61.148.152.117
+  6    16 ms    16 ms    16 ms  202.96.12.9
+  7    38 ms    38 ms    37 ms  219.158.4.62
+  8    37 ms    37 ms    37 ms  219.158.4.238
+  9   101 ms   100 ms   101 ms  r4036-s2.tp.hinet.net [211.72.233.190]
+ 10    80 ms    82 ms    81 ms  r4142-s2.tp.hinet.net [210.65.255.12]
+ 11   231 ms   232 ms   232 ms  TPDT-3012.hinet.net [220.128.4.66]
+ 12   229 ms   229 ms   229 ms  TYFO-3012.hinet.net [220.128.4.105]
+ 13   230 ms   230 ms   231 ms  TYFO-3402.hinet.net [220.128.9.141]
+ 14   232 ms   233 ms   234 ms  211-22-39-225.HINET-IP.hinet.net [211.22.39.225]
+ 15   231 ms   231 ms   231 ms  203.66.220.137
+ 16   296 ms   242 ms   333 ms  203.66.142.57
+ 17   242 ms   249 ms   241 ms  203.66.142.57
+ 18   314 ms   241 ms   242 ms  203.66.142.57
+</pre>
+从这上面看．网通的adsl路由走向还算是比较简洁的，第８跳应该是网通的出口路由(备注：也许应该说是国际出口路由，不过在什么什么一家的情况下，省这二字免得麻烦)，第９跳就已经到了hinet的接入路由上，延迟也不过区区100ms左右．第８跳到第９跳从30+的延迟，上升到100左右，显然是一个比较长的网络连接，猜测应该是连到TW的海底光缆．那么9跳后，就进入了hinet，又得知wow的服务器就存放在hinet机房，理论上不会再有太大的延迟波动，但第１０跳还蛮正常，第１１跳延迟马上彪升一倍多，达到了２３０＋．之后一直到wow所在服务器，延迟都是高高的230+到300+波动，严重的时候会到600+．</p>
+
+<p>由这个数据，猜测第１１跳路由存在以下几个问题：
+１．如果１１没有问题，应该是１０的路由指向错误，本应该指向一个更优化的下级路由去，结果被错误指定了一个比较远的路由，结果就是延迟直线上升．
+２．１１是正确的１０的下级路由，但由于hinet的成本规划或者采购回扣什么什么的原因，用的是一个性能比较差的硬件，从而严重影响到响应时间以及处理速度．
+３．表瞎说了，１１是个高性能路由，且工作状况相当正常，而正因为工作正常，才发现来源IP是属于中国网通现联通的IP,优先级别是可以最后处理从那边来的数据包...这个工作也许是１０跳在做，但不管１０还是１１，都是在hinet里面做的．</p>
+
+<p>然后从香港做同样的功能的tracepath 
+<pre class="brush:plain">
+-bash-3.2# tracepath www.wowtaiwan.com.tw
+～
+ 4:  061238230106.static.ctinets.com (61.238.230.106)     asymm  5   1.377ms
+ 5:  061238225133.static.ctinets.com (61.238.225.133)     asymm  6   5.998ms
+ 6:  061238225137.static.ctinets.com (61.238.225.137)     asymm  7   1.526ms
+ 7:  061244232217.static.ctinets.com (61.244.232.217)       1.641ms
+ 8:  061244232106.static.ctinets.com (61.244.232.106)     asymm  9   2.158ms
+ 9:  211-22-33-150.HINET-IP.hinet.net (211.22.33.150)     asymm 11   3.435ms
+10:  r01-mgi-hk.hinet.net (220.128.3.217)             　　　　asymm  9   3.987ms
+11:  TPDT-3011.hinet.net (220.128.1.181)                  　　asymm 10  87.844ms
+12:  TYFO-3011.hinet.net (220.128.1.57)                   　　asymm 14  59.563ms
+13:  TYFO-3012.hinet.net (220.128.2.57)                   　　asymm 14  59.511ms
+14:  TYFO-3402.hinet.net (220.128.9.141)                  　　asymm 12  59.480ms
+15:  211-22-39-225.HINET-IP.hinet.net (211.22.39.225)     asymm 13  59.759ms
+16:  203.66.220.137 (203.66.220.137)                      asymm 14  59.619ms
+17:  no reply
+</pre>
+哎，看这了网速，真的觉得香港很好．很好，虽然那的楼高了些，人口密度大了些...</p>
+
+<p>这里也是第９跳接入了hinet，然后不争气的hinet也是在第１１条延迟突然上升了２０倍之多．文字游戏玩不得的，这２０倍之后的效果，明显没有上面一倍的效果给力啊，20倍后才80+，这之后到达官网主机，延迟还降到50+．</p>
+
+<p>由此也可以猜测：
+１．hinet的路由性能的确是有点点问题，不然不会由80多降到后面几跳的50多，应该是处理不过来．
+２．二条线路共同点都是到达hinet接入点的时候，速度还挺理想，进入hinet之后，会增加很高的延迟
+３．增加的延迟，猜想是和来源IP有关系．想来不会故意设置性能低下的路由给谁谁谁用，那最可能的原因就是不同的接入商对应了不同的带宽．比如说北京联通接入hinet是10M,香港某机房接入是1000M，但联通得有多少人挤这10M的小路啊，于是对应的那个路由设备就忙得抽筋了，于是我们过去的连接也跟着抽筋了，于是我们副本战场累得手也抽筋了...</p>
+
+<p>另外，从北京联通访问香港大部分机房的速度都是相当理想的，40~80ms的延迟居多．所以一个理想的代理，应该是从香港中转，然后走香港到TW的出口，这样连接TWOW的网络速度会理想很多．</p>
+
+<p>大多数代理的延迟其实都算还好，不过用户一多，流量一上来，效果就和北京联通直连一样的现象了，大家都挤代理的那条私有小路，不抽筋才怪．所以更理想的代理，是自己在香港买个VPS，单独512K或1M带宽，自己一个人...自私了点...加上好友...这还行...三五人用完全没问题．</p>
+
+<p>可能的问题：
+为了验证，购买过几家香港的VPS，每月价格200左右，都是号称1M的独立带宽．白天用效果都相当好，但晚上效果只有一家还勉强过得去．这其中有二个可能，一是我买的vps都是从一些小商家手中拿的，不是从机房直接拿到，那１M的独立带宽，应该有很大的水分，导致晚上用的人一多，同样形成挤小路的情况，延迟马上高升．而从机房直接拿VPS，价格要高很多，可选的种类也少，还不如直接搬台机器跑香港机房去做主机托管．直接在机房托管一台主机，再租个2M,10M的带宽，这应该是最高级别的代理方式了，质量也有保障．二是台服虽然号称服务器升级过几次，不过现在移民过去的人口，应该远远超出了硬件的负载，这样晚上在线人口一多，除去挤带宽不说，只怕台服的服务器也会变成小霸王，处理不了那么多人口的吃喝拉撒．而对于是否升级硬件直接解决这个问题，智凡迪只怕纠结了不止一年二年了吧．</p>
+
+<p>兄弟们，AFK先吧，拉几个酒肉朋友，一起来学三国杀...</p>
+</p>
+                </div>
+
+                </div>
+
+                  </div> 
+                </div> 
+
+                <div class="grid_5">
+
+                  <div id="sidebar">
+                    <div class="widget widget_search widget-widget_search">
+                      <div class="widget-wrap widget-inside">
+                        <div class="search">
+                          <form method="get" class="searchform" action="http://ahui.us/">
+                            <label for="s" class="assistive-text">Search for:</label>
+                            <input type="text" class="field" name="s" id="s" value="Search" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" />
+                            <input type="submit" class="submit" name="submit" id="searchsubmit" value="Search" />
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="widget widget_categories widget-widget_categories">
+                      <div class="widget-wrap widget-inside">
+                        <h3 class="widget-title">标签</h3>
+                        <ul>
+                          <li class="cat-item"><a href="../tag/sip.html">sip &sdot; (2)</a></li>
+                          <li class="cat-item"><a href="../tag/Network.html">Network &sdot; (48)</a></li>
+                          <li class="cat-item"><a href="../tag/VPS.html">VPS &sdot; (3)</a></li>
+                          <li class="cat-item"><a href="../tag/openerp.html">openerp &sdot; (2)</a></li>
+                          <li class="cat-item"><a href="../tag/wow.html">wow &sdot; (1)</a></li>
+                          <li class="cat-item"><a href="../tag/ipv6.html">ipv6 &sdot; (2)</a></li>
+                          <li class="cat-item"><a href="../tag/wii.html">wii &sdot; (3)</a></li>
+                          <li class="cat-item"><a href="../tag/blog.html">blog &sdot; (19)</a></li>
+                          <li class="cat-item"><a href="../tag/game.html">game &sdot; (5)</a></li>
+                          <li class="cat-item"><a href="../tag/ssh.html">ssh &sdot; (2)</a></li>
+                          <li class="cat-item"><a href="../tag/Linux.html">Linux &sdot; (35)</a></li>
+                          <li class="cat-item"><a href="../tag/android.html">android &sdot; (1)</a></li>
+                          <li class="cat-item"><a href="../tag/sofeware.html">sofeware &sdot; (3)</a></li>
+                        </ul>
+                    </div>
+                  </div>
+
+                  <div class="widget widget_recent_entries widget-widget_recent_entries">
+                    <div class="widget-wrap widget-inside">
+                      <h3 class="widget-title">最新文章</h3>
+                      <ul> 
+                        <li><a href='openerp-7-add-menu.html'>OPENERP 7:菜单添加</a></li>
+                        <li><a href='tips-upload-with-web-py.html'>Tips : upload with web.py</a></li>
+                        <li><a href='netgear-r6300v2-ngrep.html'>Netgear R6300v2上编译ngrep</a></li>
+                        <li><a href='test-100m.html'>联通100M体验</a></li>
+                        <li><a href='iphone-5-clean.html'>Iphone 5可用容量恢复</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="container_16 containter_footer">
+              <div id="footer" class="grid_16">
+                <div class="grid_10 alpha">
+                  <div class="copyright_inside">
+                    &copy; Copyright 2014 - <a href="http://ahui.us/">Ahui的个人博客</a>  </div>
+                  </div>
+                  <div class="grid_6 omega">
+                    <div class="credit_inside">
+                      <a href="http://designorbital.com/contango/" title="Contango Theme">Contango Theme</a> &sdot; Modifiy by <a href="http://ahui.us/" title="Ahui">Ahui</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </body>
+          </html>

@@ -1,0 +1,77 @@
+timestamp: 1391510368.77
+encoding: utf-8
+
+_extend=_buf.extend;_to_str=to_str;_escape=escape; _extend((u'''<!doctype html>\r
+<html>\r
+<head>\r
+  <meta charset="utf-8">\r
+  <title>''', _escape(_to_str(title)), u'''</title>\r
+  <link href="../css/main.css" rel="stylesheet" type="text/css" />\r
+  <link href="../css/960.css" rel="stylesheet" type="text/css" />\r
+  <style type="text/css" id="custom-background-css">\r
+  body.custom-background { background-color: #e9e9e9; background-image: url(\'bg-pattern.png\'); background-repeat: repeat; background-position: top left; background-attachment: fixed; }\r
+  </style>\r
+</head>\r
+<body class="single single-post postid-1342 single-format-standard custom-background">\r
+  <div class="wrapper">  \r
+\r
+    <div id="header">      \r
+      <div class="container_16 clearfix">\r
+        <div class="grid_16">\r
+          <div id="headimg">\r
+            <div id="logo-text">\r
+              <span class="site-name"><a href="http://ahui.us/" title="Ahui的个人博客" rel="home">Ahui的个人博客</a></span>\r
+              <span class="site-description">&#8211;Since 2010 by Ahui.</span>\r
+            </div>\r
+          </div>     \r
+        </div>\r
+      </div>     \r
+    </div>\r
+\r
+    <div class="container_16 clearfix">\r
+      <div id="nav" class="grid_16">\r
+        <div class="menu clearfix">\r
+          <ul>\r
+            <li class="page_item page-item-2"><a href="http://ahui.us/index.php/about/">About</a></li>\r
+            <li class="page_item page-item-7"><a href="http://ahui.us/index.php/aboutahui/">关于Ahui</a></li>\r
+          </ul>\r
+        </div>\r
+      </div>\r
+    </div>\r
+\r
+\r
+    <div class="container_16 clearfix">\r
+            <div class="grid_11">\r
+                   <div id="content"> \r\n''', ));
+for post in posts:
+    _extend((u'''\r
+                  <a href="../post/''', _escape(_to_str(post["url"])), u'''"><span style="font-size:larger">''', _escape(_to_str(post["title"])), u'''</span></a> &sdot; <span style="font-size:small">''', _escape(_to_str(post["date"])), u'''</span><br />\r
+\r\n''', ));
+#endfor
+_extend((u'''</div> \r
+          </div> \r
+                <div class="grid_5">\r
+\r\n''', ));
+include('sidebar.html')
+_extend((u'''\r
+              </div>\r
+\r
+            </div>\r
+\r
+            <div class="container_16 containter_footer">\r
+              <div id="footer" class="grid_16">\r
+                <div class="grid_10 alpha">\r
+                  <div class="copyright_inside">\r
+                    &copy; Copyright 2014 - <a href="http://ahui.us/">Ahui的个人博客</a>  </div>\r
+                  </div>\r
+                  <div class="grid_6 omega">\r
+                    <div class="credit_inside">\r
+                      <a href="http://designorbital.com/contango/" title="Contango Theme">Contango Theme</a> &sdot; Modifiy by <a href="http://ahui.us/" title="Ahui">Ahui</a>\r
+                    </div>\r
+                  </div>\r
+                </div>\r
+              </div>\r
+\r
+            </div>\r
+          </body>\r
+          </html>\r\n''', ));
