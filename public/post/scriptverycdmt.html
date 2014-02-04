@@ -6,7 +6,7 @@
   <link href="../css/main.css" rel="stylesheet" type="text/css" />
   <link href="../css/960.css" rel="stylesheet" type="text/css" />
   <style type="text/css" id="custom-background-css">
-  body.custom-background { background-color: #e9e9e9; background-image: url('bg-pattern.png'); background-repeat: repeat; background-position: top left; background-attachment: fixed; }
+  body.custom-background { background-color: #e9e9e9; background-image: url('../image/bg-pattern.png'); background-repeat: repeat; background-position: top left; background-attachment: fixed; }
   </style>
 </head>
 <body class="single single-post postid-1342 single-format-standard custom-background">
@@ -40,32 +40,32 @@
     <div class="container_16 clearfix">
 
       <div class="grid_11">
-        <div id="content">    
-          <div class="post type-post status-publish format-standard hentry">
-            <div class="entry-meta-group clearfix">
-              <div class="grid_2 alpha">
-                <time class="entry-date entry-time updated" datetime="2010-07-18 18:30:55">
-                  <a href="#" title="2010-07-18 18:30:55" rel="bookmark">
-                    <span class="entry-date-day">18</span>
-                    <span class="entry-date-month-year">2010-07</span>
-                  </a>
-                </time>
-              </div>
-                <div class="grid_8 omega">
-                  <h1 class="entry-title entry-title-single">魔塔世界自动打挂按键精灵脚本verycd版本</h1>
-                  <div class="entry-meta">    
-                    <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
-                  <span class="tag-links">
-                    <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
-                    <a href="../tag/game.html" rel="tag">game</a>
-                    <a href="../tag/Network.html" rel="tag">Network</a>
-                  </span>
-                  </div>
-                  </div>
-                </div>
+          <div id="content">    
+    <div class="post type-post status-publish format-standard hentry">
+      <div class="entry-meta-group clearfix">
+        <div class="grid_2 alpha">
+          <time class="entry-date entry-time updated" datetime="2010-07-18 18:30:55">
+            <a href="#" title="2010-07-18 18:30:55" rel="bookmark">
+              <span class="entry-date-day">18</span>
+              <span class="entry-date-month-year">2010-07</span>
+            </a>
+          </time>
+        </div>
+        <div class="grid_8 omega">
+          <h1 class="entry-title entry-title-single">魔塔世界自动打挂按键精灵脚本verycd版本</h1>
+          <div class="entry-meta">    
+            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
+            <span class="tag-links">
+              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
+              <a href="../tag/game.html" rel="tag">game</a>
+              <a href="../tag/Network.html" rel="tag">Network</a>
+            </span>
+          </div>
+        </div>
+      </div>
 
-                <div class="entry-content clearfix">
-                  <p><p>很闲的时候，找东西找发时间，无聊就玩了会verycd上的魔塔世界．有时候杀１０来只怪更无聊，何况更要爬１００多层的塔，全是重复劳动．不由想起很久以前用过的按键精灵，做这事最合适了．于是顺手写了个简单的前台脚本，放虚拟机里用蛮方便．后台那块还没看，以后看看会不会加进去．</p>
+      <div class="entry-content clearfix">
+        <p><p>很闲的时候，找东西找发时间，无聊就玩了会verycd上的魔塔世界．有时候杀１０来只怪更无聊，何况更要爬１００多层的塔，全是重复劳动．不由想起很久以前用过的按键精灵，做这事最合适了．于是顺手写了个简单的前台脚本，放虚拟机里用蛮方便．后台那块还没看，以后看看会不会加进去．</p>
 
 <p>记得最早用按键精灵好象还是2.x还是3.x来着，现在已经到了8.0，用起来是更方便了，广告也更多了......</p>
 
@@ -254,81 +254,82 @@ End Sub
 我在按键精灵8时进行调试，发现有时候Uservar定义的变量取值会不正常，后来发现是保存代码后，脚本里所有定义的Uservar值都会被保存下来，放在按键精灵8的安装目录根下，名为uservar.txt文件中．这时候如果只改动脚本里的值，调试运行里仍会读取这个文件里保存的值．理论上按键精灵8在调试里，应该先读取脚本里的值，并更新到uservar.txt中，或者调试里不使用这个文件．
 临里办法是每次调试都删除这个文件，或者直接先在编辑器里的ＧＵＩ中选择确定新值，并先保存，再调试．</p>
 </p>
-                </div>
+      </div>
 
-                </div>
+    </div>
 
-                  </div> 
-                </div> 
+  </div> 
 
-                <div class="grid_5">
+      </div> 
 
-                  <div id="sidebar">
-                    <div class="widget widget_search widget-widget_search">
-                      <div class="widget-wrap widget-inside">
-                        <div class="search">
-                          <form method="get" class="searchform" action="http://ahui.us/">
-                            <label for="s" class="assistive-text">Search for:</label>
-                            <input type="text" class="field" name="s" id="s" value="Search" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" />
-                            <input type="submit" class="submit" name="submit" id="searchsubmit" value="Search" />
-                          </form>
-                        </div>
-                      </div>
-                    </div>
+      <div class="grid_5">
+
+<div id="sidebar">
+  <div class="widget widget_search widget-widget_search">
+    <div class="widget-wrap widget-inside">
+      <div class="search">
+        <form method="get" class="searchform" action="http://ahui.us/">
+          <label for="s" class="assistive-text">Search for:</label>
+          <input type="text" class="field" name="s" id="s" value="Search" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" />
+          <input type="submit" class="submit" name="submit" id="searchsubmit" value="Search" />
+        </form>
+      </div>
+    </div>
+  </div>
 
 
-                    <div class="widget widget_categories widget-widget_categories">
-                      <div class="widget-wrap widget-inside">
-                        <h3 class="widget-title">标签</h3>
-                        <ul>
-                          <li class="cat-item"><a href="../tag/sip.html">sip &sdot; (2)</a></li>
-                          <li class="cat-item"><a href="../tag/Network.html">Network &sdot; (48)</a></li>
-                          <li class="cat-item"><a href="../tag/VPS.html">VPS &sdot; (3)</a></li>
-                          <li class="cat-item"><a href="../tag/openerp.html">openerp &sdot; (2)</a></li>
-                          <li class="cat-item"><a href="../tag/wow.html">wow &sdot; (1)</a></li>
-                          <li class="cat-item"><a href="../tag/ipv6.html">ipv6 &sdot; (2)</a></li>
-                          <li class="cat-item"><a href="../tag/wii.html">wii &sdot; (3)</a></li>
-                          <li class="cat-item"><a href="../tag/blog.html">blog &sdot; (19)</a></li>
-                          <li class="cat-item"><a href="../tag/game.html">game &sdot; (5)</a></li>
-                          <li class="cat-item"><a href="../tag/ssh.html">ssh &sdot; (2)</a></li>
-                          <li class="cat-item"><a href="../tag/Linux.html">Linux &sdot; (35)</a></li>
-                          <li class="cat-item"><a href="../tag/android.html">android &sdot; (1)</a></li>
-                          <li class="cat-item"><a href="../tag/sofeware.html">sofeware &sdot; (3)</a></li>
-                        </ul>
-                    </div>
-                  </div>
+  <div class="widget widget_categories widget-widget_categories">
+    <div class="widget-wrap widget-inside">
+      <h3 class="widget-title">标签</h3>
+      <ul>
+        <li class="cat-item"><a href="../tag/sip.html">sip &sdot; (2)</a></li>
+        <li class="cat-item"><a href="../tag/Network.html">Network &sdot; (48)</a></li>
+        <li class="cat-item"><a href="../tag/VPS.html">VPS &sdot; (3)</a></li>
+        <li class="cat-item"><a href="../tag/openerp.html">openerp &sdot; (2)</a></li>
+        <li class="cat-item"><a href="../tag/wow.html">wow &sdot; (1)</a></li>
+        <li class="cat-item"><a href="../tag/ipv6.html">ipv6 &sdot; (2)</a></li>
+        <li class="cat-item"><a href="../tag/wii.html">wii &sdot; (3)</a></li>
+        <li class="cat-item"><a href="../tag/blog.html">blog &sdot; (19)</a></li>
+        <li class="cat-item"><a href="../tag/game.html">game &sdot; (5)</a></li>
+        <li class="cat-item"><a href="../tag/ssh.html">ssh &sdot; (2)</a></li>
+        <li class="cat-item"><a href="../tag/Linux.html">Linux &sdot; (35)</a></li>
+        <li class="cat-item"><a href="../tag/android.html">android &sdot; (1)</a></li>
+        <li class="cat-item"><a href="../tag/sofeware.html">sofeware &sdot; (3)</a></li>
+      </ul>
+    </div>
+  </div>
 
-                  <div class="widget widget_recent_entries widget-widget_recent_entries">
-                    <div class="widget-wrap widget-inside">
-                      <h3 class="widget-title">最新文章</h3>
-                      <ul> 
-                        <li><a href='openerp-7-add-menu.html'>OPENERP 7:菜单添加</a></li>
-                        <li><a href='tips-upload-with-web-py.html'>Tips : upload with web.py</a></li>
-                        <li><a href='netgear-r6300v2-ngrep.html'>Netgear R6300v2上编译ngrep</a></li>
-                        <li><a href='test-100m.html'>联通100M体验</a></li>
-                        <li><a href='iphone-5-clean.html'>Iphone 5可用容量恢复</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
+  <div class="widget widget_recent_entries widget-widget_recent_entries">
+    <div class="widget-wrap widget-inside">
+      <h3 class="widget-title">最新文章</h3>
+      <ul> 
+        <li><a href='../post/openerp-7-add-menu.html'>OPENERP 7:菜单添加</a></li>
+        <li><a href='../post/tips-upload-with-web-py.html'>Tips : upload with web.py</a></li>
+        <li><a href='../post/netgear-r6300v2-ngrep.html'>Netgear R6300v2上编译ngrep</a></li>
+        <li><a href='../post/test-100m.html'>联通100M体验</a></li>
+        <li><a href='../post/iphone-5-clean.html'>Iphone 5可用容量恢复</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+      </div>
 
+    </div>
+
+    <div class="container_16 containter_footer">
+      <div id="footer" class="grid_16">
+        <div class="grid_10 alpha">
+          <div class="copyright_inside">
+            &copy; Copyright 2014 - <a href="http://ahui.us/">Ahui的个人博客</a>  </div>
+          </div>
+          <div class="grid_6 omega">
+            <div class="credit_inside">
+              <a href="http://designorbital.com/contango/" title="Contango Theme">Contango Theme</a> &sdot; Modifiy by <a href="http://ahui.us/" title="Ahui">Ahui</a>
             </div>
+          </div>
+        </div>
+      </div>
 
-            <div class="container_16 containter_footer">
-              <div id="footer" class="grid_16">
-                <div class="grid_10 alpha">
-                  <div class="copyright_inside">
-                    &copy; Copyright 2014 - <a href="http://ahui.us/">Ahui的个人博客</a>  </div>
-                  </div>
-                  <div class="grid_6 omega">
-                    <div class="credit_inside">
-                      <a href="http://designorbital.com/contango/" title="Contango Theme">Contango Theme</a> &sdot; Modifiy by <a href="http://ahui.us/" title="Ahui">Ahui</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </body>
-          </html>
+    </div>
+  </body>
+  </html>

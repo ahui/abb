@@ -1,0 +1,7 @@
+timestamp: 1391523508.74
+encoding: utf-8
+
+_extend=_buf.extend;_to_str=to_str;_escape=escape; _context['page_title'] = title
+_extend((u'''\r
+''', _to_str(body), u'''\r
+ \r\n''', ));
