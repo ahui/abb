@@ -2,3 +2,20 @@
 
 #{body}
  
+<div id="loop-nav-numeric" class="nav-numeric">
+<?py for p in xrange(pages):
+    if p == page:
+?>
+  <span class='page-numbers current'>${p+1}</span>
+<?py elif p == 0: ?>
+  <a class='page-numbers' href='index.html'>1</a>
+<?py else: ?>
+  <a class='page-numbers' href='index.${p}.html'>${p+1}</a>
+<?py
+    #endif
+#endfor
+?>
+<?py if page+1 < pages: ?>
+  <a class="next page-numbers" href="index.${page+1}.html">Next &raquo;</a>  <div class="clear"></div>
+<?py #end if ?>
+</div>

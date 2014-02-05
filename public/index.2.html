@@ -45,80 +45,24 @@
     <div class="post type-post status-publish format-standard hentry">
       <div class="entry-meta-group clearfix">
         <div class="grid_2 alpha">
-          <time class="entry-date entry-time updated" datetime="2011-06-21 17:58:09">
-            <a href="#" title="2011-06-21 17:58:09" rel="bookmark">
-              <span class="entry-date-day">21</span>
-              <span class="entry-date-month-year">2011-06</span>
-            </a>
-          </time>
-        </div>
-        <div class="grid_8 omega">
-          <h1 class="entry-title entry-title-single">Tomato Toastman完美支持he.net的IPV6</h1>
-          <div class="entry-meta">    
-            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
-            <span class="tag-links">
-              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
-              <a href="../tag/ipv6.html" rel="tag">ipv6</a>
-              <a href="../tag/Linux.html" rel="tag">Linux</a>
-              <a href="../tag/Network.html" rel="tag">Network</a>
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div class="entry-content clearfix">
-        <p><p>he.net申请到的免费IPV6地址块只用到一台机器上太浪费了, 而Toastman的Tomato修改版, 对he.net的ipv6地址块支持得相当完美了. 这样可以把申请到的地址块放在路由器上, 并自动分配IPV6地址给所有接入路由器的机器.</p>
-
-<p>首先去https://www.tunnelbroker.net/申请一个64位的IPV6地址块,并记下
-Server IPv4 Address
-Server IPv6 Address
-Client IPv4 Address
-Client IPv6 Address</p>
-
-<p>然后你要有一个能刷tomato的路由器,并刷上相应的Tomato Toastman版. 我用的中兴h618b对应的版本是Tomato Firmware v1.28.7820 MIPSR1-Toastman K26 USB VPN.</p>
-
-<p>login到router,进入basic-&gt;ipv6菜单.
-<a href="http://ahui.us/wp-content/uploads/2011/06/setipipv6.png"><img src="http://ahui.us/wp-content/uploads/2011/06/setipipv6.png" alt="" title="setipipv6"></a>
-IPv6 Service Type 选择 6in4 Static Tunnel
-Assigned / Routed Prefix 填写要分配给接入机器的ipv6前缀,比如你申请到的是类x.x.x.x::1的地址,这儿填写x.x.x.x::
-Prefix Length填64
-Router IPv6 Address选择Default,会自动填写成he.net分配的Server IPv6 Address,不然选择Manual手工填写成Server IPv6 Address.
-Enable Router Advertisements勾上,
-Tunnel Remote Endpoint (IPv4 Address)填写he.net分配的Server IPv4 Address,
-Tunnel Client IPv6 Address填写he.net分配的Client IPv6 Address,64位长.</p>
-
-<p>如果你好运气路由器是固定的IPV4地址,那么设置这些就ok了.保存后radvd会自动启动用于分配ipv6地址.</p>
-
-<p>如果是pppoe之类拿的动态IP地址,那么这时候he.net上显示的Client IPv4 Address则会和你现在路由器地址不符. 这个时候所说的&quot;完美&quot;支持就表示出来了.
-进入basic-&gt;ddns菜单,看,下拉列表里有个&quot;HE.net IPv6 Tunnel Broker&quot;,贴心吧.帐号填写完后保存,这样地址改动后,会自动update he.net上的Client IPv4 Address数据.</p>
-
-<p>之后路由器给接入的机器分配IPv4地址时,会自动也分配一个IPv6地址. 这样router后面带的所有机器,都能实现IPV6接入了.</p>
-</p>
-      </div>
-
-    </div>
-
-  </div> 
-  <div id="content">    
-    <div class="post type-post status-publish format-standard hentry">
-      <div class="entry-meta-group clearfix">
-        <div class="grid_2 alpha">
           <time class="entry-date entry-time updated" datetime="2011-06-21 16:23:36">
-            <a href="#" title="2011-06-21 16:23:36" rel="bookmark">
+            <a href="post/tomato-firmware-v1-28-7820-mipsr1-toastman-k26-usb-vpn.html" title="2011-06-21 16:23:36" rel="bookmark">
               <span class="entry-date-day">21</span>
               <span class="entry-date-month-year">2011-06</span>
             </a>
           </time>
         </div>
         <div class="grid_8 omega">
-          <h1 class="entry-title entry-title-single">Tomato Toastman 之 SIP Server : siproxd 安装与使用</h1>
+          <h1 class="entry-title entry-title-single">
+            <a href="post/tomato-firmware-v1-28-7820-mipsr1-toastman-k26-usb-vpn.html">Tomato Toastman 之 SIP Server : siproxd 安装与使用</a>
+          </h1>
           <div class="entry-meta">    
             <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
             <span class="tag-links">
               <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
-              <a href="../tag/Linux.html" rel="tag">Linux</a>
-              <a href="../tag/Network.html" rel="tag">Network</a>
-              <a href="../tag/sip.html" rel="tag">sip</a>
+              <a href="tag/Linux.html" rel="tag">Linux</a>
+              <a href="tag/Network.html" rel="tag">Network</a>
+              <a href="tag/sip.html" rel="tag">sip</a>
             </span>
           </div>
         </div>
@@ -141,28 +85,24 @@ Tunnel Client IPv6 Address填写he.net分配的Client IPv6 Address,64位长.</p>
 
 <p>ssh到路由器里,Enable jffs并且mount到/opt,然后安装ipkg基本包,也可参考<a href="http://ahui.us/index.php/2010/08/tomato-pandora-optware/"> Tomato Pandora之Optware软件安装</a>.</p>
 
-<p>cat opt.sh 或下载 http://www.3iii.dk/linux/optware/optware-install-ddwrt.sh.txt
-&lt;!--more--&gt;
-<pre class="brush: bash"></p>
+<p>cat opt.sh 或下载 http://www.3iii.dk/linux/optware/optware-install-ddwrt.sh.txt</p>
 
-<h1>!/bin/sh</h1>
+<pre><code>#!/bin/sh
+# Optware pre-installation script, Leon Kos 2006, 2008
+# added -verbose_wget to some lines, MrAlvin 2009
 
-<h1>Optware pre-installation script, Leon Kos 2006, 2008</h1>
+REPOSITORY=http://ipkg.nslu2-linux.org/feeds/optware/ddwrt/cross/stable
+TMP=/tmp
 
-<h1>added -verbose_wget to some lines, MrAlvin 2009</h1>
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/opt/bin:/opt/sbin
+unset LD_PRELOAD
+unset LD_LIBRARY_PATH
 
-<p>REPOSITORY=http://ipkg.nslu2-linux.org/feeds/optware/ddwrt/cross/stable
-TMP=/tmp</p>
-
-<p>PATH=/bin:/sbin:/usr/bin:/usr/sbin:/opt/bin:/opt/sbin
-unset LD<em>PRELOAD
-unset LD</em>LIBRARY_PATH</p>
-
-<p><em>check</em>config()
+_check_config()
 {
     echo &quot;Checking system config ...&quot;
     GATEWAY=$(netstat -rn |
-    sed -n &#39;s/^0.0.0.0[ \t]{1,}([0-9.]{8,}).<em>/\1/p&#39; )
+    sed -n &#39;s/^0.0.0.0[ \t]\{1,\}\([0-9.]\{8,\}\).*/\1/p&#39; )
     if [ -n &quot;${GATEWAY}&quot; ]; then
     echo &quot;Using ${GATEWAY} as default gateway.&quot;
     else
@@ -172,16 +112,16 @@ unset LD</em>LIBRARY_PATH</p>
     if [ -s /etc/resolv.conf ]; then
     echo &quot;Using the following nameserver(s):&quot;
     if grep nameserver /etc/resolv.conf ; then
-            GATEWAY<em>SUBNET=$(echo &quot;${GATEWAY}&quot; |
-        sed &#39;s/.[0-9]{1,3}.[0-9]{1,3}$//&#39;)
-        if [ &quot;${GATEWAY</em>SUBNET}&quot; = &quot;192.168&quot; ]; then
+            GATEWAY_SUBNET=$(echo &quot;${GATEWAY}&quot; |
+        sed &#39;s/\.[0-9]\{1,3\}\.[0-9]\{1,3\}$//&#39;)
+        if [ &quot;${GATEWAY_SUBNET}&quot; = &quot;192.168&quot; ]; then
         if grep -q ${GATEWAY} /etc/resolv.conf ; then
             echo &quot;Gateway ${GATEWAY} is also nameserver.&quot;
         else
             echo &quot;Warning: local nameserver is different than gateway!&quot;
             echo &quot;Check config or enter:&quot;
             if test -L /etc/resolv.conf ; then 
-              echo &quot;  sed -i s/192.168.</em>/${GATEWAY}/ /tmp/resolv.conf&quot;
+              echo &quot;  sed -i s/192.168.*/${GATEWAY}/ /tmp/resolv.conf&quot;
             else
               echo &quot;  sed -i s/192.168.*/${GATEWAY}/ /etc/resolv.conf&quot;
             fi
@@ -195,23 +135,21 @@ unset LD</em>LIBRARY_PATH</p>
     else
     echo &quot;Error: Empty or nonexistent /etc/resolv.conf&quot;
     exit 3
-    fi</p>
+    fi
 
-<pre><code>if mount | grep -q /opt ; then
-[ -d /opt/etc ] &amp;&amp; echo &quot;Warning: /opt partition not empty!&quot;
-else
-echo &quot;Error: /opt partition not mounted.&quot;
-echo &quot;for running Optware on JFFS (not recommended), Enter&quot;
-echo &quot;    mkdir /jffs/opt&quot;
-echo &quot;    mount -o bind /jffs/opt /opt&quot;
-echo &quot;to correct this.&quot;
-exit 4
-fi
-</code></pre>
+    if mount | grep -q /opt ; then
+    [ -d /opt/etc ] &amp;&amp; echo &quot;Warning: /opt partition not empty!&quot;
+    else
+    echo &quot;Error: /opt partition not mounted.&quot;
+    echo &quot;for running Optware on JFFS (not recommended), Enter&quot;
+    echo &quot;    mkdir /jffs/opt&quot;
+    echo &quot;    mount -o bind /jffs/opt /opt&quot;
+    echo &quot;to correct this.&quot;
+    exit 4
+    fi
+}
 
-<p>}</p>
-
-<p><em>install</em>package()
+_install_package()
 {
     PACKAGE=$1
     echo &quot;Installing package ${PACKAGE} ...&quot;
@@ -236,50 +174,65 @@ fi
     rm -f ${TMP}/control.tar.gz
     rm -f ${TMP}/control
     rm -f ${TMP}/${PACKAGE}
-}</p>
+}
 
-<p><em>check</em>config
-<em>install</em>package uclibc-opt<em>0.9.28-13</em>mipsel.ipk
-<em>install</em>package ipkg-opt<em>0.99.163-10</em>mipsel.ipk
+_check_config
+_install_package uclibc-opt_0.9.28-13_mipsel.ipk
+_install_package ipkg-opt_0.99.163-10_mipsel.ipk
 /opt/sbin/ldconfig
-/opt/bin/ipkg -verbose<em>wget update 
-/opt/bin/ipkg -force-reinstall -verbose</em>wget install uclibc-opt
+/opt/bin/ipkg -verbose_wget update 
+/opt/bin/ipkg -force-reinstall -verbose_wget install uclibc-opt
 /opt/bin/ipkg -force-reinstall -verbose_wget install ipkg-opt
-</pre>
-安装
-<pre class="brush:bash">
-cd /opt
+</code></pre>
+
+<p>安装</p>
+
+<pre><code>cd /opt
 sh ./opt.sh
 ipkg update
-</pre>
-先安装libtool库,打包sipproxd时人没把这个依赖加进去
-<pre class="brush:bash">
-ipkg install libtool
-</pre>
-安装好用的ngrep工具,这个没有依赖,不安装也可以省点空量.
-<pre class="brush:bash">
-ipkg install ngrep
-</pre>
-安装sipproxd
-<pre class="brush:bash">
-ipkg install siproxd
-</pre>
-此时会提示
-To complete the installation, you must edit /opt/etc/siproxd.conf-example and rename it to /opt/etc/siproxd.conf,
-and then run /opt/etc/init.d/S90siproxd to start siproxd.</p>
+</code></pre>
 
-<p>其实应该先改/opt/etc/siproxd<em>passwd.cfg文件,把sip帐号增加进去,格式很简单.
-然后 cp /opt/etc/siproxd.conf-example /opt/etc/siproxd.conf
-修改if</em>inbound及if<em>outbound为br0就可以了. 我这里因为用vpn连接了远程的路由器, 可视为全走内网,所以把rtp</em>proxy_enable也设为0了.
-最后启动
-<pre class="brush:bash">
-/opt/etc/init.d/S98siproxd
-</pre>
-siproxd会在TCP以及UDP的 0.0.0.0:5060上监听.
-这样我把自己路由器里的sip电话以及远端vpn连接的路由器里的sip电话都设置为自己路由器内网ip就可以了. 
-简单示意图:
-sip phone1 ----&gt; GW1,siproxd server &amp; openvpn server----&gt; internet &lt;-----&gt;GW2,openvpn client &lt;-----sip phone2
-好了,你就真变成国内大LAN网,也影响不了我打电话了.</p>
+<p>先安装libtool库,打包sipproxd时人没把这个依赖加进去</p>
+
+<pre><code>ipkg install libtool
+</code></pre>
+
+<p>安装好用的ngrep工具,这个没有依赖,不安装也可以省点空量.</p>
+
+<pre><code>ipkg install ngrep
+</code></pre>
+
+<p>安装sipproxd</p>
+
+<pre><code>ipkg install siproxd
+</code></pre>
+
+<p>此时会提示</p>
+
+<pre><code>To complete the installation, you must edit /opt/etc/siproxd.conf-example and rename it to /opt/etc/siproxd.conf,
+and then run /opt/etc/init.d/S90siproxd to start siproxd.
+</code></pre>
+
+<p>其实应该先改/opt/etc/siproxd_passwd.cfg文件,把sip帐号增加进去,格式很简单.
+然后 </p>
+
+<pre><code>cp /opt/etc/siproxd.conf-example /opt/etc/siproxd.conf
+</code></pre>
+
+<p>修改if<em>inbound及if</em>outbound为br0就可以了. 我这里因为用vpn连接了远程的路由器, 可视为全走内网,所以把rtp<em>proxy</em>enable也设为0了.
+最后启动</p>
+
+<pre><code>/opt/etc/init.d/S98siproxd
+</code></pre>
+
+<p>siproxd会在TCP以及UDP的 0.0.0.0:5060上监听.</p>
+
+<p>这样我把自己路由器里的sip电话以及远端vpn连接的路由器里的sip电话都设置为自己路由器内网ip就可以了. </p>
+
+<p>简单示意图:
+sip phone1 ----&gt; GW1,siproxd server &amp; openvpn server----&gt; internet &lt;-----&gt;GW2,openvpn client &lt;-----sip phone2</p>
+
+<p>好了,你就真变成国内大LAN网,也影响不了我打电话了.</p>
 
 <p>siproxd比较可惜的是不支持ipv6,没有查看注册及通话情况等管理功能.如果有啥问题,直接动用ngrep监听数据吧.</p>
 </p>
@@ -287,27 +240,29 @@ sip phone1 ----&gt; GW1,siproxd server &amp; openvpn server----&gt; internet &lt
 
     </div>
 
-  </div> 
-  <div id="content">    
+ 
+  </div>  <div id="content">    
     <div class="post type-post status-publish format-standard hentry">
       <div class="entry-meta-group clearfix">
         <div class="grid_2 alpha">
           <time class="entry-date entry-time updated" datetime="2011-05-24 20:16:43">
-            <a href="#" title="2011-05-24 20:16:43" rel="bookmark">
+            <a href="post/ipv6-enable-on-vps.html" title="2011-05-24 20:16:43" rel="bookmark">
               <span class="entry-date-day">24</span>
               <span class="entry-date-month-year">2011-05</span>
             </a>
           </time>
         </div>
         <div class="grid_8 omega">
-          <h1 class="entry-title entry-title-single">IPv6 Enabled on VPS</h1>
+          <h1 class="entry-title entry-title-single">
+            <a href="post/ipv6-enable-on-vps.html">IPv6 Enabled on VPS</a>
+          </h1>
           <div class="entry-meta">    
             <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
             <span class="tag-links">
               <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
-              <a href="../tag/blog.html" rel="tag">blog</a>
-              <a href="../tag/Linux.html" rel="tag">Linux</a>
-              <a href="../tag/Network.html" rel="tag">Network</a>
+              <a href="tag/blog.html" rel="tag">blog</a>
+              <a href="tag/Linux.html" rel="tag">Linux</a>
+              <a href="tag/Network.html" rel="tag">Network</a>
             </span>
           </div>
         </div>
@@ -322,26 +277,28 @@ sip phone1 ----&gt; GW1,siproxd server &amp; openvpn server----&gt; internet &lt
 
     </div>
 
-  </div> 
-  <div id="content">    
+ 
+  </div>  <div id="content">    
     <div class="post type-post status-publish format-standard hentry">
       <div class="entry-meta-group clearfix">
         <div class="grid_2 alpha">
           <time class="entry-date entry-time updated" datetime="2011-05-23 12:37:31">
-            <a href="#" title="2011-05-23 12:37:31" rel="bookmark">
+            <a href="post/baidu-or-google-ahui.html" title="2011-05-23 12:37:31" rel="bookmark">
               <span class="entry-date-day">23</span>
               <span class="entry-date-month-year">2011-05</span>
             </a>
           </time>
         </div>
         <div class="grid_8 omega">
-          <h1 class="entry-title entry-title-single">baidu和google的差别之查询本博客</h1>
+          <h1 class="entry-title entry-title-single">
+            <a href="post/baidu-or-google-ahui.html">baidu和google的差别之查询本博客</a>
+          </h1>
           <div class="entry-meta">    
             <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
             <span class="tag-links">
               <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
-              <a href="../tag/blog.html" rel="tag">blog</a>
-              <a href="../tag/Network.html" rel="tag">Network</a>
+              <a href="tag/blog.html" rel="tag">blog</a>
+              <a href="tag/Network.html" rel="tag">Network</a>
             </span>
           </div>
         </div>
@@ -360,28 +317,30 @@ sip phone1 ----&gt; GW1,siproxd server &amp; openvpn server----&gt; internet &lt
 
     </div>
 
-  </div> 
-  <div id="content">    
+ 
+  </div>  <div id="content">    
     <div class="post type-post status-publish format-standard hentry">
       <div class="entry-meta-group clearfix">
         <div class="grid_2 alpha">
           <time class="entry-date entry-time updated" datetime="2011-05-23 11:55:02">
-            <a href="#" title="2011-05-23 11:55:02" rel="bookmark">
+            <a href="post/my-ahui-us.html" title="2011-05-23 11:55:02" rel="bookmark">
               <span class="entry-date-day">23</span>
               <span class="entry-date-month-year">2011-05</span>
             </a>
           </time>
         </div>
         <div class="grid_8 omega">
-          <h1 class="entry-title entry-title-single">域名续费记</h1>
+          <h1 class="entry-title entry-title-single">
+            <a href="post/my-ahui-us.html">域名续费记</a>
+          </h1>
           <div class="entry-meta">    
             <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
             <span class="tag-links">
               <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
-              <a href="../tag/blog.html" rel="tag">blog</a>
-              <a href="../tag/Linux.html" rel="tag">Linux</a>
-              <a href="../tag/Network.html" rel="tag">Network</a>
-              <a href="../tag/VPS.html" rel="tag">VPS</a>
+              <a href="tag/blog.html" rel="tag">blog</a>
+              <a href="tag/Linux.html" rel="tag">Linux</a>
+              <a href="tag/Network.html" rel="tag">Network</a>
+              <a href="tag/VPS.html" rel="tag">VPS</a>
             </span>
           </div>
         </div>
@@ -413,26 +372,28 @@ sip phone1 ----&gt; GW1,siproxd server &amp; openvpn server----&gt; internet &lt
 
     </div>
 
-  </div> 
-  <div id="content">    
+ 
+  </div>  <div id="content">    
     <div class="post type-post status-publish format-standard hentry">
       <div class="entry-meta-group clearfix">
         <div class="grid_2 alpha">
           <time class="entry-date entry-time updated" datetime="2011-04-12 23:05:09">
-            <a href="#" title="2011-04-12 23:05:09" rel="bookmark">
+            <a href="post/ulipadautoinput.html" title="2011-04-12 23:05:09" rel="bookmark">
               <span class="entry-date-day">12</span>
               <span class="entry-date-month-year">2011-04</span>
             </a>
           </time>
         </div>
         <div class="grid_8 omega">
-          <h1 class="entry-title entry-title-single">UliPad自动输入括号和引号</h1>
+          <h1 class="entry-title entry-title-single">
+            <a href="post/ulipadautoinput.html">UliPad自动输入括号和引号</a>
+          </h1>
           <div class="entry-meta">    
             <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
             <span class="tag-links">
               <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
-              <a href="../tag/Linux.html" rel="tag">Linux</a>
-              <a href="../tag/sofeware.html" rel="tag">sofeware</a>
+              <a href="tag/Linux.html" rel="tag">Linux</a>
+              <a href="tag/sofeware.html" rel="tag">sofeware</a>
             </span>
           </div>
         </div>
@@ -457,26 +418,28 @@ sip phone1 ----&gt; GW1,siproxd server &amp; openvpn server----&gt; internet &lt
 
     </div>
 
-  </div> 
-  <div id="content">    
+ 
+  </div>  <div id="content">    
     <div class="post type-post status-publish format-standard hentry">
       <div class="entry-meta-group clearfix">
         <div class="grid_2 alpha">
           <time class="entry-date entry-time updated" datetime="2011-04-11 17:03:54">
-            <a href="#" title="2011-04-11 17:03:54" rel="bookmark">
+            <a href="post/flower2011.html" title="2011-04-11 17:03:54" rel="bookmark">
               <span class="entry-date-day">11</span>
               <span class="entry-date-month-year">2011-04</span>
             </a>
           </time>
         </div>
         <div class="grid_8 omega">
-          <h1 class="entry-title entry-title-single">春暖花开&amp;杨絮飘来</h1>
+          <h1 class="entry-title entry-title-single">
+            <a href="post/flower2011.html">春暖花开&amp;杨絮飘来</a>
+          </h1>
           <div class="entry-meta">    
             <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
             <span class="tag-links">
               <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
-              <a href="../tag/blog.html" rel="tag">blog</a>
-              <a href="../tag/Network.html" rel="tag">Network</a>
+              <a href="tag/blog.html" rel="tag">blog</a>
+              <a href="tag/Network.html" rel="tag">Network</a>
             </span>
           </div>
         </div>
@@ -497,44 +460,122 @@ sip phone1 ----&gt; GW1,siproxd server &amp; openvpn server----&gt; internet &lt
 
     </div>
 
-  </div> 
-  <div id="content">    
+ 
+  </div>  <div id="content">    
     <div class="post type-post status-publish format-standard hentry">
       <div class="entry-meta-group clearfix">
         <div class="grid_2 alpha">
           <time class="entry-date entry-time updated" datetime="2011-03-25 20:30:26">
-            <a href="#" title="2011-03-25 20:30:26" rel="bookmark">
+            <a href="post/wii265.html" title="2011-03-25 20:30:26" rel="bookmark">
               <span class="entry-date-day">25</span>
               <span class="entry-date-month-year">2011-03</span>
             </a>
           </time>
         </div>
         <div class="grid_8 omega">
-          <h1 class="entry-title entry-title-single">Wii保龄球记录265</h1>
+          <h1 class="entry-title entry-title-single">
+            <a href="post/wii265.html">Wii保龄球记录265</a>
+          </h1>
           <div class="entry-meta">    
             <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
             <span class="tag-links">
               <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
-              <a href="../tag/blog.html" rel="tag">blog</a>
-              <a href="../tag/game.html" rel="tag">game</a>
-              <a href="../tag/wii.html" rel="tag">wii</a>
+              <a href="tag/blog.html" rel="tag">blog</a>
+              <a href="tag/game.html" rel="tag">game</a>
+              <a href="tag/wii.html" rel="tag">wii</a>
             </span>
           </div>
         </div>
       </div>
 
       <div class="entry-content clearfix">
-        <p><p>一不小心提高到265,差二次全中.可惜了~~
-<a href="http://ahui.us/wp-content/uploads/2011/03/DSC00333.jpg"><img src="http://ahui.us/wp-content/uploads/2011/03/DSC00333-300x200.jpg" alt="" title="wii265"></a></p>
+        <p><p>一不小心提高到265,差二次全中.可惜了~~</p>
+
+<p><a href="http://ahui.us/wp-content/uploads/2011/03/DSC00333.jpg"><img src="http://ahui.us/wp-content/uploads/2011/03/DSC00333-300x200.jpg" alt="" title="wii265"></a></p>
 </p>
       </div>
 
     </div>
 
-  </div> 
+ 
+  </div>  <div id="content">    
+    <div class="post type-post status-publish format-standard hentry">
+      <div class="entry-meta-group clearfix">
+        <div class="grid_2 alpha">
+          <time class="entry-date entry-time updated" datetime="2011-02-21 15:10:02">
+            <a href="post/youku去掉在线播放时的广告.html" title="2011-02-21 15:10:02" rel="bookmark">
+              <span class="entry-date-day">21</span>
+              <span class="entry-date-month-year">2011-02</span>
+            </a>
+          </time>
+        </div>
+        <div class="grid_8 omega">
+          <h1 class="entry-title entry-title-single">
+            <a href="post/youku去掉在线播放时的广告.html">Youku去掉在线播放时的广告</a>
+          </h1>
+          <div class="entry-meta">    
+            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
+            <span class="tag-links">
+              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
+              <a href="tag/Network.html" rel="tag">Network</a>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry-content clearfix">
+        <p><p>最简单的,在hosts文件中,加入</p>
+
+<pre><code>127.0.0.1 valf.atm.youku.com
+</code></pre>
+
+<p>就能去掉播放前的广告.
+要想去掉所有广告,则要在hosts文件中加入下列行:</p>
+
+<pre><code>127.0.0.1 atm.youku.com 
+127.0.0.1 Fvid.atm.youku.com 
+127.0.0.1 html.atm.youku.com 
+127.0.0.1 valb.atm.youku.com 
+127.0.0.1 valf.atm.youku.com 
+127.0.0.1 valo.atm.youku.com 
+127.0.0.1 valp.atm.youku.com 
+127.0.0.1 lstat.youku.com 
+127.0.0.1 speed.lstat.youku.com 
+127.0.0.1 urchin.lstat.youku.com 
+127.0.0.1 stat.youku.com 
+127.0.0.1 static.lstat.youku.com 
+127.0.0.1 valc.atm.youku.com 
+127.0.0.1 vid.atm.youku.com 
+127.0.0.1 walp.atm.youku.com
+</code></pre>
+
+<p>win7系统下
+C:\Users\当前用户\AppData\Roaming\Macromedia\Flash Player#SharedObjects\随机串
+static.youku.com目录改名，并新建同名文件。</p>
+
+<p>参考连接</p>
+
+<p>http://www.itopdog.cn/software-tech/noad.html
+http://www.jcboy.info/2011/02/pingbiyoukutudoudengshipinwangzhan15miaoguanggaodezuiquanzuijiandanfangfa.htm</p>
+</p>
+      </div>
+
+    </div>
 
  
-
+  </div>
+ 
+<div id="loop-nav-numeric" class="nav-numeric">
+  <a class='page-numbers' href='index.html'>1</a>
+  <a class='page-numbers' href='index.1.html'>2</a>
+  <span class='page-numbers current'>3</span>
+  <a class='page-numbers' href='index.3.html'>4</a>
+  <a class='page-numbers' href='index.4.html'>5</a>
+  <a class='page-numbers' href='index.5.html'>6</a>
+  <a class='page-numbers' href='index.6.html'>7</a>
+  <a class='page-numbers' href='index.7.html'>8</a>
+  <a class="next page-numbers" href="index.3.html">Next &raquo;</a>  <div class="clear"></div>
+</div>
       </div> 
 
       <div class="grid_5">
@@ -543,10 +584,12 @@ sip phone1 ----&gt; GW1,siproxd server &amp; openvpn server----&gt; internet &lt
   <div class="widget widget_search widget-widget_search">
     <div class="widget-wrap widget-inside">
       <div class="search">
-        <form method="get" class="searchform" action="http://ahui.us/">
-          <label for="s" class="assistive-text">Search for:</label>
-          <input type="text" class="field" name="s" id="s" value="Search" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" />
-          <input type="submit" class="submit" name="submit" id="searchsubmit" value="Search" />
+        <form method="get" class="searchform" action="http://www.google.com/search">
+          <input name="sitesearch" value="ahui.us" type="hidden"> 
+          <input name="hl" value="zh-CN" type="hidden">
+          <input name="ie" value="GB2312" type="hidden"> 
+          <input type="text" class="field" name="q" id="query" value="Search" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" />
+          <input type="submit" class="submit" name="Search" id="searchsubmit" value="Search" />
         </form>
       </div>
     </div>
@@ -558,14 +601,15 @@ sip phone1 ----&gt; GW1,siproxd server &amp; openvpn server----&gt; internet &lt
       <h3 class="widget-title">标签</h3>
       <ul>
         <li class="cat-item"><a href="tag/sip.html">sip &sdot; (2)</a></li>
-        <li class="cat-item"><a href="tag/Network.html">Network &sdot; (48)</a></li>
+        <li class="cat-item"><a href="tag/Network.html">Network &sdot; (47)</a></li>
         <li class="cat-item"><a href="tag/VPS.html">VPS &sdot; (3)</a></li>
         <li class="cat-item"><a href="tag/openerp.html">openerp &sdot; (2)</a></li>
         <li class="cat-item"><a href="tag/wow.html">wow &sdot; (1)</a></li>
         <li class="cat-item"><a href="tag/ipv6.html">ipv6 &sdot; (2)</a></li>
-        <li class="cat-item"><a href="tag/wii.html">wii &sdot; (3)</a></li>
-        <li class="cat-item"><a href="tag/blog.html">blog &sdot; (19)</a></li>
         <li class="cat-item"><a href="tag/game.html">game &sdot; (5)</a></li>
+        <li class="cat-item"><a href="tag/wii.html">wii &sdot; (3)</a></li>
+        <li class="cat-item"><a href="tag/blog.html">blog &sdot; (18)</a></li>
+        <li class="cat-item"><a href="tag/notag.html">notag &sdot; (2)</a></li>
         <li class="cat-item"><a href="tag/ssh.html">ssh &sdot; (2)</a></li>
         <li class="cat-item"><a href="tag/Linux.html">Linux &sdot; (35)</a></li>
         <li class="cat-item"><a href="tag/android.html">android &sdot; (1)</a></li>
@@ -586,6 +630,25 @@ sip phone1 ----&gt; GW1,siproxd server &amp; openvpn server----&gt; internet &lt
       </ul>
     </div>
   </div>
+
+
+<div class="widget widget_comments">
+  <h3 class="widget-title">最新评论</h3>
+  <ul class="entry ds-recent-comments" data-num-items="5" data-show-avatars="0" data-show-title="0" data-show-time="1"></ul>
+</div>
+<!--多说js加载开始，一个页面只需要加载一次 -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"ahuius"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!--多说js加载结束，一个页面只需要加载一次 -->
+
 </div>      </div>
 
     </div>

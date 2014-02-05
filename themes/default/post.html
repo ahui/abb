@@ -4,20 +4,22 @@
       <div class="entry-meta-group clearfix">
         <div class="grid_2 alpha">
           <time class="entry-date entry-time updated" datetime="${date}">
-            <a href="#" title="${date}" rel="bookmark">
+            <a href="${dir}post/${url}" title="${date}" rel="bookmark">
               <span class="entry-date-day">${date[8:10]}</span>
               <span class="entry-date-month-year">${date[0:7]}</span>
             </a>
           </time>
         </div>
         <div class="grid_8 omega">
-          <h1 class="entry-title entry-title-single">${title}</h1>
+          <h1 class="entry-title entry-title-single">
+            <a href="${dir}post/${url}">${title}</a>
+          </h1>
           <div class="entry-meta">    
             <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
             <span class="tag-links">
               <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
               <?py for tag in tags: ?>
-              <a href="../tag/${tag}.html" rel="tag">${tag}</a>
+              <a href="${dir}tag/${tag}.html" rel="tag">${tag}</a>
               <?py #endfor?>
             </span>
           </div>
@@ -30,4 +32,10 @@
 
     </div>
 
-  </div> 
+ 
+<?py if mode=="post": ?>
+<!-- Duoshuo Comment BEGIN -->
+  <div class="ds-thread" data-title="${title}"></div>
+
+<?py #endif ?>
+  </div>

@@ -45,14 +45,16 @@
       <div class="entry-meta-group clearfix">
         <div class="grid_2 alpha">
           <time class="entry-date entry-time updated" datetime="2012-09-22 16:14:32">
-            <a href="#" title="2012-09-22 16:14:32" rel="bookmark">
+            <a href="../post/freenas-8-0-1-on-iscsi.html" title="2012-09-22 16:14:32" rel="bookmark">
               <span class="entry-date-day">22</span>
               <span class="entry-date-month-year">2012-09</span>
             </a>
           </time>
         </div>
         <div class="grid_8 omega">
-          <h1 class="entry-title entry-title-single">freeNAS 8.0.1 上 iSCSI存在的几个问题</h1>
+          <h1 class="entry-title entry-title-single">
+            <a href="../post/freenas-8-0-1-on-iscsi.html">freeNAS 8.0.1 上 iSCSI存在的几个问题</a>
+          </h1>
           <div class="entry-meta">    
             <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
             <span class="tag-links">
@@ -65,10 +67,12 @@
       </div>
 
       <div class="entry-content clearfix">
-        <p><p>1.二台win 7机器A,B同时连接上iSCSI,分别在iSCSI盘上新建立的文件，互相不可见，需要删除当前的iSCSI连接，再重设。
-2.同上A，B二机短时间内写同一目录，大部分情况下会导致些目录损坏，不能再访问。
-3.在iSCSI上COPY大文件后，马上重启NAS,文件大部分情况下会丢失。
-4.iSCSI盘采用NTFS时，COPY文件速度会降低一些。</p>
+        <p><ol>
+<li>二台win 7机器A,B同时连接上iSCSI,分别在iSCSI盘上新建立的文件，互相不可见，需要删除当前的iSCSI连接，再重设。</li>
+<li>同上A，B二机短时间内写同一目录，大部分情况下会导致些目录损坏，不能再访问。</li>
+<li>在iSCSI上COPY大文件后，马上重启NAS,文件大部分情况下会丢失。</li>
+<li>iSCSI盘采用NTFS时，COPY文件速度会降低一些。</li>
+</ol>
 
 <p>可见freeNAS 8.0.1版本上的iSCSI存在比较大的问题，只有在长期开着NAS并且长期只有一个写入用户的情况下，才能放心使用。其他大多数情况，应该采用其他文件共享协议。</p>
 </p>
@@ -76,8 +80,11 @@
 
     </div>
 
-  </div> 
+ 
+<!-- Duoshuo Comment BEGIN -->
+  <div class="ds-thread" data-title="freeNAS 8.0.1 上 iSCSI存在的几个问题"></div>
 
+  </div>
       </div> 
 
       <div class="grid_5">
@@ -86,10 +93,12 @@
   <div class="widget widget_search widget-widget_search">
     <div class="widget-wrap widget-inside">
       <div class="search">
-        <form method="get" class="searchform" action="http://ahui.us/">
-          <label for="s" class="assistive-text">Search for:</label>
-          <input type="text" class="field" name="s" id="s" value="Search" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" />
-          <input type="submit" class="submit" name="submit" id="searchsubmit" value="Search" />
+        <form method="get" class="searchform" action="http://www.google.com/search">
+          <input name="sitesearch" value="ahui.us" type="hidden"> 
+          <input name="hl" value="zh-CN" type="hidden">
+          <input name="ie" value="GB2312" type="hidden"> 
+          <input type="text" class="field" name="q" id="query" value="Search" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" />
+          <input type="submit" class="submit" name="Search" id="searchsubmit" value="Search" />
         </form>
       </div>
     </div>
@@ -101,14 +110,15 @@
       <h3 class="widget-title">标签</h3>
       <ul>
         <li class="cat-item"><a href="../tag/sip.html">sip &sdot; (2)</a></li>
-        <li class="cat-item"><a href="../tag/Network.html">Network &sdot; (48)</a></li>
+        <li class="cat-item"><a href="../tag/Network.html">Network &sdot; (47)</a></li>
         <li class="cat-item"><a href="../tag/VPS.html">VPS &sdot; (3)</a></li>
         <li class="cat-item"><a href="../tag/openerp.html">openerp &sdot; (2)</a></li>
         <li class="cat-item"><a href="../tag/wow.html">wow &sdot; (1)</a></li>
         <li class="cat-item"><a href="../tag/ipv6.html">ipv6 &sdot; (2)</a></li>
-        <li class="cat-item"><a href="../tag/wii.html">wii &sdot; (3)</a></li>
-        <li class="cat-item"><a href="../tag/blog.html">blog &sdot; (19)</a></li>
         <li class="cat-item"><a href="../tag/game.html">game &sdot; (5)</a></li>
+        <li class="cat-item"><a href="../tag/wii.html">wii &sdot; (3)</a></li>
+        <li class="cat-item"><a href="../tag/blog.html">blog &sdot; (18)</a></li>
+        <li class="cat-item"><a href="../tag/notag.html">notag &sdot; (2)</a></li>
         <li class="cat-item"><a href="../tag/ssh.html">ssh &sdot; (2)</a></li>
         <li class="cat-item"><a href="../tag/Linux.html">Linux &sdot; (35)</a></li>
         <li class="cat-item"><a href="../tag/android.html">android &sdot; (1)</a></li>
@@ -129,6 +139,25 @@
       </ul>
     </div>
   </div>
+
+
+<div class="widget widget_comments">
+  <h3 class="widget-title">最新评论</h3>
+  <ul class="entry ds-recent-comments" data-num-items="5" data-show-avatars="0" data-show-title="0" data-show-time="1"></ul>
+</div>
+<!--多说js加载开始，一个页面只需要加载一次 -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"ahuius"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!--多说js加载结束，一个页面只需要加载一次 -->
+
 </div>      </div>
 
     </div>

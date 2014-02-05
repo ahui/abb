@@ -45,14 +45,16 @@
       <div class="entry-meta-group clearfix">
         <div class="grid_2 alpha">
           <time class="entry-date entry-time updated" datetime="2010-08-04 22:21:35">
-            <a href="#" title="2010-08-04 22:21:35" rel="bookmark">
+            <a href="../post/tomato-pandora-optware.html" title="2010-08-04 22:21:35" rel="bookmark">
               <span class="entry-date-day">04</span>
               <span class="entry-date-month-year">2010-08</span>
             </a>
           </time>
         </div>
         <div class="grid_8 omega">
-          <h1 class="entry-title entry-title-single">Tomato Pandora之Optware软件安装</h1>
+          <h1 class="entry-title entry-title-single">
+            <a href="../post/tomato-pandora-optware.html">Tomato Pandora之Optware软件安装</a>
+          </h1>
           <div class="entry-meta">    
             <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
             <span class="tag-links">
@@ -66,17 +68,17 @@
 
       <div class="entry-content clearfix">
         <p><p>现在用的路由器安装的是Tomato Pandora Version 1.27.0475,有时候要在路由器上抓包,发现这个系统没有配置ngrep或者tcpdump,也没有ipkg,没法直接安装现成的opt包.
-不过发现作者有写接口程序,只是没直接公布.
-1.login到路由器,下载ipkg包的接口程序,用于安装ipkg
-<pre class="brush:bash">
-wget http://pandoric.googlecode.com/svn/Pandora%20%e8%84%b1%e6%9c%ba%e8%bd%af%e4%bb%b6/optware-install.sh
-</pre>
-不过发现直接下载的文件换行符有问题,要处理一下,或者copy下面的内容,存成optware-install.sh后再上传到路由器里面.</p>
+不过发现作者有写接口程序,只是没直接公布.</p>
 
-<!--more-->
+<ol>
+<li><p>login到路由器,下载ipkg包的接口程序,用于安装ipkg</p>
 
-<pre class="brush:bash">
-#!/bin/sh
+<pre><code>wget http://pandoric.googlecode.com/svn/Pandora%20%e8%84%b1%e6%9c%ba%e8%bd%af%e4%bb%b6/optware-install.sh
+</code></pre>
+
+<p>不过发现直接下载的文件换行符有问题,要处理一下,或者copy下面的内容,存成optware-install.sh后再上传到路由器里面.</p>
+
+<pre><code>#!/bin/sh
 # Optware pre-installation script, Leon Kos 2006
 
 REPOSITORY=http://pandoric.googlecode.com/svn/optware/stable
@@ -88,51 +90,51 @@ unset LD_LIBRARY_PATH
 
 _check_config()
 {
-    echo "Checking system config ..."
+    echo &quot;Checking system config ...&quot;
     GATEWAY=$(netstat -rn |
-    sed -n 's/^0.0.0.0[ \t]\{1,\}\([0-9.]\{8,\}\).*/\1/p' )
-    if [ -n "${GATEWAY}" ]; then
-    echo "Using ${GATEWAY} as default gateway."
+    sed -n &#39;s/^0.0.0.0[ \t]\{1,\}\([0-9.]\{8,\}\).*/\1/p&#39; )
+    if [ -n &quot;${GATEWAY}&quot; ]; then
+    echo &quot;Using ${GATEWAY} as default gateway.&quot;
     else
-    echo "Error: No default gateway set!"
+    echo &quot;Error: No default gateway set!&quot;
     exit 2
     fi
     if [ -s /etc/resolv.conf ]; then
-    echo "Using the following nameserver(s):"
+    echo &quot;Using the following nameserver(s):&quot;
     if grep nameserver /etc/resolv.conf ; then
-            GATEWAY_SUBNET=$(echo "${GATEWAY}" |
-        sed 's/\.[0-9]\{1,3\}\.[0-9]\{1,3\}$//')
-        if [ "${GATEWAY_SUBNET}" = "192.168" ]; then
+            GATEWAY_SUBNET=$(echo &quot;${GATEWAY}&quot; |
+        sed &#39;s/\.[0-9]\{1,3\}\.[0-9]\{1,3\}$//&#39;)
+        if [ &quot;${GATEWAY_SUBNET}&quot; = &quot;192.168&quot; ]; then
         if grep -q ${GATEWAY} /etc/resolv.conf ; then
-            echo "Gateway ${GATEWAY} is also nameserver."
+            echo &quot;Gateway ${GATEWAY} is also nameserver.&quot;
         else
-            echo "Warning: local nameserver is different than gateway!"
-            echo "Check config or enter:"
+            echo &quot;Warning: local nameserver is different than gateway!&quot;
+            echo &quot;Check config or enter:&quot;
             if test -L /etc/resolv.conf ; then 
-              echo "  sed -i s/192.168.*/${GATEWAY}/ /tmp/resolv.conf"
+              echo &quot;  sed -i s/192.168.*/${GATEWAY}/ /tmp/resolv.conf&quot;
             else
-              echo "  sed -i s/192.168.*/${GATEWAY}/ /etc/resolv.conf"
+              echo &quot;  sed -i s/192.168.*/${GATEWAY}/ /etc/resolv.conf&quot;
             fi
-            echo "to correct this."
+            echo &quot;to correct this.&quot;
         fi
         fi
     else
-        echo "Error: No nameserver specified in /etc/resolv.conf"
+        echo &quot;Error: No nameserver specified in /etc/resolv.conf&quot;
         exit 5
     fi
     else
-    echo "Error: Empty or nonexistent /etc/resolv.conf"
+    echo &quot;Error: Empty or nonexistent /etc/resolv.conf&quot;
     exit 3
     fi
 
     if mount | grep -q /opt ; then
-    [ -d /opt/etc ] && echo "Warning: /opt partition not empty!"
+    [ -d /opt/etc ] &amp;&amp; echo &quot;Warning: /opt partition not empty!&quot;
     else
-    echo "Error: /opt partition not mounted."
-    echo "Enter"
-    echo "    mkdir /jffs/opt"
-    echo "    mount -o bind /jffs/opt /opt"
-    echo "to correct this."
+    echo &quot;Error: /opt partition not mounted.&quot;
+    echo &quot;Enter&quot;
+    echo &quot;    mkdir /jffs/opt&quot;
+    echo &quot;    mount -o bind /jffs/opt /opt&quot;
+    echo &quot;to correct this.&quot;
     exit 4
     fi
 }
@@ -140,7 +142,7 @@ _check_config()
 _install_package()
 {
     PACKAGE=$1
-    echo "Installing package ${PACKAGE} ..."
+    echo &quot;Installing package ${PACKAGE} ...&quot;
     wget -O ${TMP}/${PACKAGE} ${REPOSITORY}/${PACKAGE}
     cd  ${TMP} 
     tar xzf ${TMP}/${PACKAGE} 
@@ -168,27 +170,26 @@ _install_package ipkg-opt_0.99.163-10_mipsel.ipk
 /opt/bin/ipkg update
 /opt/bin/ipkg install -force-reinstall uclibc-opt
 /opt/bin/ipkg install -force-reinstall ipkg-opt
-</pre>
+</code></pre></li>
+<li><p>进入路由器web界面.启用JFFS
+如果启用后,空间不够3M,也就没戏了.我用的一共16M空间,系统占了8M,还空8M.但opt的初始安装,要近3M左右空间.</p></li>
+<li><p>运行下面的命令安装ipkg</p>
 
-<p>2.进入路由器web界面.启用JFFS
-如果启用后,空间不够3M,也就没戏了.我用的一共16M空间,系统占了8M,还空8M.但opt的初始安装,要近3M左右空间.</p>
-
-<p>3.运行下面的命令安装ipkg
-<pre class="brush:bash">
-mkdir /jffs/opt
+<pre><code>mkdir /jffs/opt
 mount -o bind /jffs/opt /opt
 sh optware-install.sh
-</pre>
-4.修改下/opt/etc/ipkg.conf,源设置为
-<pre class="brush:bash">
-src/gz optware http://pandoric.googlecode.com/svn/optware/stable
-</pre>
-如果能正常下载,这步不改,用默认源也可</p>
+</code></pre></li>
+<li><p>修改下/opt/etc/ipkg.conf,源设置为</p>
 
-<p>5.ok.能安装想要的软件了
-<pre class="brush:bash">
-ipkg install ngerp
-</pre></p>
+<pre><code>src/gz optware http://pandoric.googlecode.com/svn/optware/stable
+</code></pre>
+
+<p>如果能正常下载,这步不改,用默认源也可</p></li>
+<li><p>ok.能安装想要的软件了</p>
+
+<pre><code>ipkg install ngerp
+</code></pre></li>
+</ol>
 
 <p>如果路由系统升级,这些要重做一次.</p>
 </p>
@@ -196,8 +197,11 @@ ipkg install ngerp
 
     </div>
 
-  </div> 
+ 
+<!-- Duoshuo Comment BEGIN -->
+  <div class="ds-thread" data-title="Tomato Pandora之Optware软件安装"></div>
 
+  </div>
       </div> 
 
       <div class="grid_5">
@@ -206,10 +210,12 @@ ipkg install ngerp
   <div class="widget widget_search widget-widget_search">
     <div class="widget-wrap widget-inside">
       <div class="search">
-        <form method="get" class="searchform" action="http://ahui.us/">
-          <label for="s" class="assistive-text">Search for:</label>
-          <input type="text" class="field" name="s" id="s" value="Search" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" />
-          <input type="submit" class="submit" name="submit" id="searchsubmit" value="Search" />
+        <form method="get" class="searchform" action="http://www.google.com/search">
+          <input name="sitesearch" value="ahui.us" type="hidden"> 
+          <input name="hl" value="zh-CN" type="hidden">
+          <input name="ie" value="GB2312" type="hidden"> 
+          <input type="text" class="field" name="q" id="query" value="Search" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" />
+          <input type="submit" class="submit" name="Search" id="searchsubmit" value="Search" />
         </form>
       </div>
     </div>
@@ -221,14 +227,15 @@ ipkg install ngerp
       <h3 class="widget-title">标签</h3>
       <ul>
         <li class="cat-item"><a href="../tag/sip.html">sip &sdot; (2)</a></li>
-        <li class="cat-item"><a href="../tag/Network.html">Network &sdot; (48)</a></li>
+        <li class="cat-item"><a href="../tag/Network.html">Network &sdot; (47)</a></li>
         <li class="cat-item"><a href="../tag/VPS.html">VPS &sdot; (3)</a></li>
         <li class="cat-item"><a href="../tag/openerp.html">openerp &sdot; (2)</a></li>
         <li class="cat-item"><a href="../tag/wow.html">wow &sdot; (1)</a></li>
         <li class="cat-item"><a href="../tag/ipv6.html">ipv6 &sdot; (2)</a></li>
-        <li class="cat-item"><a href="../tag/wii.html">wii &sdot; (3)</a></li>
-        <li class="cat-item"><a href="../tag/blog.html">blog &sdot; (19)</a></li>
         <li class="cat-item"><a href="../tag/game.html">game &sdot; (5)</a></li>
+        <li class="cat-item"><a href="../tag/wii.html">wii &sdot; (3)</a></li>
+        <li class="cat-item"><a href="../tag/blog.html">blog &sdot; (18)</a></li>
+        <li class="cat-item"><a href="../tag/notag.html">notag &sdot; (2)</a></li>
         <li class="cat-item"><a href="../tag/ssh.html">ssh &sdot; (2)</a></li>
         <li class="cat-item"><a href="../tag/Linux.html">Linux &sdot; (35)</a></li>
         <li class="cat-item"><a href="../tag/android.html">android &sdot; (1)</a></li>
@@ -249,6 +256,25 @@ ipkg install ngerp
       </ul>
     </div>
   </div>
+
+
+<div class="widget widget_comments">
+  <h3 class="widget-title">最新评论</h3>
+  <ul class="entry ds-recent-comments" data-num-items="5" data-show-avatars="0" data-show-title="0" data-show-time="1"></ul>
+</div>
+<!--多说js加载开始，一个页面只需要加载一次 -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"ahuius"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!--多说js加载结束，一个页面只需要加载一次 -->
+
 </div>      </div>
 
     </div>

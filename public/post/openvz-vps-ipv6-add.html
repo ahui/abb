@@ -45,14 +45,16 @@
       <div class="entry-meta-group clearfix">
         <div class="grid_2 alpha">
           <time class="entry-date entry-time updated" datetime="2010-11-05 12:54:05">
-            <a href="#" title="2010-11-05 12:54:05" rel="bookmark">
+            <a href="../post/openvz-vps-ipv6-add.html" title="2010-11-05 12:54:05" rel="bookmark">
               <span class="entry-date-day">05</span>
               <span class="entry-date-month-year">2010-11</span>
             </a>
           </time>
         </div>
         <div class="grid_8 omega">
-          <h1 class="entry-title entry-title-single">Openvz VPS的IPV6地址添加</h1>
+          <h1 class="entry-title entry-title-single">
+            <a href="../post/openvz-vps-ipv6-add.html">Openvz VPS的IPV6地址添加</a>
+          </h1>
           <div class="entry-meta">    
             <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
             <span class="tag-links">
@@ -67,28 +69,42 @@
       </div>
 
       <div class="entry-content clearfix">
-        <p><p>burstnet的openvz vps提供了二个源生的ipv6地址,MASK是128位的.
-新的vps也是openvz,不过没有源生ipv6.但可以申请he.net的ipv6块,然后添加到vps上.
-首先要开通openvz的tun支持,确认
-cat /dev/net/tun
-返回值为:
-cat: /dev/net/tun: File descriptor in bad state
-访问https://www.tunnelbroker.net,申请地址块,会拿到一个MASK为64位的地址.还真是浪费啊,要都这么分下去,ipv6的理论地址一下就少了一半.
-记下Server IPv4 address,Client IPv4 address以及Client IPv6 address.前面的地址可选择离vps近的机房,中间地址是vps ip.最后一个是分配给你的2的64次方的地址中的第一个地址.按he的分配规则,是类似x:x:x:x::1/64的地址块.前64位已经固定,后64位全部给你自己分配,但x:x:x:x::1/128分配给了服务器做中转,你能用到的第一个ipv6地址,应该是x:x:x:x::2/128.当然用64的mask也可以.
-openvz没有sit设备,用软件模拟
-mkdir tb
+        <p><p>burstnet的openvz vps提供了二个源生的ipv6地址,MASK是128位的.<br>
+新的vps也是openvz,不过没有源生ipv6.但可以申请he.net的ipv6块,然后添加到vps上.<br>
+首先要开通openvz的tun支持,确认</p>
+
+<pre><code>cat /dev/net/tun
+</code></pre>
+
+<p>返回值为:</p>
+
+<pre><code>cat: /dev/net/tun: File descriptor in bad state
+</code></pre>
+
+<p>访问https://www.tunnelbroker.net,申请地址块,会拿到一个MASK为64位的地址.  还真是浪费啊,要都这么分下去,ipv6的理论地址一下就少了一半.<br>
+记下Server IPv4 address,Client IPv4 address以及Client IPv6 address.前面的地址可选择离vps近的机房,中间地址是vps ip.最后一个是分配给你的2的64次方的地址中的第一个地址.按he的分配规则,是类似x:x:x:x::1/64的地址块.前64位已经固定,后64位全部给你自己分配,但x:x:x:x::1/128分配给了服务器做中转,你能用到的第一个ipv6地址,应该是x:x:x:x::2/128.当然用64的mask也可以.</p>
+
+<p>openvz没有sit设备,用软件模拟</p>
+
+<pre><code>mkdir tb
 cd tb
-wget http://tb-tun.googlecode.com/files/tb-tun<em>r18.tar.gz
-tar zxf tb-tun</em>r18.tar.gz
-gcc tb<em>userspace.c -l pthread -o tb</em>userspace
+wget http://tb-tun.googlecode.com/files/tb-tun_r18.tar.gz
+tar zxf tb-tun_r18.tar.gz
+gcc tb_userspace.c -l pthread -o tb_userspace
 setsid ./tb_userspace tb [Server IPv4 address] [Client IPv4 address] sit &gt; /dev/null
-成功创建tb设备后,启用ipv6
-ifconfig tb up
+</code></pre>
+
+<p>成功创建tb设备后,启用ipv6</p>
+
+<pre><code>ifconfig tb up
 ifconfig tb inet6 add x:x:x:x::2/64
 ifconfig tb mtu 1480
 ip -6 route add default dev tb
-看看设置:
- ifconfig tb
+</code></pre>
+
+<p>看看设置:</p>
+
+<pre><code> ifconfig tb
 tb        Link encap:UNSPEC  HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00
           inet6 addr: x:x:x:x::2/64 Scope:Global
           UP POINTOPOINT RUNNING NOARP MULTICAST  MTU:1480  Metric:1
@@ -96,14 +112,19 @@ tb        Link encap:UNSPEC  HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00
           TX packets:181 errors:0 dropped:0 overruns:0 carrier:0
           collisions:0 txqueuelen:500
           RX bytes:28387 (27.7 KiB)  TX bytes:21990 (21.4 KiB)
-总的来说,这ipv6地址用得真的很浪费,虽然我已经申请了三块64位的地址....</p>
+</code></pre>
+
+<p>总的来说,这ipv6地址用得真的很浪费,虽然我已经申请了三块64位的地址....</p>
 </p>
       </div>
 
     </div>
 
-  </div> 
+ 
+<!-- Duoshuo Comment BEGIN -->
+  <div class="ds-thread" data-title="Openvz VPS的IPV6地址添加"></div>
 
+  </div>
       </div> 
 
       <div class="grid_5">
@@ -112,10 +133,12 @@ tb        Link encap:UNSPEC  HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00
   <div class="widget widget_search widget-widget_search">
     <div class="widget-wrap widget-inside">
       <div class="search">
-        <form method="get" class="searchform" action="http://ahui.us/">
-          <label for="s" class="assistive-text">Search for:</label>
-          <input type="text" class="field" name="s" id="s" value="Search" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" />
-          <input type="submit" class="submit" name="submit" id="searchsubmit" value="Search" />
+        <form method="get" class="searchform" action="http://www.google.com/search">
+          <input name="sitesearch" value="ahui.us" type="hidden"> 
+          <input name="hl" value="zh-CN" type="hidden">
+          <input name="ie" value="GB2312" type="hidden"> 
+          <input type="text" class="field" name="q" id="query" value="Search" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" />
+          <input type="submit" class="submit" name="Search" id="searchsubmit" value="Search" />
         </form>
       </div>
     </div>
@@ -127,14 +150,15 @@ tb        Link encap:UNSPEC  HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00
       <h3 class="widget-title">标签</h3>
       <ul>
         <li class="cat-item"><a href="../tag/sip.html">sip &sdot; (2)</a></li>
-        <li class="cat-item"><a href="../tag/Network.html">Network &sdot; (48)</a></li>
+        <li class="cat-item"><a href="../tag/Network.html">Network &sdot; (47)</a></li>
         <li class="cat-item"><a href="../tag/VPS.html">VPS &sdot; (3)</a></li>
         <li class="cat-item"><a href="../tag/openerp.html">openerp &sdot; (2)</a></li>
         <li class="cat-item"><a href="../tag/wow.html">wow &sdot; (1)</a></li>
         <li class="cat-item"><a href="../tag/ipv6.html">ipv6 &sdot; (2)</a></li>
-        <li class="cat-item"><a href="../tag/wii.html">wii &sdot; (3)</a></li>
-        <li class="cat-item"><a href="../tag/blog.html">blog &sdot; (19)</a></li>
         <li class="cat-item"><a href="../tag/game.html">game &sdot; (5)</a></li>
+        <li class="cat-item"><a href="../tag/wii.html">wii &sdot; (3)</a></li>
+        <li class="cat-item"><a href="../tag/blog.html">blog &sdot; (18)</a></li>
+        <li class="cat-item"><a href="../tag/notag.html">notag &sdot; (2)</a></li>
         <li class="cat-item"><a href="../tag/ssh.html">ssh &sdot; (2)</a></li>
         <li class="cat-item"><a href="../tag/Linux.html">Linux &sdot; (35)</a></li>
         <li class="cat-item"><a href="../tag/android.html">android &sdot; (1)</a></li>
@@ -155,6 +179,25 @@ tb        Link encap:UNSPEC  HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00
       </ul>
     </div>
   </div>
+
+
+<div class="widget widget_comments">
+  <h3 class="widget-title">最新评论</h3>
+  <ul class="entry ds-recent-comments" data-num-items="5" data-show-avatars="0" data-show-title="0" data-show-time="1"></ul>
+</div>
+<!--多说js加载开始，一个页面只需要加载一次 -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"ahuius"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!--多说js加载结束，一个页面只需要加载一次 -->
+
 </div>      </div>
 
     </div>

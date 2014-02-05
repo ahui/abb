@@ -9,27 +9,23 @@ categories:
 - Network
 ---
 
-参考地址　http://codex.wordpress.org/Customizing_the_Read_More
+[参考地址](http://codex.wordpress.org/Customizing_the_Read_More)
 
 修改loop.php
 查找第二处"continue reading"，该行改为
-<pre class="brush:html">
-&lt;?php the_content("
-......点此阅读<span class=\"widget-title\">t " . get_the_title('', '', false) . "</span> 全文......
-"); >
-</pre>
+
+    <?php the_content("......点此阅读<span class=\"widget-title\">t " . get_the_title('', '', false) . "</span> 全文......"); >
 
 function.php底部加入脚本，用于跳转到文章开头.
-<pre class="brush:javascript">
-function remove_more_jump_link($link) { 
-$offset = strpos($link, '#more-');
-if ($offset) {
-$end = strpos($link, '"',$offset);
-}
-if ($end) {
-$link = substr_replace($link, '', $offset, $end-$offset);
-}
-return $link;
-}
-add_filter('the_content_more_link', 'remove_more_jump_link');
-</pre>
+
+    function remove_more_jump_link($link) { 
+        $offset = strpos($link, '#more-');
+        if ($offset) {
+            $end = strpos($link, '"',$offset);
+        }
+        if ($end) {
+            $link = substr_replace($link, '', $offset, $end-$offset);
+        }
+        return $link;
+    }
+    add_filter('the_content_more_link', 'remove_more_jump_link');

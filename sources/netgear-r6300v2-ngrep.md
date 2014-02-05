@@ -21,36 +21,32 @@ R6300v2的dd-wrt已经[有一个版本可用](http://www.myopenrouter.com/downlo
 主系统为ubuntu 12.04 32位，创建/projects/hnd/tools/linux目录，并解压R6250源码包中的hndtools-arm-linux-2.6.36-uclibc-4.5.3.tar到此目录。
 
 将新编译工具目录放到PATH环境的最前面:
-```bash
-export PATH=/projects/hnd/tools/linux/hndtools-arm-linux-2.6.36-uclibc-4.5.3/bin:$PATH
-```
+
+    export PATH=/projects/hnd/tools/linux/hndtools-arm-linux-2.6.36-uclibc-4.5.3/bin:$PATH
 
 下载libpcap-1.4.0.tar.gz及ngrep-1.45.tar并解压。
 
 编译libpcap: 
-```bash
-./configure CC=arm-uclibc-linux-2.6.36-gcc --host=arm-linux --with-pcap=linux && make
-```
+
+    ./configure CC=arm-uclibc-linux-2.6.36-gcc --host=arm-linux --with-pcap=linux && make
+
 编译ngrep: 
-```bash
-./configure CC=arm-uclibc-linux-2.6.36-gcc CXX=arm-uclibc-linux-2.6.36-g++ AR=arm-uclibc-linux-2.6.36-ar RANLIB=arm-uclibc-linux-2.6.36-ranlib LD=arm-uclibc-linux-2.6.36-ld  --prefix=/usr/local/arm/ngrep --host=arm-linux --build=arm --with-pcap-includes=../libpcap-1.4.0 && make
-```
+
+    ./configure CC=arm-uclibc-linux-2.6.36-gcc CXX=arm-uclibc-linux-2.6.36-g++ AR=arm-uclibc-linux-2.6.36-ar RANLIB=arm-uclibc-linux-2.6.36-ranlib LD=arm-uclibc-linux-2.6.36-ld  --prefix=/usr/local/arm/ngrep --host=arm-linux --build=arm --with-pcap-includes=../libpcap-1.4.0 && make
 
 检查编译出来的文件:
-```bash
-file ngrep
-ngrep: ELF 32-bit LSB executable, ARM, version 1 (SYSV), dynamically linked (uses shared libs), stripped
-```
+
+    file ngrep
+    ngrep: ELF 32-bit LSB executable, ARM, version 1 (SYSV), dynamically linked (uses shared libs), stripped
 
 开启R6300v2的telnet(R6300v2 ip为192.168.1.1)
 下载[telnetenable.py](https://code.google.com/p/netgear-telnetenable/)
-```bash
-python telnetenable.py 192.168.1.1 $(arp -n | awk "/192.168.1.1/"'  { gsub(/:/, "", $3); print toupper($3)}') Gearguy Geardog
-```
+
+    python telnetenable.py 192.168.1.1 $(arp -n | awk "/192.168.1.1/"'  { gsub(/:/, "", $3); print toupper($3)}') Gearguy Geardog
+
 出现"Sent telnet enable payload to '192.168.1.1:23'"则成功，否则多运行几次.
 
 将ngrep copy到u盘，并在R6300上挂载，然后telnet到R6300v2,到/tmp/mnt/usb0/part1下找到ngrep并运行之。
-```bash
-./ngrep -V
-ngrep: V1.45, $Revision: 1.93 $
-```
+
+    ./ngrep -V
+    ngrep: V1.45, $Revision: 1.93 $

@@ -45,14 +45,16 @@
       <div class="entry-meta-group clearfix">
         <div class="grid_2 alpha">
           <time class="entry-date entry-time updated" datetime="2013-10-09 13:33:44">
-            <a href="#" title="2013-10-09 13:33:44" rel="bookmark">
+            <a href="../post/netgear-r6300v2-ngrep.html" title="2013-10-09 13:33:44" rel="bookmark">
               <span class="entry-date-day">09</span>
               <span class="entry-date-month-year">2013-10</span>
             </a>
           </time>
         </div>
         <div class="grid_8 omega">
-          <h1 class="entry-title entry-title-single">Netgear R6300v2上编译ngrep</h1>
+          <h1 class="entry-title entry-title-single">
+            <a href="../post/netgear-r6300v2-ngrep.html">Netgear R6300v2上编译ngrep</a>
+          </h1>
           <div class="entry-meta">    
             <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
             <span class="tag-links">
@@ -75,47 +77,52 @@
 
 <p>主系统为ubuntu 12.04 32位，创建/projects/hnd/tools/linux目录，并解压R6250源码包中的hndtools-arm-linux-2.6.36-uclibc-4.5.3.tar到此目录。</p>
 
-<p>将新编译工具目录放到PATH环境的最前面:
-<code>bash
-export PATH=/projects/hnd/tools/linux/hndtools-arm-linux-2.6.36-uclibc-4.5.3/bin:$PATH
-</code></p>
+<p>将新编译工具目录放到PATH环境的最前面:</p>
+
+<pre><code>export PATH=/projects/hnd/tools/linux/hndtools-arm-linux-2.6.36-uclibc-4.5.3/bin:$PATH
+</code></pre>
 
 <p>下载libpcap-1.4.0.tar.gz及ngrep-1.45.tar并解压。</p>
 
-<p>编译libpcap: 
-<code>bash
-./configure CC=arm-uclibc-linux-2.6.36-gcc --host=arm-linux --with-pcap=linux &amp;&amp; make
-</code>
-编译ngrep: 
-<code>bash
-./configure CC=arm-uclibc-linux-2.6.36-gcc CXX=arm-uclibc-linux-2.6.36-g++ AR=arm-uclibc-linux-2.6.36-ar RANLIB=arm-uclibc-linux-2.6.36-ranlib LD=arm-uclibc-linux-2.6.36-ld  --prefix=/usr/local/arm/ngrep --host=arm-linux --build=arm --with-pcap-includes=../libpcap-1.4.0 &amp;&amp; make
-</code></p>
+<p>编译libpcap: </p>
 
-<p>检查编译出来的文件:
-<code>bash
-file ngrep
+<pre><code>./configure CC=arm-uclibc-linux-2.6.36-gcc --host=arm-linux --with-pcap=linux &amp;&amp; make
+</code></pre>
+
+<p>编译ngrep: </p>
+
+<pre><code>./configure CC=arm-uclibc-linux-2.6.36-gcc CXX=arm-uclibc-linux-2.6.36-g++ AR=arm-uclibc-linux-2.6.36-ar RANLIB=arm-uclibc-linux-2.6.36-ranlib LD=arm-uclibc-linux-2.6.36-ld  --prefix=/usr/local/arm/ngrep --host=arm-linux --build=arm --with-pcap-includes=../libpcap-1.4.0 &amp;&amp; make
+</code></pre>
+
+<p>检查编译出来的文件:</p>
+
+<pre><code>file ngrep
 ngrep: ELF 32-bit LSB executable, ARM, version 1 (SYSV), dynamically linked (uses shared libs), stripped
-</code></p>
+</code></pre>
 
 <p>开启R6300v2的telnet(R6300v2 ip为192.168.1.1)
-下载<a href="https://code.google.com/p/netgear-telnetenable/">telnetenable.py</a>
-<code>bash
-python telnetenable.py 192.168.1.1 $(arp -n | awk &quot;/192.168.1.1/&quot;&#39;  { gsub(/:/, &quot;&quot;, $3); print toupper($3)}&#39;) Gearguy Geardog
-</code>
-出现&quot;Sent telnet enable payload to &#39;192.168.1.1:23&#39;&quot;则成功，否则多运行几次.</p>
+下载<a href="https://code.google.com/p/netgear-telnetenable/">telnetenable.py</a></p>
 
-<p>将ngrep copy到u盘，并在R6300上挂载，然后telnet到R6300v2,到/tmp/mnt/usb0/part1下找到ngrep并运行之。
-<code>bash
-./ngrep -V
+<pre><code>python telnetenable.py 192.168.1.1 $(arp -n | awk &quot;/192.168.1.1/&quot;&#39;  { gsub(/:/, &quot;&quot;, $3); print toupper($3)}&#39;) Gearguy Geardog
+</code></pre>
+
+<p>出现&quot;Sent telnet enable payload to &#39;192.168.1.1:23&#39;&quot;则成功，否则多运行几次.</p>
+
+<p>将ngrep copy到u盘，并在R6300上挂载，然后telnet到R6300v2,到/tmp/mnt/usb0/part1下找到ngrep并运行之。</p>
+
+<pre><code>./ngrep -V
 ngrep: V1.45, $Revision: 1.93 $
-</code></p>
+</code></pre>
 </p>
       </div>
 
     </div>
 
-  </div> 
+ 
+<!-- Duoshuo Comment BEGIN -->
+  <div class="ds-thread" data-title="Netgear R6300v2上编译ngrep"></div>
 
+  </div>
       </div> 
 
       <div class="grid_5">
@@ -124,10 +131,12 @@ ngrep: V1.45, $Revision: 1.93 $
   <div class="widget widget_search widget-widget_search">
     <div class="widget-wrap widget-inside">
       <div class="search">
-        <form method="get" class="searchform" action="http://ahui.us/">
-          <label for="s" class="assistive-text">Search for:</label>
-          <input type="text" class="field" name="s" id="s" value="Search" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" />
-          <input type="submit" class="submit" name="submit" id="searchsubmit" value="Search" />
+        <form method="get" class="searchform" action="http://www.google.com/search">
+          <input name="sitesearch" value="ahui.us" type="hidden"> 
+          <input name="hl" value="zh-CN" type="hidden">
+          <input name="ie" value="GB2312" type="hidden"> 
+          <input type="text" class="field" name="q" id="query" value="Search" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" />
+          <input type="submit" class="submit" name="Search" id="searchsubmit" value="Search" />
         </form>
       </div>
     </div>
@@ -139,14 +148,15 @@ ngrep: V1.45, $Revision: 1.93 $
       <h3 class="widget-title">标签</h3>
       <ul>
         <li class="cat-item"><a href="../tag/sip.html">sip &sdot; (2)</a></li>
-        <li class="cat-item"><a href="../tag/Network.html">Network &sdot; (48)</a></li>
+        <li class="cat-item"><a href="../tag/Network.html">Network &sdot; (47)</a></li>
         <li class="cat-item"><a href="../tag/VPS.html">VPS &sdot; (3)</a></li>
         <li class="cat-item"><a href="../tag/openerp.html">openerp &sdot; (2)</a></li>
         <li class="cat-item"><a href="../tag/wow.html">wow &sdot; (1)</a></li>
         <li class="cat-item"><a href="../tag/ipv6.html">ipv6 &sdot; (2)</a></li>
-        <li class="cat-item"><a href="../tag/wii.html">wii &sdot; (3)</a></li>
-        <li class="cat-item"><a href="../tag/blog.html">blog &sdot; (19)</a></li>
         <li class="cat-item"><a href="../tag/game.html">game &sdot; (5)</a></li>
+        <li class="cat-item"><a href="../tag/wii.html">wii &sdot; (3)</a></li>
+        <li class="cat-item"><a href="../tag/blog.html">blog &sdot; (18)</a></li>
+        <li class="cat-item"><a href="../tag/notag.html">notag &sdot; (2)</a></li>
         <li class="cat-item"><a href="../tag/ssh.html">ssh &sdot; (2)</a></li>
         <li class="cat-item"><a href="../tag/Linux.html">Linux &sdot; (35)</a></li>
         <li class="cat-item"><a href="../tag/android.html">android &sdot; (1)</a></li>
@@ -167,6 +177,25 @@ ngrep: V1.45, $Revision: 1.93 $
       </ul>
     </div>
   </div>
+
+
+<div class="widget widget_comments">
+  <h3 class="widget-title">最新评论</h3>
+  <ul class="entry ds-recent-comments" data-num-items="5" data-show-avatars="0" data-show-title="0" data-show-time="1"></ul>
+</div>
+<!--多说js加载开始，一个页面只需要加载一次 -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"ahuius"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!--多说js加载结束，一个页面只需要加载一次 -->
+
 </div>      </div>
 
     </div>

@@ -1,5 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
+# 用于解析md文件
+#Ahui at ahui.us, 2014
 
 import sys
 
@@ -19,7 +21,7 @@ class md:
             last = ""
             while 1:
                 line = fp.readline()
-                #第一个空行之后为body,linux下只用判断\n
+                #第一个空行之后为body,linux下只用判断\n，win下判断\n\r, mac os下判断\r
                 #if line == "\r" or line[0:3] == "---" or line == "\n" or line == "\n\r":
                 if line == "\n":
                     self.title = tdict['title']
@@ -48,6 +50,9 @@ class md:
                                 self.tags.append(tlist[1].replace("\n","").strip())
                             else:
                                 pass
+        #没有tag时放入notag类
+        if len(self.tags) == 0:
+            self.tags.append("notag")
 
 if __name__ == "__main__":
     # from timeit import Timer

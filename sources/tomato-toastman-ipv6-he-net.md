@@ -13,22 +13,25 @@ categories:
 he.net申请到的免费IPV6地址块只用到一台机器上太浪费了, 而Toastman的Tomato修改版, 对he.net的ipv6地址块支持得相当完美了. 这样可以把申请到的地址块放在路由器上, 并自动分配IPV6地址给所有接入路由器的机器.
 
 首先去https://www.tunnelbroker.net/申请一个64位的IPV6地址块,并记下
-Server IPv4 Address
-Server IPv6 Address
-Client IPv4 Address
-Client IPv6 Address
+
+    Server IPv4 Address
+    Server IPv6 Address
+    Client IPv4 Address
+    Client IPv6 Address
 
 然后你要有一个能刷tomato的路由器,并刷上相应的Tomato Toastman版. 我用的中兴h618b对应的版本是Tomato Firmware v1.28.7820 MIPSR1-Toastman K26 USB VPN.
 
 login到router,进入basic->ipv6菜单.
+
 [![](http://ahui.us/wp-content/uploads/2011/06/setipipv6.png "setipipv6")](http://ahui.us/wp-content/uploads/2011/06/setipipv6.png)
-IPv6 Service Type 选择 6in4 Static Tunnel
-Assigned / Routed Prefix 填写要分配给接入机器的ipv6前缀,比如你申请到的是类x.x.x.x::1的地址,这儿填写x.x.x.x::
-Prefix Length填64
-Router IPv6 Address选择Default,会自动填写成he.net分配的Server IPv6 Address,不然选择Manual手工填写成Server IPv6 Address.
-Enable Router Advertisements勾上,
-Tunnel Remote Endpoint (IPv4 Address)填写he.net分配的Server IPv4 Address,
-Tunnel Client IPv6 Address填写he.net分配的Client IPv6 Address,64位长.
+
+- IPv6 Service Type 选择 6in4 Static Tunnel
+- Assigned / Routed Prefix 填写要分配给接入机器的ipv6前缀,比如你申请到的是类x.x.x.x::1的地址,这儿填写x.x.x.x::
+- Prefix Length填64
+- Router IPv6 Address选择Default,会自动填写成he.net分配的Server IPv6 Address,不然选择Manual手工填写成Server IPv6 Address.
+- Enable Router Advertisements勾上,
+- Tunnel Remote Endpoint (IPv4 Address)填写he.net分配的Server IPv4 Address,
+- Tunnel Client IPv6 Address填写he.net分配的Client IPv6 Address,64位长.
 
 如果你好运气路由器是固定的IPV4地址,那么设置这些就ok了.保存后radvd会自动启动用于分配ipv6地址.
 

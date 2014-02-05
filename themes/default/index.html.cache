@@ -1,7 +1,24 @@
-timestamp: 1391523508.74
+timestamp: 1391601693.14
 encoding: utf-8
 
 _extend=_buf.extend;_to_str=to_str;_escape=escape; _context['page_title'] = title
 _extend((u'''\r
 ''', _to_str(body), u'''\r
- \r\n''', ));
+ \r
+<div id="loop-nav-numeric" class="nav-numeric">\r\n''', ));
+for p in xrange(pages):
+    if p == page:
+
+        _extend((u'''  <span class=\'page-numbers current\'>''', _escape(_to_str(p+1)), u'''</span>\r\n''', ));
+    elif p == 0:
+        _extend((u'''  <a class=\'page-numbers\' href=\'index.html\'>1</a>\r\n''', ));
+    else:
+        _extend((u'''  <a class=\'page-numbers\' href=\'index.''', _escape(_to_str(p)), u'''.html\'>''', _escape(_to_str(p+1)), u'''</a>\r\n''', ));
+
+    #endif
+#endfor
+
+if page+1 < pages:
+    _extend((u'''  <a class="next page-numbers" href="index.''', _escape(_to_str(page+1)), u'''.html">Next &raquo;</a>  <div class="clear"></div>\r\n''', ));
+#end if
+_extend((u'''</div>''', ));

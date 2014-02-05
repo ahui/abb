@@ -1,0 +1,609 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Ahui的个人博客</title>
+  <link href="css/main.css" rel="stylesheet" type="text/css" />
+  <link href="css/960.css" rel="stylesheet" type="text/css" />
+  <style type="text/css" id="custom-background-css">
+  body.custom-background { background-color: #e9e9e9; background-image: url('../image/bg-pattern.png'); background-repeat: repeat; background-position: top left; background-attachment: fixed; }
+  </style>
+</head>
+<body class="single single-post postid-1342 single-format-standard custom-background">
+  <div class="wrapper">  
+
+    <div id="header">      
+      <div class="container_16 clearfix">
+        <div class="grid_16">
+          <div id="headimg">
+            <div id="logo-text">
+              <span class="site-name"><a href="index.html" title="Ahui的个人博客" rel="home">Ahui的个人博客</a></span>
+              <span class="site-description">&#8211;Since 2010 by Ahui.</span>
+            </div>
+          </div>     
+        </div>
+      </div>     
+    </div>
+
+    <div class="container_16 clearfix">
+      <div id="nav" class="grid_16">
+        <div class="menu clearfix">
+          <ul>
+            <li class="page_item page-item-2"><a href="http://ahui.us/index.php/about/">About</a></li>
+            <li class="page_item page-item-7"><a href="http://ahui.us/index.php/aboutahui/">关于Ahui</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container_16 clearfix">
+
+      <div class="grid_11">
+        
+  <div id="content">    
+    <div class="post type-post status-publish format-standard hentry">
+      <div class="entry-meta-group clearfix">
+        <div class="grid_2 alpha">
+          <time class="entry-date entry-time updated" datetime="2011-06-21 17:58:09">
+            <a href="#" title="2011-06-21 17:58:09" rel="bookmark">
+              <span class="entry-date-day">21</span>
+              <span class="entry-date-month-year">2011-06</span>
+            </a>
+          </time>
+        </div>
+        <div class="grid_8 omega">
+          <h1 class="entry-title entry-title-single">Tomato Toastman完美支持he.net的IPV6</h1>
+          <div class="entry-meta">    
+            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
+            <span class="tag-links">
+              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
+              <a href="tag/ipv6.html" rel="tag">ipv6</a>
+              <a href="tag/Linux.html" rel="tag">Linux</a>
+              <a href="tag/Network.html" rel="tag">Network</a>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry-content clearfix">
+        <p><p>he.net申请到的免费IPV6地址块只用到一台机器上太浪费了, 而Toastman的Tomato修改版, 对he.net的ipv6地址块支持得相当完美了. 这样可以把申请到的地址块放在路由器上, 并自动分配IPV6地址给所有接入路由器的机器.</p>
+
+<p>首先去https://www.tunnelbroker.net/申请一个64位的IPV6地址块,并记下
+Server IPv4 Address
+Server IPv6 Address
+Client IPv4 Address
+Client IPv6 Address</p>
+
+<p>然后你要有一个能刷tomato的路由器,并刷上相应的Tomato Toastman版. 我用的中兴h618b对应的版本是Tomato Firmware v1.28.7820 MIPSR1-Toastman K26 USB VPN.</p>
+
+<p>login到router,进入basic-&gt;ipv6菜单.
+<a href="http://ahui.us/wp-content/uploads/2011/06/setipipv6.png"><img src="http://ahui.us/wp-content/uploads/2011/06/setipipv6.png" alt="" title="setipipv6"></a>
+IPv6 Service Type 选择 6in4 Static Tunnel
+Assigned / Routed Prefix 填写要分配给接入机器的ipv6前缀,比如你申请到的是类x.x.x.x::1的地址,这儿填写x.x.x.x::
+Prefix Length填64
+Router IPv6 Address选择Default,会自动填写成he.net分配的Server IPv6 Address,不然选择Manual手工填写成Server IPv6 Address.
+Enable Router Advertisements勾上,
+Tunnel Remote Endpoint (IPv4 Address)填写he.net分配的Server IPv4 Address,
+Tunnel Client IPv6 Address填写he.net分配的Client IPv6 Address,64位长.</p>
+
+<p>如果你好运气路由器是固定的IPV4地址,那么设置这些就ok了.保存后radvd会自动启动用于分配ipv6地址.</p>
+
+<p>如果是pppoe之类拿的动态IP地址,那么这时候he.net上显示的Client IPv4 Address则会和你现在路由器地址不符. 这个时候所说的&quot;完美&quot;支持就表示出来了.
+进入basic-&gt;ddns菜单,看,下拉列表里有个&quot;HE.net IPv6 Tunnel Broker&quot;,贴心吧.帐号填写完后保存,这样地址改动后,会自动update he.net上的Client IPv4 Address数据.</p>
+
+<p>之后路由器给接入的机器分配IPv4地址时,会自动也分配一个IPv6地址. 这样router后面带的所有机器,都能实现IPV6接入了.</p>
+</p>
+      </div>
+
+    </div>
+
+  </div> 
+  <div id="content">    
+    <div class="post type-post status-publish format-standard hentry">
+      <div class="entry-meta-group clearfix">
+        <div class="grid_2 alpha">
+          <time class="entry-date entry-time updated" datetime="2011-06-21 16:23:36">
+            <a href="#" title="2011-06-21 16:23:36" rel="bookmark">
+              <span class="entry-date-day">21</span>
+              <span class="entry-date-month-year">2011-06</span>
+            </a>
+          </time>
+        </div>
+        <div class="grid_8 omega">
+          <h1 class="entry-title entry-title-single">Tomato Toastman 之 SIP Server : siproxd 安装与使用</h1>
+          <div class="entry-meta">    
+            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
+            <span class="tag-links">
+              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
+              <a href="tag/Linux.html" rel="tag">Linux</a>
+              <a href="tag/Network.html" rel="tag">Network</a>
+              <a href="tag/sip.html" rel="tag">sip</a>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry-content clearfix">
+        <p><p>原本使用的SIP Server是sip ser,后来改用kamailio. 二者的配置和使用都基本一样. kamailio放在VPS上,程序本身相当稳定,但随着通话时间的增长,随机在5到10分钟后,会因为一些已知或未知的原因,通话质量迅速下降. 挂掉重拨后能且只正常一小会儿,然后又必须重拨, 很是烦人.</p>
+
+<p>后来把sip流量放在vpn里,情况好了很多. 至少不会因为莫名的干扰导致通话质量下降. 不过这样一来,sip流量必须通过vps进行中转, 而出国线路每天会不定期的抽风随机的一段时间......全国LAN网时代大概不远了吧?</p>
+
+<p>暂时方案,把sip server放在家里的router上,然后再挂上vpn,这样二方通话就能直接走国内线路vpn里. 虽然我也曾发现国内有时候也丢包15%~30%,但总比去VPS丢50%+要好. 而且国内线路抽风的时候要少些, 因为大多数G点都不在国内.</p>
+
+<p>翻出落了不少灰尘的中兴h618,吹吹. 其实我蛮看好开源的Netgear WNR 3500L,5个1000M端口有木有?480M的CPU有木有?64M内存有木有?到手的3500L被人抢走了有木有? 可惜只有8M FLASH,抢就抢吧, 我也主要用无线,1000M的有线端口暂时用处不大. 我还是再吹吹h618吧,干净了.</p>
+
+<p>firmware换成Tomato Firmware v1.28.7820 MIPSR1-Toastman K26 USB VPN了,为了它的IPV6功能.</p>
+
+<p>中兴h618有16M FLASH,安装完firmware后,还能空8M+,用来安装ipkg及sip server. 如果其他开源router没有足够的FLASH空间,则要有usb接口,mount一个小u盘到/opt,8M以上容量就可以了,实际安装完占用约3.5M的空间.</p>
+
+<p>ipkg包里,选择极其轻巧的siproxd做为sip server,功能自然没有ser及kamailio多,但足够满足简单的通话要求.</p>
+
+<p>ssh到路由器里,Enable jffs并且mount到/opt,然后安装ipkg基本包,也可参考<a href="http://ahui.us/index.php/2010/08/tomato-pandora-optware/"> Tomato Pandora之Optware软件安装</a>.</p>
+
+<p>cat opt.sh 或下载 http://www.3iii.dk/linux/optware/optware-install-ddwrt.sh.txt
+&lt;!--more--&gt;
+<pre class="brush: bash"></p>
+
+<h1>!/bin/sh</h1>
+
+<h1>Optware pre-installation script, Leon Kos 2006, 2008</h1>
+
+<h1>added -verbose_wget to some lines, MrAlvin 2009</h1>
+
+<p>REPOSITORY=http://ipkg.nslu2-linux.org/feeds/optware/ddwrt/cross/stable
+TMP=/tmp</p>
+
+<p>PATH=/bin:/sbin:/usr/bin:/usr/sbin:/opt/bin:/opt/sbin
+unset LD<em>PRELOAD
+unset LD</em>LIBRARY_PATH</p>
+
+<p><em>check</em>config()
+{
+    echo &quot;Checking system config ...&quot;
+    GATEWAY=$(netstat -rn |
+    sed -n &#39;s/^0.0.0.0[ \t]{1,}([0-9.]{8,}).<em>/\1/p&#39; )
+    if [ -n &quot;${GATEWAY}&quot; ]; then
+    echo &quot;Using ${GATEWAY} as default gateway.&quot;
+    else
+    echo &quot;Error: No default gateway set!&quot;
+    exit 2
+    fi
+    if [ -s /etc/resolv.conf ]; then
+    echo &quot;Using the following nameserver(s):&quot;
+    if grep nameserver /etc/resolv.conf ; then
+            GATEWAY<em>SUBNET=$(echo &quot;${GATEWAY}&quot; |
+        sed &#39;s/.[0-9]{1,3}.[0-9]{1,3}$//&#39;)
+        if [ &quot;${GATEWAY</em>SUBNET}&quot; = &quot;192.168&quot; ]; then
+        if grep -q ${GATEWAY} /etc/resolv.conf ; then
+            echo &quot;Gateway ${GATEWAY} is also nameserver.&quot;
+        else
+            echo &quot;Warning: local nameserver is different than gateway!&quot;
+            echo &quot;Check config or enter:&quot;
+            if test -L /etc/resolv.conf ; then 
+              echo &quot;  sed -i s/192.168.</em>/${GATEWAY}/ /tmp/resolv.conf&quot;
+            else
+              echo &quot;  sed -i s/192.168.*/${GATEWAY}/ /etc/resolv.conf&quot;
+            fi
+            echo &quot;and try again - or wait to see if your download continues anyway.&quot;
+        fi
+        fi
+    else
+        echo &quot;Error: No nameserver specified in /etc/resolv.conf&quot;
+        exit 5
+    fi
+    else
+    echo &quot;Error: Empty or nonexistent /etc/resolv.conf&quot;
+    exit 3
+    fi</p>
+
+<pre><code>if mount | grep -q /opt ; then
+[ -d /opt/etc ] &amp;&amp; echo &quot;Warning: /opt partition not empty!&quot;
+else
+echo &quot;Error: /opt partition not mounted.&quot;
+echo &quot;for running Optware on JFFS (not recommended), Enter&quot;
+echo &quot;    mkdir /jffs/opt&quot;
+echo &quot;    mount -o bind /jffs/opt /opt&quot;
+echo &quot;to correct this.&quot;
+exit 4
+fi
+</code></pre>
+
+<p>}</p>
+
+<p><em>install</em>package()
+{
+    PACKAGE=$1
+    echo &quot;Installing package ${PACKAGE} ...&quot;
+    echo &quot;   Some newer versions of DD-WRT does not show download progress bar,&quot;
+    echo &quot;   so just be patient - or check STATUS -&gt; BANDWIDTH tab for download&quot;
+    echo &quot;   activity in your routers Web-GUI&quot;
+    wget -O ${TMP}/${PACKAGE} ${REPOSITORY}/${PACKAGE}
+    cd  ${TMP} 
+    tar xzf ${TMP}/${PACKAGE} 
+    tar xzf ${TMP}/control.tar.gz
+    cd /
+    if [ -f ${TMP}/preinst ] ; then
+    sh ${TMP}/preinst
+    rm -f ${TMP}/preints
+    fi
+    tar xzf ${TMP}/data.tar.gz
+    if [ -f ${TMP}/postinst ] ; then
+    sh ${TMP}/postinst
+    rm -f ${TMP}/postinst
+    fi
+    rm -f ${TMP}/data.tar.gz
+    rm -f ${TMP}/control.tar.gz
+    rm -f ${TMP}/control
+    rm -f ${TMP}/${PACKAGE}
+}</p>
+
+<p><em>check</em>config
+<em>install</em>package uclibc-opt<em>0.9.28-13</em>mipsel.ipk
+<em>install</em>package ipkg-opt<em>0.99.163-10</em>mipsel.ipk
+/opt/sbin/ldconfig
+/opt/bin/ipkg -verbose<em>wget update 
+/opt/bin/ipkg -force-reinstall -verbose</em>wget install uclibc-opt
+/opt/bin/ipkg -force-reinstall -verbose_wget install ipkg-opt
+</pre>
+安装
+<pre class="brush:bash">
+cd /opt
+sh ./opt.sh
+ipkg update
+</pre>
+先安装libtool库,打包sipproxd时人没把这个依赖加进去
+<pre class="brush:bash">
+ipkg install libtool
+</pre>
+安装好用的ngrep工具,这个没有依赖,不安装也可以省点空量.
+<pre class="brush:bash">
+ipkg install ngrep
+</pre>
+安装sipproxd
+<pre class="brush:bash">
+ipkg install siproxd
+</pre>
+此时会提示
+To complete the installation, you must edit /opt/etc/siproxd.conf-example and rename it to /opt/etc/siproxd.conf,
+and then run /opt/etc/init.d/S90siproxd to start siproxd.</p>
+
+<p>其实应该先改/opt/etc/siproxd<em>passwd.cfg文件,把sip帐号增加进去,格式很简单.
+然后 cp /opt/etc/siproxd.conf-example /opt/etc/siproxd.conf
+修改if</em>inbound及if<em>outbound为br0就可以了. 我这里因为用vpn连接了远程的路由器, 可视为全走内网,所以把rtp</em>proxy_enable也设为0了.
+最后启动
+<pre class="brush:bash">
+/opt/etc/init.d/S98siproxd
+</pre>
+siproxd会在TCP以及UDP的 0.0.0.0:5060上监听.
+这样我把自己路由器里的sip电话以及远端vpn连接的路由器里的sip电话都设置为自己路由器内网ip就可以了. 
+简单示意图:
+sip phone1 ----&gt; GW1,siproxd server &amp; openvpn server----&gt; internet &lt;-----&gt;GW2,openvpn client &lt;-----sip phone2
+好了,你就真变成国内大LAN网,也影响不了我打电话了.</p>
+
+<p>siproxd比较可惜的是不支持ipv6,没有查看注册及通话情况等管理功能.如果有啥问题,直接动用ngrep监听数据吧.</p>
+</p>
+      </div>
+
+    </div>
+
+  </div> 
+  <div id="content">    
+    <div class="post type-post status-publish format-standard hentry">
+      <div class="entry-meta-group clearfix">
+        <div class="grid_2 alpha">
+          <time class="entry-date entry-time updated" datetime="2011-05-24 20:16:43">
+            <a href="#" title="2011-05-24 20:16:43" rel="bookmark">
+              <span class="entry-date-day">24</span>
+              <span class="entry-date-month-year">2011-05</span>
+            </a>
+          </time>
+        </div>
+        <div class="grid_8 omega">
+          <h1 class="entry-title entry-title-single">IPv6 Enabled on VPS</h1>
+          <div class="entry-meta">    
+            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
+            <span class="tag-links">
+              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
+              <a href="tag/blog.html" rel="tag">blog</a>
+              <a href="tag/Linux.html" rel="tag">Linux</a>
+              <a href="tag/Network.html" rel="tag">Network</a>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry-content clearfix">
+        <p><p>vps一直有IPV6地址的.今天把家里路由的ipv6设置好之后,才正式启用vps上的ipv6.
+还得到了一个小奖牌:
+<a href="http://www.ipv6forum.com/ipv6_enabled/public.php?id=1945"><img src="http://ahui.us/wp-content/uploads/2011/05/ahui.us_.ipv6_.ok_.jpg" alt="" title="ahui.us.ipv6.ok"></a></p>
+</p>
+      </div>
+
+    </div>
+
+  </div> 
+  <div id="content">    
+    <div class="post type-post status-publish format-standard hentry">
+      <div class="entry-meta-group clearfix">
+        <div class="grid_2 alpha">
+          <time class="entry-date entry-time updated" datetime="2011-05-23 12:37:31">
+            <a href="#" title="2011-05-23 12:37:31" rel="bookmark">
+              <span class="entry-date-day">23</span>
+              <span class="entry-date-month-year">2011-05</span>
+            </a>
+          </time>
+        </div>
+        <div class="grid_8 omega">
+          <h1 class="entry-title entry-title-single">baidu和google的差别之查询本博客</h1>
+          <div class="entry-meta">    
+            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
+            <span class="tag-links">
+              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
+              <a href="tag/blog.html" rel="tag">blog</a>
+              <a href="tag/Network.html" rel="tag">Network</a>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry-content clearfix">
+        <p><p>试着用baidu.com和google查询了一下自己的博客域名. 只上图,不解释.</p>
+
+<p>这是baidu:
+<a href="http://ahui.us/wp-content/uploads/2011/05/baidusa002.png"><img src="http://ahui.us/wp-content/uploads/2011/05/baidusa002.png" alt="" title="baidusa002"></a></p>
+
+<p>这是google:
+<a href="http://ahui.us/wp-content/uploads/2011/05/google002.png"><img src="http://ahui.us/wp-content/uploads/2011/05/google002.png" alt="" title="google002"></a></p>
+</p>
+      </div>
+
+    </div>
+
+  </div> 
+  <div id="content">    
+    <div class="post type-post status-publish format-standard hentry">
+      <div class="entry-meta-group clearfix">
+        <div class="grid_2 alpha">
+          <time class="entry-date entry-time updated" datetime="2011-05-23 11:55:02">
+            <a href="#" title="2011-05-23 11:55:02" rel="bookmark">
+              <span class="entry-date-day">23</span>
+              <span class="entry-date-month-year">2011-05</span>
+            </a>
+          </time>
+        </div>
+        <div class="grid_8 omega">
+          <h1 class="entry-title entry-title-single">域名续费记</h1>
+          <div class="entry-meta">    
+            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
+            <span class="tag-links">
+              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
+              <a href="tag/blog.html" rel="tag">blog</a>
+              <a href="tag/Linux.html" rel="tag">Linux</a>
+              <a href="tag/Network.html" rel="tag">Network</a>
+              <a href="tag/VPS.html" rel="tag">VPS</a>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry-content clearfix">
+        <p><p>收到name.com的通知邮件,ahui.us一个月后要到期了.为免麻烦,于是想去再续费三到五年的样子.
+结果在name.com中,总是无法点击&quot;+&quot;号增加续费年限,报了一个500的奇怪错误.
+然后想着没办法,就一年一年的续吧,只是要多支付几次. 选中一年,$8.99的费用,直接用paypal支付,绑定的招行信用卡. 扣款短信倒来得挺及时,就是paypal和name都显示支付没有成功.重试了一下paypal支付以及直接招行信用卡支付,都是有扣款短信,但显示支付没有成功.</p>
+
+<p>Yesterday   PayPal  $0.00   Failed  Renewal ahui.us
+5/20/2011 Credit Card   $0.00   Failed  Renewal ahui.us
+5/20/2011 PayPal    $0.00   Failed  Renewal ahui.us
+5/20/2011 PayPal    $0.00   Failed  Renewal ahui.us </p>
+
+<p>很无语的看着一连串的Failed状态的支付信息. 域名刚注册的时候,就是支付paypal支付成功的. 信用卡也做了认证. 电招行客服, 客服mm也只是甜甜的告诉我系统显示支付已经成功了,其他都不知道. 成功了我还电你么?</p>
+
+<p>不得已考虑到域名转移到godaddy,那边支付方式要多一点,包括支付宝. 转移还能便宜$1呢. 找到一个很久没用了的godaddy帐号, 尝试着在这边绑定一下招行的作用卡, 结果绑定到帐号是OK的,正式支付时一样交易无法完成. 这样只能切换到win下用支付宝进行支付了. 于是又进name.com准备去解锁域名并记下auth code, 然后很惊异的发现,ahui.us域名下的Domain Lock以及Auth Code的值为Null,那是真正的空值,什么都没有啊~ 这是一个什么样的世界~ 这样无法解锁域名,也拿不到auth code,想转移也只能做梦了.</p>
+
+<p>严重怀疑name.com系统升级啥的,丢掉了我的域名下的二个关键属性值. 老外做事也是严重的不靠谱啊! 喔,那个&quot;也&quot;字我想不用去掉. 给support去信告之情况,让他们给我修复一下域名状态. 再等了一天多, 没收到回信. 上线查看了一下,Domain Lock显示为Lock状态了,Auth Code也有一串值了. 这是哪位天使GGDDJJMM做了好事也不回信通知我一下我再去信表扬顺便寄个锦旗什么的呢? 再一个可能就是我renewal的时候刚好碰到name正在升级系统且刚好我的域名状态只转换了一部分? 还是那一句: 严重不靠谱啊.</p>
+
+<p>接下发现&quot;+&quot;号能点了,想renewal几年就几年了. paypal没敢再试, 尝试再绑定了一次招行卡,验证失败, 换了一张兴业的信用卡, 验证成功. 哎,居然成功了? 正在意外中,手机叫了起来, 兴业的业务员向我证实是不是有个叫啥name的网站要验证我的信用卡. 这里要大大的赞一下兴业的服务, 我还没反应过来呢, 他们的业务员就来电话了. 招行啊,你堕落了! 堕落的还有你那万年不改的win+IE专用控件!!! 差不多到了该考虑休掉你的时候了.</p>
+
+<p>用直接绑定的兴业卡renewal了一年,支付成功. 再renewal四年,支付成功. 好了.下次再有麻烦就等五年以后再麻烦吧. 万一那个2012成了现实, 这域名有效期能坚持到下一个纪元了吧?</p>
+
+<p>总结这问题的根本还是在name.com的系统出错,这的确也是出乎意料之外的事情. 恶意的猜测name自己也没想到系统会出错, 所以悄悄的修正后,也不肯回信留下证据什么的. 如果其他人的域名没有同样的问题,那还算后果不大,只是让我没头脑的忙活了半天, 在几张信用卡上都留下了不知真假的$8.99的扣款记录. 另外一问题就是招行的服务越来越差了,包括人工服务以及他们的系统服务. 特别是在Linux下,基本上没法使用他们的网上支付功能.</p>
+</p>
+      </div>
+
+    </div>
+
+  </div> 
+  <div id="content">    
+    <div class="post type-post status-publish format-standard hentry">
+      <div class="entry-meta-group clearfix">
+        <div class="grid_2 alpha">
+          <time class="entry-date entry-time updated" datetime="2011-04-12 23:05:09">
+            <a href="#" title="2011-04-12 23:05:09" rel="bookmark">
+              <span class="entry-date-day">12</span>
+              <span class="entry-date-month-year">2011-04</span>
+            </a>
+          </time>
+        </div>
+        <div class="grid_8 omega">
+          <h1 class="entry-title entry-title-single">UliPad自动输入括号和引号</h1>
+          <div class="entry-meta">    
+            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
+            <span class="tag-links">
+              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
+              <a href="tag/Linux.html" rel="tag">Linux</a>
+              <a href="tag/sofeware.html" rel="tag">sofeware</a>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry-content clearfix">
+        <p><p>打开 ulipad/conf/python.acp文件,在
+[autostring_append]
+行之后加入</p>
+
+<pre class="brush:html">
+' = "!^'"
+" = '!^"'
+< = "!^>"
+( = "!^)"
+{ = "!^}"
+&lt;square> = "!^]"
+
+</pre>
+</p>
+      </div>
+
+    </div>
+
+  </div> 
+  <div id="content">    
+    <div class="post type-post status-publish format-standard hentry">
+      <div class="entry-meta-group clearfix">
+        <div class="grid_2 alpha">
+          <time class="entry-date entry-time updated" datetime="2011-04-11 17:03:54">
+            <a href="#" title="2011-04-11 17:03:54" rel="bookmark">
+              <span class="entry-date-day">11</span>
+              <span class="entry-date-month-year">2011-04</span>
+            </a>
+          </time>
+        </div>
+        <div class="grid_8 omega">
+          <h1 class="entry-title entry-title-single">春暖花开&amp;杨絮飘来</h1>
+          <div class="entry-meta">    
+            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
+            <span class="tag-links">
+              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
+              <a href="tag/blog.html" rel="tag">blog</a>
+              <a href="tag/Network.html" rel="tag">Network</a>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry-content clearfix">
+        <p><p>花儿开得不错，不过一些早熟的柳絮杨絮已经开始飘啊飘了，鼻子又要开始难过了。</p>
+
+<p><a href="http://ahui.us/wp-content/uploads/2011/04/DSC00336.jpg"><img src="http://ahui.us/wp-content/uploads/2011/04/DSC00336-300x200.jpg" alt="" title="DSC00336"></a></p>
+
+<p><a href="http://ahui.us/wp-content/uploads/2011/04/DSC00342.jpg"><img src="http://ahui.us/wp-content/uploads/2011/04/DSC00342-300x200.jpg" alt="" title="DSC00342"></a></p>
+
+<p><a href="http://ahui.us/wp-content/uploads/2011/04/DSC00360.jpg"><img src="http://ahui.us/wp-content/uploads/2011/04/DSC00360-300x200.jpg" alt="" title="DSC00360"></a></p>
+
+<p><a href="http://ahui.us/wp-content/uploads/2011/04/DSC00407.jpg"><img src="http://ahui.us/wp-content/uploads/2011/04/DSC00407-300x200.jpg" alt="" title="DSC00407"></a></p>
+</p>
+      </div>
+
+    </div>
+
+  </div> 
+  <div id="content">    
+    <div class="post type-post status-publish format-standard hentry">
+      <div class="entry-meta-group clearfix">
+        <div class="grid_2 alpha">
+          <time class="entry-date entry-time updated" datetime="2011-03-25 20:30:26">
+            <a href="#" title="2011-03-25 20:30:26" rel="bookmark">
+              <span class="entry-date-day">25</span>
+              <span class="entry-date-month-year">2011-03</span>
+            </a>
+          </time>
+        </div>
+        <div class="grid_8 omega">
+          <h1 class="entry-title entry-title-single">Wii保龄球记录265</h1>
+          <div class="entry-meta">    
+            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
+            <span class="tag-links">
+              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
+              <a href="tag/blog.html" rel="tag">blog</a>
+              <a href="tag/game.html" rel="tag">game</a>
+              <a href="tag/wii.html" rel="tag">wii</a>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry-content clearfix">
+        <p><p>一不小心提高到265,差二次全中.可惜了~~
+<a href="http://ahui.us/wp-content/uploads/2011/03/DSC00333.jpg"><img src="http://ahui.us/wp-content/uploads/2011/03/DSC00333-300x200.jpg" alt="" title="wii265"></a></p>
+</p>
+      </div>
+
+    </div>
+
+  </div> 
+
+ 
+
+      </div> 
+
+      <div class="grid_5">
+
+<div id="sidebar">
+  <div class="widget widget_search widget-widget_search">
+    <div class="widget-wrap widget-inside">
+      <div class="search">
+        <form method="get" class="searchform" action="http://ahui.us/">
+          <label for="s" class="assistive-text">Search for:</label>
+          <input type="text" class="field" name="s" id="s" value="Search" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" />
+          <input type="submit" class="submit" name="submit" id="searchsubmit" value="Search" />
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="widget widget_categories widget-widget_categories">
+    <div class="widget-wrap widget-inside">
+      <h3 class="widget-title">标签</h3>
+      <ul>
+        <li class="cat-item"><a href="tag/sip.html">sip &sdot; (2)</a></li>
+        <li class="cat-item"><a href="tag/Network.html">Network &sdot; (48)</a></li>
+        <li class="cat-item"><a href="tag/VPS.html">VPS &sdot; (3)</a></li>
+        <li class="cat-item"><a href="tag/openerp.html">openerp &sdot; (2)</a></li>
+        <li class="cat-item"><a href="tag/wow.html">wow &sdot; (1)</a></li>
+        <li class="cat-item"><a href="tag/ipv6.html">ipv6 &sdot; (2)</a></li>
+        <li class="cat-item"><a href="tag/wii.html">wii &sdot; (3)</a></li>
+        <li class="cat-item"><a href="tag/blog.html">blog &sdot; (19)</a></li>
+        <li class="cat-item"><a href="tag/game.html">game &sdot; (5)</a></li>
+        <li class="cat-item"><a href="tag/ssh.html">ssh &sdot; (2)</a></li>
+        <li class="cat-item"><a href="tag/Linux.html">Linux &sdot; (35)</a></li>
+        <li class="cat-item"><a href="tag/android.html">android &sdot; (1)</a></li>
+        <li class="cat-item"><a href="tag/sofeware.html">sofeware &sdot; (3)</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="widget widget_recent_entries widget-widget_recent_entries">
+    <div class="widget-wrap widget-inside">
+      <h3 class="widget-title">最新文章</h3>
+      <ul> 
+        <li><a href='post/openerp-7-add-menu.html'>OPENERP 7:菜单添加</a></li>
+        <li><a href='post/tips-upload-with-web-py.html'>Tips : upload with web.py</a></li>
+        <li><a href='post/netgear-r6300v2-ngrep.html'>Netgear R6300v2上编译ngrep</a></li>
+        <li><a href='post/test-100m.html'>联通100M体验</a></li>
+        <li><a href='post/iphone-5-clean.html'>Iphone 5可用容量恢复</a></li>
+      </ul>
+    </div>
+  </div>
+</div>      </div>
+
+    </div>
+
+    <div class="container_16 containter_footer">
+      <div id="footer" class="grid_16">
+        <div class="grid_10 alpha">
+          <div class="copyright_inside">
+            &copy; Copyright 2014 - <a href="http://ahui.us/">Ahui的个人博客</a>  </div>
+          </div>
+          <div class="grid_6 omega">
+            <div class="credit_inside">
+              <a href="http://designorbital.com/contango/" title="Contango Theme">Contango Theme</a> &sdot; Modifiy by <a href="http://ahui.us/" title="Ahui">Ahui</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </body>
+  </html>

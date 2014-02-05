@@ -45,14 +45,16 @@
       <div class="entry-meta-group clearfix">
         <div class="grid_2 alpha">
           <time class="entry-date entry-time updated" datetime="2010-07-20 16:12:33">
-            <a href="#" title="2010-07-20 16:12:33" rel="bookmark">
+            <a href="../post/sipser-0-9-6.html" title="2010-07-20 16:12:33" rel="bookmark">
               <span class="entry-date-day">20</span>
               <span class="entry-date-month-year">2010-07</span>
             </a>
           </time>
         </div>
         <div class="grid_8 omega">
-          <h1 class="entry-title entry-title-single">SIP服务器SER 0.9.6:SIP Express Router 安装记录</h1>
+          <h1 class="entry-title entry-title-single">
+            <a href="../post/sipser-0-9-6.html">SIP服务器SER 0.9.6:SIP Express Router 安装记录</a>
+          </h1>
           <div class="entry-meta">    
             <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
             <span class="tag-links">
@@ -72,61 +74,65 @@
 
 <p>现在有不少几合一的家用路由交换一体的设备，都带有电话接口，设置好SIP帐号，接部普通电话就能用了．而最新的智能手机，带wifi功能的，也都基本支持SIP类软件，设置好帐号，直接用wifi通话，也要比走GSM,3G类的网络节省很多．</p>
 
-<p>首先，官网下载源代码．BTW，只能在Linux下安装．Window下也有类似的程序，国产的就有不少，不过我没用过，不做评论．我个人仍然喜欢用开源的东西自己来编译．
-&lt;!--more--&gt;
-从　http://www.iptel.org/ser/　下载 ser-0.9.6<em>src.tar.gz
-<pre class="brush:plain">
-tar vzxf ser-0.9.6</em>src.tar.gz
+<p>首先，官网下载源代码．BTW，只能在Linux下安装．Window下也有类似的程序，国产的就有不少，不过我没用过，不做评论．我个人仍然喜欢用开源的东西自己来编译．</p>
+
+<p><a href="http://www.iptel.org/ser/">下载 ser-0.9.6_src.tar.gz</a></p>
+
+<pre><code>tar vzxf ser-0.9.6_src.tar.gz
 cd ser-0.9.6
-</pre>
-修改Makefile,加入mysql支持
-<pre class="brush:plain"></p>
+</code></pre>
 
-<h1>if not set on the cmd. line or the env, exclude this modules:</h1>
+<p>修改Makefile,加入mysql支持</p>
 
-<p>exclude<em>modules?=                             cpl ext extcmd \
-                                                        postgres snmp \
-                                                        im \
-                                                        jabber mysql \
-                                                        cpl-c \
-                                                        auth</em>radius group<em>radius uri</em>radius avp<em>radius \
-                                                        pa
-</pre>
-删除其中的mysql字样．
-<pre class="brush:plain">
-make all
+<pre><code># if not set on the cmd. line or the env, exclude this modules:
+    exclude_modules?=cpl ext extcmd \
+                postgres snmp \
+                im \
+                jabber mysql \
+                cpl-c \
+                auth_radius group_radius uri_radius avp_radius \
+                pa
+</code></pre>
+
+<p>删除其中的mysql字样．</p>
+
+<pre><code>make all
 make install
-</pre>
-修改/usr/local/sbin/ser</em>mysql.sh，防止默认utf编码时．建立库失败．
-查找
-<pre class="brush:plain">
-echo &quot;creating database $1 ...&quot;</p>
+</code></pre>
 
-<p>sql<em>query &lt;<EOF
+<p>修改/usr/local/sbin/ser_mysql.sh，防止默认utf编码时．建立库失败．
+查找</p>
+
+<pre><code>echo &quot;creating database $1 ...&quot;
+
+sql_query &lt;&lt;EOF
 create database $1;
 use $1;
-</pre>
-create database $1;行后加入
-<pre class="brush:plain">
-alter database ser character set latin1;
-</pre>
-建立初始数据库,没有出错提示，会自动建立２４个表，而且其中大部分没用到．
-<pre class="brush:plain">
-make dbinstall or run /usr/local/sbin/ser</em>mysql.sh create
-</pre>
-建立新用户
-<pre class="brush:plain">
-serctl add username@domin password email
-</pre>
-安装语音代理rtpproxy,一样从http://www.iptel.org/ser/下载，make,make install就好</p>
+</code></pre>
+
+<p>create database $1;行后加入</p>
+
+<pre><code>alter database ser character set latin1;
+</code></pre>
+
+<p>建立初始数据库,没有出错提示，会自动建立２４个表，而且其中大部分没用到．</p>
+
+<pre><code>make dbinstall or run /usr/local/sbin/ser_mysql.sh create
+</code></pre>
+
+<p>建立新用户</p>
+
+<pre><code>serctl add username@domin password email
+</code></pre>
+
+<p>安装语音代理rtpproxy,一样从http://www.iptel.org/ser/下载，make,make install就好</p>
 
 <p>配置文件/usr/local/etc/ser/ser.cfg,配置mysql认证，以及NAT修正.
 其他类型可在这查看</p>
 
 <p>ftp://siprouter.teigre.com/pub/gettingstarted/configs/</p>
 
-<pre class="brush:plain">
-# $Id: nat-rtpproxy.cfg 51 2006-01-31 13:28:04Z /CN=Paul Hazlett/emailAddress=paul@onsip.org $
+<pre><code># $Id: nat-rtpproxy.cfg 51 2006-01-31 13:28:04Z /CN=Paul Hazlett/emailAddress=paul@onsip.org $
 debug=3
 fork=yes
 log_stderror=no
@@ -137,60 +143,60 @@ children=4
 
 dns=no
 rev_dns=no
-fifo="/tmp/ser_fifo"
-fifo_db_url="mysql://ser:heslo@localhost/ser"
+fifo=&quot;/tmp/ser_fifo&quot;
+fifo_db_url=&quot;mysql://ser:heslo@localhost/ser&quot;
 
-loadmodule "/usr/local/lib/ser/modules/mysql.so"
-loadmodule "/usr/local/lib/ser/modules/sl.so"
-loadmodule "/usr/local/lib/ser/modules/tm.so"
-loadmodule "/usr/local/lib/ser/modules/rr.so"
-loadmodule "/usr/local/lib/ser/modules/maxfwd.so"
-loadmodule "/usr/local/lib/ser/modules/usrloc.so"
-loadmodule "/usr/local/lib/ser/modules/registrar.so"
-loadmodule "/usr/local/lib/ser/modules/auth.so"
-loadmodule "/usr/local/lib/ser/modules/auth_db.so"
-loadmodule "/usr/local/lib/ser/modules/uri.so"
-loadmodule "/usr/local/lib/ser/modules/uri_db.so"
-loadmodule "/usr/local/lib/ser/modules/nathelper.so"
-loadmodule "/usr/local/lib/ser/modules/textops.so"
+loadmodule &quot;/usr/local/lib/ser/modules/mysql.so&quot;
+loadmodule &quot;/usr/local/lib/ser/modules/sl.so&quot;
+loadmodule &quot;/usr/local/lib/ser/modules/tm.so&quot;
+loadmodule &quot;/usr/local/lib/ser/modules/rr.so&quot;
+loadmodule &quot;/usr/local/lib/ser/modules/maxfwd.so&quot;
+loadmodule &quot;/usr/local/lib/ser/modules/usrloc.so&quot;
+loadmodule &quot;/usr/local/lib/ser/modules/registrar.so&quot;
+loadmodule &quot;/usr/local/lib/ser/modules/auth.so&quot;
+loadmodule &quot;/usr/local/lib/ser/modules/auth_db.so&quot;
+loadmodule &quot;/usr/local/lib/ser/modules/uri.so&quot;
+loadmodule &quot;/usr/local/lib/ser/modules/uri_db.so&quot;
+loadmodule &quot;/usr/local/lib/ser/modules/nathelper.so&quot;
+loadmodule &quot;/usr/local/lib/ser/modules/textops.so&quot;
 
-modparam("auth_db|uri_db|usrloc", "db_url", "mysql://ser:heslo@localhost/ser")
-modparam("auth_db", "calculate_ha1", 1)
-modparam("auth_db", "password_column", "password")
+modparam(&quot;auth_db|uri_db|usrloc&quot;, &quot;db_url&quot;, &quot;mysql://ser:heslo@localhost/ser&quot;)
+modparam(&quot;auth_db&quot;, &quot;calculate_ha1&quot;, 1)
+modparam(&quot;auth_db&quot;, &quot;password_column&quot;, &quot;password&quot;)
 
-modparam("nathelper", "natping_interval", 30) 
-modparam("nathelper", "ping_nated_only", 1)   
-modparam("nathelper", "rtpproxy_sock", "unix:/var/run/rtpproxy.sock")
+modparam(&quot;nathelper&quot;, &quot;natping_interval&quot;, 30) 
+modparam(&quot;nathelper&quot;, &quot;ping_nated_only&quot;, 1)   
+modparam(&quot;nathelper&quot;, &quot;rtpproxy_sock&quot;, &quot;unix:/var/run/rtpproxy.sock&quot;)
 
-modparam("usrloc", "db_mode", 2)
+modparam(&quot;usrloc&quot;, &quot;db_mode&quot;, 2)
 
-modparam("registrar", "nat_flag", 6)
+modparam(&quot;registrar&quot;, &quot;nat_flag&quot;, 6)
 
-modparam("rr", "enable_full_lr", 1)
+modparam(&quot;rr&quot;, &quot;enable_full_lr&quot;, 1)
 
 route {
 
     # -----------------------------------------------------------------
     # Sanity Check Section
     # -----------------------------------------------------------------
-    if (!mf_process_maxfwd_header("10")) {
-        sl_send_reply("483", "Too Many Hops");
+    if (!mf_process_maxfwd_header(&quot;10&quot;)) {
+        sl_send_reply(&quot;483&quot;, &quot;Too Many Hops&quot;);
         break;
     };
 
-    if (msg:len > max_len) {
-        sl_send_reply("513", "Message Overflow");
+    if (msg:len &gt; max_len) {
+        sl_send_reply(&quot;513&quot;, &quot;Message Overflow&quot;);
         break;
     };
 
     # -----------------------------------------------------------------
     # Record Route Section
     # -----------------------------------------------------------------
-    if (method!="REGISTER") {
+    if (method!=&quot;REGISTER&quot;) {
         record_route();
     };
 
-    if (method=="BYE" || method=="CANCEL") {
+    if (method==&quot;BYE&quot; || method==&quot;CANCEL&quot;) {
         unforce_rtp_proxy();
     } 
 
@@ -199,28 +205,28 @@ route {
     # -----------------------------------------------------------------
     if (loose_route()) {
 
-        if ((method=="INVITE" || method=="REFER") && !has_totag()) {
-            sl_send_reply("403", "Forbidden");
+        if ((method==&quot;INVITE&quot; || method==&quot;REFER&quot;) &amp;&amp; !has_totag()) {
+            sl_send_reply(&quot;403&quot;, &quot;Forbidden&quot;);
             break;
         };
 
-        if (method=="INVITE") {
+        if (method==&quot;INVITE&quot;) {
 
-            if (!proxy_authorize("","subscriber")) {
-                proxy_challenge("","0");
+            if (!proxy_authorize(&quot;&quot;,&quot;subscriber&quot;)) {
+                proxy_challenge(&quot;&quot;,&quot;0&quot;);
                 break;
             } else if (!check_from()) {
-                sl_send_reply("403", "Use From=ID");
+                sl_send_reply(&quot;403&quot;, &quot;Use From=ID&quot;);
                 break;
             };
             consume_credentials();
 
-            if (nat_uac_test("19")) {
+            if (nat_uac_test(&quot;19&quot;)) {
                 setflag(6);
                 force_rport();
                 fix_nated_contact();
             };
-            force_rtp_proxy("l");
+            force_rtp_proxy(&quot;l&quot;);
         };
         route(1);
         break;
@@ -235,29 +241,29 @@ route {
         break;
     };
 
-    if (method=="ACK") {
+    if (method==&quot;ACK&quot;) {
         route(1);
         break;
-    } else if (method=="CANCEL") {
+    } else if (method==&quot;CANCEL&quot;) {
         route(1);
         break;
-    } else if (method=="INVITE") {
+    } else if (method==&quot;INVITE&quot;) {
         route(3);
         break;
-    } else  if (method=="REGISTER") {
+    } else  if (method==&quot;REGISTER&quot;) {
         route(2);
         break;
     };
 
-    lookup("aliases");
+    lookup(&quot;aliases&quot;);
     if (uri!=myself) {
         route(4);
         route(1);
         break;
     };
 
-    if (!lookup("location")) {
-        sl_send_reply("404", "User Not Found");
+    if (!lookup(&quot;location&quot;)) {
+        sl_send_reply(&quot;404&quot;, &quot;User Not Found&quot;);
         break;
     };
 
@@ -270,10 +276,10 @@ route[1] {
     # Default Message Handler
     # -----------------------------------------------------------------
 
-    t_on_reply("1");
+    t_on_reply(&quot;1&quot;);
 
     if (!t_relay()) {
-        if (method=="INVITE" && isflagset(6)) {
+        if (method==&quot;INVITE&quot; &amp;&amp; isflagset(6)) {
             unforce_rtp_proxy();
         };
         sl_reply_error();
@@ -286,27 +292,27 @@ route[2] {
     # REGISTER Message Handler
     # ----------------------------------------------------------------
 
-    if (!search("^Contact:[ ]*\*") && nat_uac_test("19")) {
+    if (!search(&quot;^Contact:[ ]*\*&quot;) &amp;&amp; nat_uac_test(&quot;19&quot;)) {
         setflag(6);
         fix_nated_register();
         force_rport();
     };
 
-    sl_send_reply("100", "Trying");
+    sl_send_reply(&quot;100&quot;, &quot;Trying&quot;);
 
-    if (!www_authorize("","subscriber")) {
-        www_challenge("","0");
+    if (!www_authorize(&quot;&quot;,&quot;subscriber&quot;)) {
+        www_challenge(&quot;&quot;,&quot;0&quot;);
         break;
     };
 
     if (!check_to()) {
-        sl_send_reply("401", "Unauthorized");
+        sl_send_reply(&quot;401&quot;, &quot;Unauthorized&quot;);
         break;
     };
 
     consume_credentials();
 
-    if (!save("location")) {
+    if (!save(&quot;location&quot;)) {
         sl_reply_error();
     };
 }
@@ -317,29 +323,29 @@ route[3] {
     # INVITE Message Handler
     # -----------------------------------------------------------------
 
-    if (!proxy_authorize("","subscriber")) {
-        proxy_challenge("","0");
+    if (!proxy_authorize(&quot;&quot;,&quot;subscriber&quot;)) {
+        proxy_challenge(&quot;&quot;,&quot;0&quot;);
         break;
     } else if (!check_from()) {
-        sl_send_reply("403", "Use From=ID");
+        sl_send_reply(&quot;403&quot;, &quot;Use From=ID&quot;);
         break;
     };
 
     consume_credentials();
 
-    if (nat_uac_test("19")) {
+    if (nat_uac_test(&quot;19&quot;)) {
         setflag(6);
     }
 
-    lookup("aliases");
+    lookup(&quot;aliases&quot;);
     if (uri!=myself) {
         route(4);
         route(1);
         break;
     };
 
-    if (!lookup("location")) {
-        sl_send_reply("404", "User Not Found");
+    if (!lookup(&quot;location&quot;)) {
+        sl_send_reply(&quot;404&quot;, &quot;User Not Found&quot;);
         break;
     };
 
@@ -362,40 +368,47 @@ route[4] {
 
 onreply_route[1] {
 
-    if (isflagset(6) && status=~"(180)|(183)|2[0-9][0-9]") {
-        if (!search("^Content-Length:[ ]*0")) {
+    if (isflagset(6) &amp;&amp; status=~&quot;(180)|(183)|2[0-9][0-9]&quot;) {
+        if (!search(&quot;^Content-Length:[ ]*0&quot;)) {
             force_rtp_proxy();
         };
     };
 
-    if (nat_uac_test("1")) {
+    if (nat_uac_test(&quot;1&quot;)) {
         fix_nated_contact();
     };
 }
-</pre>
-先启动rtpproxy,用ftp的用户权限
-<pre class="brush:plain">
- /usr/local/bin/rtpproxy -u ftp
-</pre>
-启动ser
-<pre class="brush:plain">
-serctl start
-</pre>
-停止ser
-<pre class="brush:plain">
-serctl start
-</pre>
-查看注册用户
-<pre class="brush:plain">
-serctl ul show
-</pre>
+</code></pre>
+
+<p>先启动rtpproxy,用ftp的用户权限</p>
+
+<pre><code>/usr/local/bin/rtpproxy -u ftp
+</code></pre>
+
+<p>启动ser</p>
+
+<pre><code>serctl start
+</code></pre>
+
+<p>停止ser</p>
+
+<pre><code>serctl start
+</code></pre>
+
+<p>查看注册用户</p>
+
+<pre><code>serctl ul show
+</code></pre>
 </p>
       </div>
 
     </div>
 
-  </div> 
+ 
+<!-- Duoshuo Comment BEGIN -->
+  <div class="ds-thread" data-title="SIP服务器SER 0.9.6:SIP Express Router 安装记录"></div>
 
+  </div>
       </div> 
 
       <div class="grid_5">
@@ -404,10 +417,12 @@ serctl ul show
   <div class="widget widget_search widget-widget_search">
     <div class="widget-wrap widget-inside">
       <div class="search">
-        <form method="get" class="searchform" action="http://ahui.us/">
-          <label for="s" class="assistive-text">Search for:</label>
-          <input type="text" class="field" name="s" id="s" value="Search" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" />
-          <input type="submit" class="submit" name="submit" id="searchsubmit" value="Search" />
+        <form method="get" class="searchform" action="http://www.google.com/search">
+          <input name="sitesearch" value="ahui.us" type="hidden"> 
+          <input name="hl" value="zh-CN" type="hidden">
+          <input name="ie" value="GB2312" type="hidden"> 
+          <input type="text" class="field" name="q" id="query" value="Search" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" />
+          <input type="submit" class="submit" name="Search" id="searchsubmit" value="Search" />
         </form>
       </div>
     </div>
@@ -419,14 +434,15 @@ serctl ul show
       <h3 class="widget-title">标签</h3>
       <ul>
         <li class="cat-item"><a href="../tag/sip.html">sip &sdot; (2)</a></li>
-        <li class="cat-item"><a href="../tag/Network.html">Network &sdot; (48)</a></li>
+        <li class="cat-item"><a href="../tag/Network.html">Network &sdot; (47)</a></li>
         <li class="cat-item"><a href="../tag/VPS.html">VPS &sdot; (3)</a></li>
         <li class="cat-item"><a href="../tag/openerp.html">openerp &sdot; (2)</a></li>
         <li class="cat-item"><a href="../tag/wow.html">wow &sdot; (1)</a></li>
         <li class="cat-item"><a href="../tag/ipv6.html">ipv6 &sdot; (2)</a></li>
-        <li class="cat-item"><a href="../tag/wii.html">wii &sdot; (3)</a></li>
-        <li class="cat-item"><a href="../tag/blog.html">blog &sdot; (19)</a></li>
         <li class="cat-item"><a href="../tag/game.html">game &sdot; (5)</a></li>
+        <li class="cat-item"><a href="../tag/wii.html">wii &sdot; (3)</a></li>
+        <li class="cat-item"><a href="../tag/blog.html">blog &sdot; (18)</a></li>
+        <li class="cat-item"><a href="../tag/notag.html">notag &sdot; (2)</a></li>
         <li class="cat-item"><a href="../tag/ssh.html">ssh &sdot; (2)</a></li>
         <li class="cat-item"><a href="../tag/Linux.html">Linux &sdot; (35)</a></li>
         <li class="cat-item"><a href="../tag/android.html">android &sdot; (1)</a></li>
@@ -447,6 +463,25 @@ serctl ul show
       </ul>
     </div>
   </div>
+
+
+<div class="widget widget_comments">
+  <h3 class="widget-title">最新评论</h3>
+  <ul class="entry ds-recent-comments" data-num-items="5" data-show-avatars="0" data-show-title="0" data-show-time="1"></ul>
+</div>
+<!--多说js加载开始，一个页面只需要加载一次 -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"ahuius"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!--多说js加载结束，一个页面只需要加载一次 -->
+
 </div>      </div>
 
     </div>

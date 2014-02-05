@@ -1,4 +1,4 @@
-timestamp: 1391534519.11
+timestamp: 1391596119.2
 encoding: utf-8
 
 _extend=_buf.extend;_to_str=to_str;_escape=escape; _extend((u'''<!doctype html>\r
@@ -48,7 +48,7 @@ _extend=_buf.extend;_to_str=to_str;_escape=escape; _extend((u'''<!doctype html>\
 \r
       <div class="grid_5">\r
 \r\n''', ));
-include('sidebar.html')
+include(sidebar)
 _extend((u'''      </div>\r
 \r
     </div>\r

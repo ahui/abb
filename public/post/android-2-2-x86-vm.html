@@ -45,14 +45,16 @@
       <div class="entry-meta-group clearfix">
         <div class="grid_2 alpha">
           <time class="entry-date entry-time updated" datetime="2010-08-06 20:50:59">
-            <a href="#" title="2010-08-06 20:50:59" rel="bookmark">
+            <a href="../post/android-2-2-x86-vm.html" title="2010-08-06 20:50:59" rel="bookmark">
               <span class="entry-date-day">06</span>
               <span class="entry-date-month-year">2010-08</span>
             </a>
           </time>
         </div>
         <div class="grid_8 omega">
-          <h1 class="entry-title entry-title-single">Android 2.2 x86虚拟机版编译记录</h1>
+          <h1 class="entry-title entry-title-single">
+            <a href="../post/android-2-2-x86-vm.html">Android 2.2 x86虚拟机版编译记录</a>
+          </h1>
           <div class="entry-meta">    
             <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
             <span class="tag-links">
@@ -65,14 +67,17 @@
       </div>
 
       <div class="entry-content clearfix">
-        <p><p>Android x86项目提供的还是1.6版本的iso,http://cwhuang.info/做了很多的最新版本2.2的工作,可以由他上传的源码编译一个Virutal Box能使用的vm.iso文件.</p>
+        <p><p>Android x86项目提供的还是1.6版本的iso,<a href="http://cwhuang.info/">这里</a>做了很多的最新版本2.2的工作,可以由他上传的源码编译一个Virutal Box能使用的vm.iso文件.</p>
 
 <p>编译主机用的Ubuntu 10.04,其他OS可能要安装的相关依赖文件有所不同.
-10.04默认没有sun jdk,要加个新源 http://archive.canonical.com/ lucid partner.</p>
+10.04默认没有sun jdk,要加个新源 </p>
 
-<p>1.安装相关依赖文件
-<pre class="brush:bash">
-sudo add-apt-repository &quot;deb http://archive.canonical.com/ lucid partner&quot;
+<pre><code>http://archive.canonical.com/ lucid partner.
+</code></pre>
+
+<p>1.安装相关依赖文件</p>
+
+<pre><code>sudo add-apt-repository &quot;deb http://archive.canonical.com/ lucid partner&quot;
 sudo apt-get update
 sudo apt-get install git-core 
 sudo apt-get install sun-java6-jdk 
@@ -84,34 +89,36 @@ sudo apt-get install libwxgtk2.6-dev
 sudo apt-get install build-essential 
 sudo apt-get install curl 
 sudo apt-get install valgrind
-</pre>
-&lt;!--more--&gt;</p>
+</code></pre>
 
-<p>2.安装repo
-<pre class="brush:bash">
-cd
+<p>2.安装repo</p>
+
+<pre><code>cd
 mkdir bin
 cd bin
 curl http://android.git.kernel.org/repo &gt; ~/bin/repo
 chmod a+x repo
-</pre>
-3.下载同步源代码
-<pre class="brush:bash">
-cd
+</code></pre>
+
+<p>3.下载同步源代码</p>
+
+<pre><code>cd
 mkdir android2.2
 cd android2.2
  ../bin/repo init -u git://android-x86.git.sf.net/gitroot/android-x86/manifest.git -b froyo-x86
  ../bin/repo sync
- </pre>
-同步要花n久时间.取决于网速,我这200+KB/s跑了四个多小时.</p>
+</code></pre>
 
-<p>4.编译成vm.iso  其中编译参数-j4是我有四个cpu核心,所以设定同时运行4个进程.
-<pre class="brush:bash">
- . build/envsetup.sh
+<p>同步要花n久时间.取决于网速,我这200+KB/s跑了四个多小时.</p>
+
+<p>4.编译成vm.iso  其中编译参数-j4是我有四个cpu核心,所以设定同时运行4个进程.</p>
+
+<pre><code> . build/envsetup.sh
 lunch vm-eng 
 m -j4 iso_img  &#39; cpu x 4
-</pre>
-编译也要花n久时间,取决于CPU性能,我的Xeon 4核心花了近三个小时.
+</code></pre>
+
+<p>编译也要花n久时间,取决于CPU性能,我的Xeon 4核心花了近三个小时.
 然后你就能在out下找到vm.iso了.文件大小约557,714KB.
 新开一个Virtual Box虚拟机,挂载vm.iso,直接光盘运行或安装到硬盘都可.鼠标独占要去掉,否则不会显示鼠标.而且鼠标的速度慢了点,得等作者在新版本里进行修正了.</p>
 
@@ -127,8 +134,11 @@ m -j4 iso_img  &#39; cpu x 4
 
     </div>
 
-  </div> 
+ 
+<!-- Duoshuo Comment BEGIN -->
+  <div class="ds-thread" data-title="Android 2.2 x86虚拟机版编译记录"></div>
 
+  </div>
       </div> 
 
       <div class="grid_5">
@@ -137,10 +147,12 @@ m -j4 iso_img  &#39; cpu x 4
   <div class="widget widget_search widget-widget_search">
     <div class="widget-wrap widget-inside">
       <div class="search">
-        <form method="get" class="searchform" action="http://ahui.us/">
-          <label for="s" class="assistive-text">Search for:</label>
-          <input type="text" class="field" name="s" id="s" value="Search" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" />
-          <input type="submit" class="submit" name="submit" id="searchsubmit" value="Search" />
+        <form method="get" class="searchform" action="http://www.google.com/search">
+          <input name="sitesearch" value="ahui.us" type="hidden"> 
+          <input name="hl" value="zh-CN" type="hidden">
+          <input name="ie" value="GB2312" type="hidden"> 
+          <input type="text" class="field" name="q" id="query" value="Search" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" />
+          <input type="submit" class="submit" name="Search" id="searchsubmit" value="Search" />
         </form>
       </div>
     </div>
@@ -152,14 +164,15 @@ m -j4 iso_img  &#39; cpu x 4
       <h3 class="widget-title">标签</h3>
       <ul>
         <li class="cat-item"><a href="../tag/sip.html">sip &sdot; (2)</a></li>
-        <li class="cat-item"><a href="../tag/Network.html">Network &sdot; (48)</a></li>
+        <li class="cat-item"><a href="../tag/Network.html">Network &sdot; (47)</a></li>
         <li class="cat-item"><a href="../tag/VPS.html">VPS &sdot; (3)</a></li>
         <li class="cat-item"><a href="../tag/openerp.html">openerp &sdot; (2)</a></li>
         <li class="cat-item"><a href="../tag/wow.html">wow &sdot; (1)</a></li>
         <li class="cat-item"><a href="../tag/ipv6.html">ipv6 &sdot; (2)</a></li>
-        <li class="cat-item"><a href="../tag/wii.html">wii &sdot; (3)</a></li>
-        <li class="cat-item"><a href="../tag/blog.html">blog &sdot; (19)</a></li>
         <li class="cat-item"><a href="../tag/game.html">game &sdot; (5)</a></li>
+        <li class="cat-item"><a href="../tag/wii.html">wii &sdot; (3)</a></li>
+        <li class="cat-item"><a href="../tag/blog.html">blog &sdot; (18)</a></li>
+        <li class="cat-item"><a href="../tag/notag.html">notag &sdot; (2)</a></li>
         <li class="cat-item"><a href="../tag/ssh.html">ssh &sdot; (2)</a></li>
         <li class="cat-item"><a href="../tag/Linux.html">Linux &sdot; (35)</a></li>
         <li class="cat-item"><a href="../tag/android.html">android &sdot; (1)</a></li>
@@ -180,6 +193,25 @@ m -j4 iso_img  &#39; cpu x 4
       </ul>
     </div>
   </div>
+
+
+<div class="widget widget_comments">
+  <h3 class="widget-title">最新评论</h3>
+  <ul class="entry ds-recent-comments" data-num-items="5" data-show-avatars="0" data-show-title="0" data-show-time="1"></ul>
+</div>
+<!--多说js加载开始，一个页面只需要加载一次 -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"ahuius"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!--多说js加载结束，一个页面只需要加载一次 -->
+
 </div>      </div>
 
     </div>

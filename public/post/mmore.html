@@ -45,14 +45,16 @@
       <div class="entry-meta-group clearfix">
         <div class="grid_2 alpha">
           <time class="entry-date entry-time updated" datetime="2010-07-16 00:40:13">
-            <a href="#" title="2010-07-16 00:40:13" rel="bookmark">
+            <a href="../post/mmore.html" title="2010-07-16 00:40:13" rel="bookmark">
               <span class="entry-date-day">16</span>
               <span class="entry-date-month-year">2010-07</span>
             </a>
           </time>
         </div>
         <div class="grid_8 omega">
-          <h1 class="entry-title entry-title-single">修改more标签</h1>
+          <h1 class="entry-title entry-title-single">
+            <a href="../post/mmore.html">修改more标签</a>
+          </h1>
           <div class="entry-meta">    
             <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
             <span class="tag-links">
@@ -64,37 +66,38 @@
       </div>
 
       <div class="entry-content clearfix">
-        <p><p>参考地址　http://codex.wordpress.org/Customizing<em>the</em>Read_More</p>
+        <p><p><a href="http://codex.wordpress.org/Customizing_the_Read_More">参考地址</a></p>
 
 <p>修改loop.php
-查找第二处&quot;continue reading&quot;，该行改为
-<pre class="brush:html">
-&lt;?php the<em>content(&quot;
-......点此阅读<span class=\"widget-title\">t &quot; . get</em>the_title(&#39;&#39;, &#39;&#39;, false) . &quot;</span> 全文......
-&quot;); &gt;
-</pre></p>
+查找第二处&quot;continue reading&quot;，该行改为</p>
 
-<p>function.php底部加入脚本，用于跳转到文章开头.
-<pre class="brush:javascript">
-function remove<em>more</em>jump<em>link($link) { 
-$offset = strpos($link, &#39;#more-&#39;);
-if ($offset) {
-$end = strpos($link, &#39;&quot;&#39;,$offset);
+<pre><code>&lt;?php the_content(&quot;......点此阅读&lt;span class=\&quot;widget-title\&quot;&gt;t &quot; . get_the_title(&#39;&#39;, &#39;&#39;, false) . &quot;&lt;/span&gt; 全文......&quot;); &gt;
+</code></pre>
+
+<p>function.php底部加入脚本，用于跳转到文章开头.</p>
+
+<pre><code>function remove_more_jump_link($link) { 
+    $offset = strpos($link, &#39;#more-&#39;);
+    if ($offset) {
+        $end = strpos($link, &#39;&quot;&#39;,$offset);
+    }
+    if ($end) {
+        $link = substr_replace($link, &#39;&#39;, $offset, $end-$offset);
+    }
+    return $link;
 }
-if ($end) {
-$link = substr</em>replace($link, &#39;&#39;, $offset, $end-$offset);
-}
-return $link;
-}
-add<em>filter(&#39;the</em>content<em>more</em>link&#39;, &#39;remove<em>more</em>jump_link&#39;);
-</pre></p>
+add_filter(&#39;the_content_more_link&#39;, &#39;remove_more_jump_link&#39;);
+</code></pre>
 </p>
       </div>
 
     </div>
 
-  </div> 
+ 
+<!-- Duoshuo Comment BEGIN -->
+  <div class="ds-thread" data-title="修改more标签"></div>
 
+  </div>
       </div> 
 
       <div class="grid_5">
@@ -103,10 +106,12 @@ add<em>filter(&#39;the</em>content<em>more</em>link&#39;, &#39;remove<em>more</e
   <div class="widget widget_search widget-widget_search">
     <div class="widget-wrap widget-inside">
       <div class="search">
-        <form method="get" class="searchform" action="http://ahui.us/">
-          <label for="s" class="assistive-text">Search for:</label>
-          <input type="text" class="field" name="s" id="s" value="Search" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" />
-          <input type="submit" class="submit" name="submit" id="searchsubmit" value="Search" />
+        <form method="get" class="searchform" action="http://www.google.com/search">
+          <input name="sitesearch" value="ahui.us" type="hidden"> 
+          <input name="hl" value="zh-CN" type="hidden">
+          <input name="ie" value="GB2312" type="hidden"> 
+          <input type="text" class="field" name="q" id="query" value="Search" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" />
+          <input type="submit" class="submit" name="Search" id="searchsubmit" value="Search" />
         </form>
       </div>
     </div>
@@ -118,14 +123,15 @@ add<em>filter(&#39;the</em>content<em>more</em>link&#39;, &#39;remove<em>more</e
       <h3 class="widget-title">标签</h3>
       <ul>
         <li class="cat-item"><a href="../tag/sip.html">sip &sdot; (2)</a></li>
-        <li class="cat-item"><a href="../tag/Network.html">Network &sdot; (48)</a></li>
+        <li class="cat-item"><a href="../tag/Network.html">Network &sdot; (47)</a></li>
         <li class="cat-item"><a href="../tag/VPS.html">VPS &sdot; (3)</a></li>
         <li class="cat-item"><a href="../tag/openerp.html">openerp &sdot; (2)</a></li>
         <li class="cat-item"><a href="../tag/wow.html">wow &sdot; (1)</a></li>
         <li class="cat-item"><a href="../tag/ipv6.html">ipv6 &sdot; (2)</a></li>
-        <li class="cat-item"><a href="../tag/wii.html">wii &sdot; (3)</a></li>
-        <li class="cat-item"><a href="../tag/blog.html">blog &sdot; (19)</a></li>
         <li class="cat-item"><a href="../tag/game.html">game &sdot; (5)</a></li>
+        <li class="cat-item"><a href="../tag/wii.html">wii &sdot; (3)</a></li>
+        <li class="cat-item"><a href="../tag/blog.html">blog &sdot; (18)</a></li>
+        <li class="cat-item"><a href="../tag/notag.html">notag &sdot; (2)</a></li>
         <li class="cat-item"><a href="../tag/ssh.html">ssh &sdot; (2)</a></li>
         <li class="cat-item"><a href="../tag/Linux.html">Linux &sdot; (35)</a></li>
         <li class="cat-item"><a href="../tag/android.html">android &sdot; (1)</a></li>
@@ -146,6 +152,25 @@ add<em>filter(&#39;the</em>content<em>more</em>link&#39;, &#39;remove<em>more</e
       </ul>
     </div>
   </div>
+
+
+<div class="widget widget_comments">
+  <h3 class="widget-title">最新评论</h3>
+  <ul class="entry ds-recent-comments" data-num-items="5" data-show-avatars="0" data-show-title="0" data-show-time="1"></ul>
+</div>
+<!--多说js加载开始，一个页面只需要加载一次 -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"ahuius"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!--多说js加载结束，一个页面只需要加载一次 -->
+
 </div>      </div>
 
     </div>

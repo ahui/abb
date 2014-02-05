@@ -45,14 +45,16 @@
       <div class="entry-meta-group clearfix">
         <div class="grid_2 alpha">
           <time class="entry-date entry-time updated" datetime="2012-08-21 10:35:38">
-            <a href="#" title="2012-08-21 10:35:38" rel="bookmark">
+            <a href="../post/chrome-cache-dir.html" title="2012-08-21 10:35:38" rel="bookmark">
               <span class="entry-date-day">21</span>
               <span class="entry-date-month-year">2012-08</span>
             </a>
           </time>
         </div>
         <div class="grid_8 omega">
-          <h1 class="entry-title entry-title-single">Chrome字体及缓存目录修改</h1>
+          <h1 class="entry-title entry-title-single">
+            <a href="../post/chrome-cache-dir.html">Chrome字体及缓存目录修改</a>
+          </h1>
           <div class="entry-meta">    
             <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
             <span class="tag-links">
@@ -65,17 +67,24 @@
       </div>
 
       <div class="entry-content clearfix">
-        <p><p>字体+阴影，打开
-C:\Users[用户名]\AppData\Local\Google\Chrome\User Data\Default\User StyleSheets\Custome.css
-添加
-*{font-family:Arial,&quot;Microsoft Yahei&quot; !important;}
-*{text-shadow: silver 0px 0px 1px !important;}</p>
+        <p><p>字体+阴影，打开</p>
+
+<pre><code>C:\Users\[用户名]\AppData\Local\Google\Chrome\User Data\Default\User StyleSheets\Custome.css
+</code></pre>
+
+<p>添加</p>
+
+<pre><code>*{font-family:Arial,&quot;Microsoft Yahei&quot; !important;}
+*{text-shadow: silver 0px 0px 1px !important;}
+</code></pre>
 
 <p>其中第一行将所有字体改为雅黑，第二行设置1px的字体阴影。1440以上高分屏，设置第二行效果很好。1366的只添加第一行。</p>
 
 <p>缓存目录
-shift+右 点击Chrome图标，属性，目标后添加
---disk-cache-dir=“Z:\Users\&quot;</p>
+shift+右 点击Chrome图标，属性，目标后添加</p>
+
+<pre><code>--disk-cache-dir=“Z:\Users\&quot;
+</code></pre>
 
 <p>其中Z:为RAM盘，设置RAM盘并修改系统TEMP目录后，会自动建立类Users[用户名]的目录。否则如果指定的Users目录不存在，Chrome启动会报错。</p>
 </p>
@@ -83,8 +92,11 @@ shift+右 点击Chrome图标，属性，目标后添加
 
     </div>
 
-  </div> 
+ 
+<!-- Duoshuo Comment BEGIN -->
+  <div class="ds-thread" data-title="Chrome字体及缓存目录修改"></div>
 
+  </div>
       </div> 
 
       <div class="grid_5">
@@ -93,10 +105,12 @@ shift+右 点击Chrome图标，属性，目标后添加
   <div class="widget widget_search widget-widget_search">
     <div class="widget-wrap widget-inside">
       <div class="search">
-        <form method="get" class="searchform" action="http://ahui.us/">
-          <label for="s" class="assistive-text">Search for:</label>
-          <input type="text" class="field" name="s" id="s" value="Search" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" />
-          <input type="submit" class="submit" name="submit" id="searchsubmit" value="Search" />
+        <form method="get" class="searchform" action="http://www.google.com/search">
+          <input name="sitesearch" value="ahui.us" type="hidden"> 
+          <input name="hl" value="zh-CN" type="hidden">
+          <input name="ie" value="GB2312" type="hidden"> 
+          <input type="text" class="field" name="q" id="query" value="Search" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" />
+          <input type="submit" class="submit" name="Search" id="searchsubmit" value="Search" />
         </form>
       </div>
     </div>
@@ -108,14 +122,15 @@ shift+右 点击Chrome图标，属性，目标后添加
       <h3 class="widget-title">标签</h3>
       <ul>
         <li class="cat-item"><a href="../tag/sip.html">sip &sdot; (2)</a></li>
-        <li class="cat-item"><a href="../tag/Network.html">Network &sdot; (48)</a></li>
+        <li class="cat-item"><a href="../tag/Network.html">Network &sdot; (47)</a></li>
         <li class="cat-item"><a href="../tag/VPS.html">VPS &sdot; (3)</a></li>
         <li class="cat-item"><a href="../tag/openerp.html">openerp &sdot; (2)</a></li>
         <li class="cat-item"><a href="../tag/wow.html">wow &sdot; (1)</a></li>
         <li class="cat-item"><a href="../tag/ipv6.html">ipv6 &sdot; (2)</a></li>
-        <li class="cat-item"><a href="../tag/wii.html">wii &sdot; (3)</a></li>
-        <li class="cat-item"><a href="../tag/blog.html">blog &sdot; (19)</a></li>
         <li class="cat-item"><a href="../tag/game.html">game &sdot; (5)</a></li>
+        <li class="cat-item"><a href="../tag/wii.html">wii &sdot; (3)</a></li>
+        <li class="cat-item"><a href="../tag/blog.html">blog &sdot; (18)</a></li>
+        <li class="cat-item"><a href="../tag/notag.html">notag &sdot; (2)</a></li>
         <li class="cat-item"><a href="../tag/ssh.html">ssh &sdot; (2)</a></li>
         <li class="cat-item"><a href="../tag/Linux.html">Linux &sdot; (35)</a></li>
         <li class="cat-item"><a href="../tag/android.html">android &sdot; (1)</a></li>
@@ -136,6 +151,25 @@ shift+右 点击Chrome图标，属性，目标后添加
       </ul>
     </div>
   </div>
+
+
+<div class="widget widget_comments">
+  <h3 class="widget-title">最新评论</h3>
+  <ul class="entry ds-recent-comments" data-num-items="5" data-show-avatars="0" data-show-title="0" data-show-time="1"></ul>
+</div>
+<!--多说js加载开始，一个页面只需要加载一次 -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"ahuius"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!--多说js加载结束，一个页面只需要加载一次 -->
+
 </div>      </div>
 
     </div>

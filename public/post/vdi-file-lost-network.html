@@ -45,14 +45,16 @@
       <div class="entry-meta-group clearfix">
         <div class="grid_2 alpha">
           <time class="entry-date entry-time updated" datetime="2013-05-11 11:46:47">
-            <a href="#" title="2013-05-11 11:46:47" rel="bookmark">
+            <a href="../post/vdi-file-lost-network.html" title="2013-05-11 11:46:47" rel="bookmark">
               <span class="entry-date-day">11</span>
               <span class="entry-date-month-year">2013-05</span>
             </a>
           </time>
         </div>
         <div class="grid_8 omega">
-          <h1 class="entry-title entry-title-single">Ubuntu on Virtual Box VDI 复制后丢失网卡</h1>
+          <h1 class="entry-title entry-title-single">
+            <a href="../post/vdi-file-lost-network.html">Ubuntu on Virtual Box VDI 复制后丢失网卡</a>
+          </h1>
           <div class="entry-meta">    
             <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
             <span class="tag-links">
@@ -65,16 +67,22 @@
       </div>
 
       <div class="entry-content clearfix">
-        <p><p>A机，VB安装Ubuntu 12.10 Server,网卡模式为桥接。此时Ubuntu中网卡为eth0，DHCP, 连接正常。复制硬盘VDI文件至B机。
-B机，VB安装完成后，新建立linux类虚拟机，并使用复制过来的Ａ机VDI文件启动，此时DHP无法取得ＩＰ，并且不能手工ifconfig eth0 up，查看发现eth0不存在，网卡设备转为eth1.估计网卡mac有变动.
-解决：修改/etc/network/interface,将其中二行eth0相关配置，修改成eth1</p>
+        <p><p>A机，VB安装Ubuntu 12.10 Server,网卡模式为桥接。此时Ubuntu中网卡为eth0，DHCP, 连接正常。复制硬盘VDI文件至B机。</p>
+
+<p>B机，VB安装完成后，新建立linux类虚拟机，并使用复制过来的Ａ机VDI文件启动，此时DHP无法取得ＩＰ，并且不能手工ifconfig eth0 up，查看发现eth0不存在，网卡设备转为eth1.估计网卡mac有变动.</p>
+
+<p>解决：
+- 修改/etc/network/interface,将其中二行eth0相关配置，修改成eth1</p>
 </p>
       </div>
 
     </div>
 
-  </div> 
+ 
+<!-- Duoshuo Comment BEGIN -->
+  <div class="ds-thread" data-title="Ubuntu on Virtual Box VDI 复制后丢失网卡"></div>
 
+  </div>
       </div> 
 
       <div class="grid_5">
@@ -83,10 +91,12 @@ B机，VB安装完成后，新建立linux类虚拟机，并使用复制过来的
   <div class="widget widget_search widget-widget_search">
     <div class="widget-wrap widget-inside">
       <div class="search">
-        <form method="get" class="searchform" action="http://ahui.us/">
-          <label for="s" class="assistive-text">Search for:</label>
-          <input type="text" class="field" name="s" id="s" value="Search" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" />
-          <input type="submit" class="submit" name="submit" id="searchsubmit" value="Search" />
+        <form method="get" class="searchform" action="http://www.google.com/search">
+          <input name="sitesearch" value="ahui.us" type="hidden"> 
+          <input name="hl" value="zh-CN" type="hidden">
+          <input name="ie" value="GB2312" type="hidden"> 
+          <input type="text" class="field" name="q" id="query" value="Search" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" />
+          <input type="submit" class="submit" name="Search" id="searchsubmit" value="Search" />
         </form>
       </div>
     </div>
@@ -98,14 +108,15 @@ B机，VB安装完成后，新建立linux类虚拟机，并使用复制过来的
       <h3 class="widget-title">标签</h3>
       <ul>
         <li class="cat-item"><a href="../tag/sip.html">sip &sdot; (2)</a></li>
-        <li class="cat-item"><a href="../tag/Network.html">Network &sdot; (48)</a></li>
+        <li class="cat-item"><a href="../tag/Network.html">Network &sdot; (47)</a></li>
         <li class="cat-item"><a href="../tag/VPS.html">VPS &sdot; (3)</a></li>
         <li class="cat-item"><a href="../tag/openerp.html">openerp &sdot; (2)</a></li>
         <li class="cat-item"><a href="../tag/wow.html">wow &sdot; (1)</a></li>
         <li class="cat-item"><a href="../tag/ipv6.html">ipv6 &sdot; (2)</a></li>
-        <li class="cat-item"><a href="../tag/wii.html">wii &sdot; (3)</a></li>
-        <li class="cat-item"><a href="../tag/blog.html">blog &sdot; (19)</a></li>
         <li class="cat-item"><a href="../tag/game.html">game &sdot; (5)</a></li>
+        <li class="cat-item"><a href="../tag/wii.html">wii &sdot; (3)</a></li>
+        <li class="cat-item"><a href="../tag/blog.html">blog &sdot; (18)</a></li>
+        <li class="cat-item"><a href="../tag/notag.html">notag &sdot; (2)</a></li>
         <li class="cat-item"><a href="../tag/ssh.html">ssh &sdot; (2)</a></li>
         <li class="cat-item"><a href="../tag/Linux.html">Linux &sdot; (35)</a></li>
         <li class="cat-item"><a href="../tag/android.html">android &sdot; (1)</a></li>
@@ -126,6 +137,25 @@ B机，VB安装完成后，新建立linux类虚拟机，并使用复制过来的
       </ul>
     </div>
   </div>
+
+
+<div class="widget widget_comments">
+  <h3 class="widget-title">最新评论</h3>
+  <ul class="entry ds-recent-comments" data-num-items="5" data-show-avatars="0" data-show-title="0" data-show-time="1"></ul>
+</div>
+<!--多说js加载开始，一个页面只需要加载一次 -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"ahuius"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!--多说js加载结束，一个页面只需要加载一次 -->
+
 </div>      </div>
 
     </div>
