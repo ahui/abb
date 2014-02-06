@@ -159,7 +159,44 @@ def getallhtml():
     render_index()
 
 def gethtml(mdfile):
-    pass
+    render_post(mdfile)
+    write_post()
+
+
+def addpost(title):
+    import pinyin
+    py = pinyin.PinYin()
+    py.load_word()
+    mdfilename = " ".join(title)
+    content["title"] = mdfilename
+    #print mdfilename
+    mdfilename = "%s.md" % py.hanzi2pinyin_split(mdfilename,"_")
+    i = 0
+    tmpfilename = mdfilename
+    while 1:
+        i = i + 1
+        if os.path.exists("%s/%s" % (inputdir,tmpfilename)):
+            tmpfilename = "%s_%s" % (i,mdfilename)
+        else:
+            break
+    mdfilename = tmpfilename
+    engine = tenjin.Engine(path=[''], layout='')
+    from datetime import datetime
+    dt = datetime.now()
+    content["date"] = dt.strftime('%Y-%m-%d %I:%M:%S')
+    content["filename"] = mdfilename
+    #print engine.render("init.md",content)
+    with open("%s/%s" % (inputdir,mdfilename),"w") as fp:
+        fp.write(engine.render("init.md",content))
+    print "文章%s模板已经生成，是否进入编辑? ([y]es or [n]o)" % mdfilename
+    answer = raw_input()
+    if answer.lower() in ("y","yes"):
+
+        cmd = "vi %s/%s" % (inputdir,mdfilename)
+        os.system(cmd)
+    sys.exit()
+
+
 
 if __name__ == "__main__":
     # for arg in sys.argv:
@@ -185,6 +222,12 @@ if __name__ == "__main__":
             sys.exit()
         #对单个md文件生成对应html,且存放目录为当前目录
         #newmd = md(mdfile)
-        render_post(mdfile)
-        write_post()
+        gethtml(mdfile)
         pass
+    elif case == "addpost":
+        if len(sys.argv) == 2:
+            print "请输入文章标题."
+            sys.exit()
+        #title = " ".join(sys.argv[2:])
+        #print sys.argv[2:]
+        addpost(sys.argv[2:])
