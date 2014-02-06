@@ -38,16 +38,19 @@ class md:
                             #tags在一行且存在时
                             if len(tlist[1]) > 2:
                                 for v in tlist[1].split(","):
-                                    self.tags.append(v.replace("\n","").strip())
+                                    self.tags.append(v.replace("\n","").strip().lower())
                         #暂不考虑categories
                         if tlist[0].lower() == "categories": 
-                             last = "categories"
+                            last = "categories"
+                        if tlist[0].lower() == "memo": 
+                            last = "memo"
+
                     else:
                         #tags为markdown列表形式时
                         tlist = line.split("-")
                         if len(tlist) < 3:
                             if last == "tags":
-                                self.tags.append(tlist[1].replace("\n","").strip())
+                                self.tags.append(tlist[1].replace("\n","").strip().lower())
                             else:
                                 pass
         #没有tag时放入notag类

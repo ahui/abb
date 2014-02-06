@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 # Ahui at ahui.us,2014
+__version__ = '0.1'
 
 from mdreader import *
 import tenjin
@@ -72,7 +73,7 @@ def render_rightside(dirprefix="../"):
     else:
         sidebar = "_sidebar.html"
     #最近文章，取前5条. 排序后为list
-    content["posts"] = sortdict(posts)[0:5]
+    content["posts"] = sortdict(posts)[0:10]
     with open("themes/%s/%s" % (theme,sidebar),"w") as fp:
         fp.write(engine.render("rightbar.html",content,layout=""))
 
@@ -196,22 +197,41 @@ def addpost(title):
         os.system(cmd)
     sys.exit()
 
+def printhelp():
+    helpmsg = """
+    可接受的参数列表:
+
+        init            :初始化当前目录
+        help            :显示帮助
+        addpost 标题    :添加新文章(标题可以有空格)
+        build           :生成整个站点
+        version         :查看版本
+    """
+    print helpmsg
 
 
 if __name__ == "__main__":
-    # for arg in sys.argv:
-    #     print arg
     if len(sys.argv) == 1:
         #inputdir不存在时退出
         if not os.path.exists(inputdir):
             print "目录不正确。请输入init参数初始化。"
             sys.exit()
-        getallhtml()
+        printhelp()
         sys.exit()
     else:
         case = sys.argv[1]
     if case == "init":
+        #生成source及public目录并copy theme文件
         pass
+    elif case == "build":
+        getallhtml()
+        sys.exit()
+    elif case == "help":
+        printhelp()
+        sys.exit()
+    elif case == "version":
+        print "当前版本:%s,By Ahui at ahui.us" % __version__
+        sys.exit()
     elif case == "html":
         if len(sys.argv) == 2:
             print "请输入md文件名."
@@ -220,14 +240,9 @@ if __name__ == "__main__":
         if not os.path.exists("%s/%s" % (inputdir,mdfile)):
             print "md文件 %s 不存在。请输入正确的文件名。" % sys.argv[2]
             sys.exit()
-        #对单个md文件生成对应html,且存放目录为当前目录
-        #newmd = md(mdfile)
         gethtml(mdfile)
-        pass
     elif case == "addpost":
         if len(sys.argv) == 2:
             print "请输入文章标题."
             sys.exit()
-        #title = " ".join(sys.argv[2:])
-        #print sys.argv[2:]
         addpost(sys.argv[2:])

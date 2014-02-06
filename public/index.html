@@ -45,6 +45,353 @@
     <div class="post type-post status-publish format-standard hentry">
       <div class="entry-meta-group clearfix">
         <div class="grid_2 alpha">
+          <time class="entry-date entry-time updated" datetime="2014-02-06 07:30:17">
+            <a href="post/yong_git_tong_bu_jing_tai_wang_zhan.html" title="2014-02-06 07:30:17" rel="bookmark">
+              <span class="entry-date-day">06</span>
+              <span class="entry-date-month-year">2014-02</span>
+            </a>
+          </time>
+        </div>
+        <div class="grid_8 omega">
+          <h1 class="entry-title entry-title-single">
+            <a href="post/yong_git_tong_bu_jing_tai_wang_zhan.html">用git同步静态网站</a>
+          </h1>
+          <div class="entry-meta">    
+            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
+            <span class="tag-links">
+              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
+              <a href="tag/blog.html" rel="tag">blog</a>
+              <a href="tag/network.html" rel="tag">network</a>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry-content clearfix">
+        <p><p>ABB(Ahui Blog Build)生成的静态html文件，可以用git比较方便的同步到VPS Server上。</p>
+
+<p>首先Server和Client二边都安装好git.</p>
+
+<p>VPS Server上做如下设定后，就不用管了：</p>
+
+<p>创建git仓库目录为www.git，要安全起见，可以换用个普通用户帐号，并修改相应目录及权限。</p>
+
+<pre><code>cd /root/tmp
+mkdir www.git
+cd www.git
+git --bare init
+</code></pre>
+
+<p>建立www根目录，并配置nginx指向。</p>
+
+<pre><code>mkdir /home/wwwstatic/public
+</code></pre>
+
+<p>建立git hook,在Client push文件后，自动checkout到指定的www根目录</p>
+
+<pre><code>cat &gt; hooks/post-receive
+#!/bin/bash
+GIT_WORK_TREE=/home/wwwstatic/public git checkout -f
+</code></pre>
+
+<p>加上可执行属性</p>
+
+<pre><code>chmod +x post-receive
+</code></pre>
+
+<p>Server端设置完毕。</p>
+
+<p>Client端如果还没有ssh key,则用</p>
+
+<pre><code>ssh-keygen -t rsa -C &quot;your_email@example.com&quot;
+</code></pre>
+
+<p>生成key,然后将~/.ssh/id<em>rsa.pub中的内容复制到Server端的 /root/.ssh/authorized</em>keys中。</p>
+
+<p>然后进入静态html生成目录，做一次初始化。</p>
+
+<pre><code>cd public
+git init
+git remote add ahuius root@ahui.us:/root/tmp/www.git
+</code></pre>
+
+<p>设定完毕。</p>
+
+<p>这样每次用abb bulid整个站点后，执行下sync.sh就可以将新生成的html文件同步到vps的www根目录了。</p>
+
+<pre><code>cat sync.sh
+
+#!/bin/bash
+cd public
+git add .
+git commit -m &quot;ok&quot;
+git push -f ahuius master
+</code></pre>
+
+<p>这篇Blog是完成设定后第一篇被同步的文章.</p>
+
+<pre><code>./sync.sh
+[master 97bc2d2] ok
+ 84 files changed, 1000 insertions(+), 671 deletions(-)
+ create mode 100644 post/yong_git_tong_bu_jing_tai_wang_zhan.html
+Counting objects: 174, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (88/88), done.
+Writing objects: 100% (88/88), 21.61 KiB, done.
+Total 88 (delta 84), reused 0 (delta 0)
+To root@ahui.us:/root/tmp/www.git
+   7167c21..97bc2d2  master -&gt; master
+</code></pre>
+</p>
+      </div>
+
+    </div>
+
+ 
+  </div>  <div id="content">    
+    <div class="post type-post status-publish format-standard hentry">
+      <div class="entry-meta-group clearfix">
+        <div class="grid_2 alpha">
+          <time class="entry-date entry-time updated" datetime="2014-02-06 03:58:17">
+            <a href="post/yong_addpost_sheng_cheng_de_di_yi_pian_jing_tai_Blog.html" title="2014-02-06 03:58:17" rel="bookmark">
+              <span class="entry-date-day">06</span>
+              <span class="entry-date-month-year">2014-02</span>
+            </a>
+          </time>
+        </div>
+        <div class="grid_8 omega">
+          <h1 class="entry-title entry-title-single">
+            <a href="post/yong_addpost_sheng_cheng_de_di_yi_pian_jing_tai_Blog.html">用addpost生成的第一篇静态Blog</a>
+          </h1>
+          <div class="entry-meta">    
+            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
+            <span class="tag-links">
+              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
+              <a href="tag/blog.html" rel="tag">blog</a>
+              <a href="tag/python.html" rel="tag">python</a>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry-content clearfix">
+        <p><p>静态网站生成程序上站测试。
+ohoh,还没取名字...</p>
+
+<p>已完成功能:</p>
+
+<ul>
+<li> cli生成post模板</li>
+<li>根据md文件生成对应的html文件</li>
+<li>根据目录生成整站html文件</li>
+<li>生成首页面index.html</li>
+<li>首页下部生成页码导航</li>
+<li>生成tag目录</li>
+<li>生成最新文章列表</li>
+<li>包含多说的ajax评论</li>
+<li>除多说的ajax评论不支持file://,其他页面均能用file://方式浏览.</li>
+<li>用Contango Theme做了一个默认模板。</li>
+</ul>
+
+<p>wordpress转移方式</p>
+
+<ol>
+<li> 在wordpress中导入所有post到xml文件中</li>
+<li>hexo Pelican 二者都有对应工具，从xml中提取所有post为对应的.md格式文件。建议用hexo的工具，转换得更好一点。本程序支持这二者转换后的格式。</li>
+<li>md格式修正。主要是换行，代码块等，多加点空行。</li>
+<li>生成全站静态html。</li>
+</ol>
+
+<p>运行环境(Ubuntu on Virtualbox)</p>
+
+<p>uname -a</p>
+
+<pre><code>Linux openerp7 3.5.0-17-generic #28-Ubuntu SMP Tue Oct 9 19:32:08 UTC 2012 i686 i686 i686 GNU/Linux
+</code></pre>
+
+<p>cat /proc/cpuinfo</p>
+
+<pre><code>...
+processor       : 3
+vendor_id       : GenuineIntel
+cpu family      : 6
+model           : 58
+model name      : Intel(R) Core(TM) i5-3210M CPU @ 2.50GHz
+stepping        : 9
+cpu MHz         : 2394.400
+bogomips        : 4788.80
+</code></pre>
+
+<p>生成速度</p>
+
+<pre><code> ls ./sources | wc
+     59      59    1206
+
+ time ./main.py build
+
+real    0m0.390s
+user    0m0.092s
+sys     0m0.120s
+</code></pre>
+
+<p>如果按照这个速度不变，生成一万篇文章需时一分钟多点。</p>
+</p>
+      </div>
+
+    </div>
+
+ 
+  </div>  <div id="content">    
+    <div class="post type-post status-publish format-standard hentry">
+      <div class="entry-meta-group clearfix">
+        <div class="grid_2 alpha">
+          <time class="entry-date entry-time updated" datetime="2014-02-05 15:40:08">
+            <a href="post/PYTENJINCACHE_wen_ti.html" title="2014-02-05 15:40:08" rel="bookmark">
+              <span class="entry-date-day">05</span>
+              <span class="entry-date-month-year">2014-02</span>
+            </a>
+          </time>
+        </div>
+        <div class="grid_8 omega">
+          <h1 class="entry-title entry-title-single">
+            <a href="post/PYTENJINCACHE_wen_ti.html">PYTENJIN CACHE问题</a>
+          </h1>
+          <div class="entry-meta">    
+            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
+            <span class="tag-links">
+              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
+              <a href="tag/blog.html" rel="tag">blog</a>
+              <a href="tag/network.html" rel="tag">network</a>
+              <a href="tag/python.html" rel="tag">python</a>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry-content clearfix">
+        <p><p>Tenjin是个好模板. (签名)</p>
+
+<p>满足我喜欢的三个要求：</p>
+
+<ul>
+<li>快速</li>
+<li>HTML友好</li>
+<li>能直接用python代码。</li>
+</ul>
+
+<p>当然能直接用python代码是件好事也是件坏事。</p>
+
+<p>在做静态html生成程序时，因为动态生成了不同内容的同名模板，导致Tenjin解析时总是取缓存中的内容。
+Tenjin对1秒内生成的缓存文件总是做有效处理，这样解决办法为：</p>
+
+<ol>
+<li>sleep 1s吧，喝个茶什么的等缓存失效…</li>
+<li>将Tenjin里的timestamp_interval参数由原1s,改为一个更小的值，0.001什么的。小手术。</li>
+<li>给Tenjin添加个属性，记住文件大小，在文件大小改变时，总是重新生成缓存。大手术啊~~~~</li>
+<li>动态生成的模板，别用同样的文件名.</li>
+</ol>
+
+<p>1会带来时间浪费，测试中生成50+ html文件才半秒不到，不能浪费2倍的生命。
+2，3都要改动Tenjin,通用性不好。
+4算比较满意的，会稍提高点代码的复杂度。</p>
+
+<p>BTW,如果要压榨性能，通过2中将值改大，或者3增加文件大小检查，模板文件不变时直接用.cache文件，应该有不少的性能提升。</p>
+</p>
+      </div>
+
+    </div>
+
+ 
+  </div>  <div id="content">    
+    <div class="post type-post status-publish format-standard hentry">
+      <div class="entry-meta-group clearfix">
+        <div class="grid_2 alpha">
+          <time class="entry-date entry-time updated" datetime="2014-02-04 20:41:24">
+            <a href="post/wang_zhan_jing_tai_hua.html" title="2014-02-04 20:41:24" rel="bookmark">
+              <span class="entry-date-day">04</span>
+              <span class="entry-date-month-year">2014-02</span>
+            </a>
+          </time>
+        </div>
+        <div class="grid_8 omega">
+          <h1 class="entry-title entry-title-single">
+            <a href="post/wang_zhan_jing_tai_hua.html">网站静态化</a>
+          </h1>
+          <div class="entry-meta">    
+            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
+            <span class="tag-links">
+              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
+              <a href="tag/network.html" rel="tag">network</a>
+              <a href="tag/python.html" rel="tag">python</a>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry-content clearfix">
+        <p><p>连续碰到几次BLOG打开卡住的情形，在VPS上重启一下nginx及php就好了。原因不详，但有可能是因为wordpress连续升级导致？</p>
+
+<p>最好的解决方案就是将博客网站静态化。</p>
+
+<p>试用了一下现成的解决方案，比较好用的有<a href="http://zespia.tw/hexo/">hexo</a>以及<a href="http://docs.getpelican.com/en/3.3.0/">Pelican</a>。
+这二个都有工具能将wordpress导出的xml转化为md格式的文件。</p>
+
+<p>其中hexo转化并生成静态网站后，效果相当不错。但问题是在使用时发现50+ md文件，生成时间在20s左右，这个速度太慢了一点。比较奇怪的是其他使用者都反应hexo是相当快的，所以也有可能是我这有个什么地方设置有问题。
+同样的环境下Pelican的速度相当理想，同样多的md文件，生成时间3s左右。问题是他自己生成的md文件格式有点奇怪，和hexo的相比有差别，且感觉hexo的md文件格式更好点。</p>
+
+<p>如果再考虑长远点，比如有海量的md文件要生成，那么就要求生成工具要么有极快的速度，要么有增量生成功能(已经生成的文件不用再生成)。这样hexo一者因为速度原因不能不放弃，二者可惜是node写的，我更偏好python一点。而pelican刚可能要修改一下格式问题，以及增加其他功能。</p>
+
+<p>本着轮子不怕多的精神，干脆再做个相关工具好了。</p>
+
+<p>初期目标</p>
+
+<p>博客类小型网站，静态页面生成</p>
+
+<p>生成方式</p>
+
+<ol>
+<li>全静态生成，所有文件需要更新。可用目录控制生成层次。</li>
+<li>shtml包含，只更新必要文件</li>
+<li>ajax包含，只更新必要文件</li>
+</ol>
+
+<p>工作方式</p>
+
+<ol>
+<li>cli</li>
+<li>web gui</li>
+</ol>
+
+<p>文章分类(初期只考虑tag)</p>
+
+<ol>
+<li>分类，一对一或一对多</li>
+<li>tag标记，一对多</li>
+</ol>
+
+<p>页面分类</p>
+
+<ol>
+<li>index.html</li>
+<li>tags.html</li>
+<li>tag.html</li>
+<li>comment.html</li>
+<li>side_right.html</li>
+<li>side_left.html</li>
+<li>head.html</li>
+<li>body.html -&gt;要生成的主体文件</li>
+<li>foot.html</li>
+</ol>
+</p>
+      </div>
+
+    </div>
+
+ 
+  </div>  <div id="content">    
+    <div class="post type-post status-publish format-standard hentry">
+      <div class="entry-meta-group clearfix">
+        <div class="grid_2 alpha">
           <time class="entry-date entry-time updated" datetime="2014-01-20 11:39:30">
             <a href="post/openerp-7-add-menu.html" title="2014-01-20 11:39:30" rel="bookmark">
               <span class="entry-date-day">20</span>
@@ -60,8 +407,8 @@
             <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
             <span class="tag-links">
               <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
-              <a href="tag/Linux.html" rel="tag">Linux</a>
-              <a href="tag/Network.html" rel="tag">Network</a>
+              <a href="tag/linux.html" rel="tag">linux</a>
+              <a href="tag/network.html" rel="tag">network</a>
               <a href="tag/openerp.html" rel="tag">openerp</a>
             </span>
           </div>
@@ -110,8 +457,8 @@
             <span class="tag-links">
               <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
               <a href="tag/blog.html" rel="tag">blog</a>
-              <a href="tag/Linux.html" rel="tag">Linux</a>
-              <a href="tag/Network.html" rel="tag">Network</a>
+              <a href="tag/linux.html" rel="tag">linux</a>
+              <a href="tag/network.html" rel="tag">network</a>
             </span>
           </div>
         </div>
@@ -154,8 +501,8 @@
             <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
             <span class="tag-links">
               <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
-              <a href="tag/Linux.html" rel="tag">Linux</a>
-              <a href="tag/Network.html" rel="tag">Network</a>
+              <a href="tag/linux.html" rel="tag">linux</a>
+              <a href="tag/network.html" rel="tag">network</a>
             </span>
           </div>
         </div>
@@ -233,7 +580,7 @@ ngrep: V1.45, $Revision: 1.93 $
             <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
             <span class="tag-links">
               <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
-              <a href="tag/Network.html" rel="tag">Network</a>
+              <a href="tag/network.html" rel="tag">network</a>
             </span>
           </div>
         </div>
@@ -256,216 +603,6 @@ ngrep: V1.45, $Revision: 1.93 $
 <p>换了个新路由测试提速后:</p>
 
 <p><img src="http://ahui.us/wp-content/uploads/2013/09/2950349391.png" alt="2950349391"></p>
-</p>
-      </div>
-
-    </div>
-
- 
-  </div>  <div id="content">    
-    <div class="post type-post status-publish format-standard hentry">
-      <div class="entry-meta-group clearfix">
-        <div class="grid_2 alpha">
-          <time class="entry-date entry-time updated" datetime="2013-08-04 14:24:47">
-            <a href="post/iphone-5-clean.html" title="2013-08-04 14:24:47" rel="bookmark">
-              <span class="entry-date-day">04</span>
-              <span class="entry-date-month-year">2013-08</span>
-            </a>
-          </time>
-        </div>
-        <div class="grid_8 omega">
-          <h1 class="entry-title entry-title-single">
-            <a href="post/iphone-5-clean.html">Iphone 5可用容量恢复</a>
-          </h1>
-          <div class="entry-meta">    
-            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
-            <span class="tag-links">
-              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
-              <a href="tag/notag.html" rel="tag">notag</a>
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div class="entry-content clearfix">
-        <p><p>有台iphone 5莫名可用容量急剧减少，查看可用容易，估计有大约4~7G容量不见。
-ssh到iphone,du -k查看并查找最占容间的前50个目录,发现明显
-mobile/Library/Caches/com.apple.passd/com.apple.Shoebox
-目录有问题，占用空量4G+,删除之，能释放近6G容量。
-另外照片流也会占用不少容量。</p>
-
-<p>附前50条记录:</p>
-
-<pre><code>&quot;bytes&quot;;&quot;dir&quot;;&quot;id&quot;
-10291118;&quot;mobile&quot;;1458101
-5041749;&quot;mobile/Library&quot;;1454199
-4542087;&quot;mobile/Library/Caches&quot;;1450783
-4447000;&quot;mobile/Library/Caches/com.apple.passd&quot;;1450713
-4442425;&quot;mobile/Library/Caches/com.apple.passd/com.apple.Shoebox&quot;;1450711
-3070707;&quot;mobile/Applications&quot;;664860
-2178545;&quot;mobile/Media&quot;;1458099
-971237;&quot;mobile/Media/DCIM&quot;;1454440
-970566;&quot;mobile/Media/DCIM/100APPLE&quot;;1454439
-660713;&quot;mobile/Media/PhotoStreamsData/1330973174&quot;;1458010
-660713;&quot;mobile/Media/PhotoStreamsData&quot;;1458011
-638525;&quot;mobile/Media/PhotoStreamsData/1330973174/100APPLE&quot;;1457952
-544488;&quot;mobile/Media/PhotoData&quot;;1455066
-403330;&quot;mobile/Media/PhotoData/Sync&quot;;1455058
-403251;&quot;mobile/Media/PhotoData/Sync/100SYNCD&quot;;1455056
-351152;&quot;stash&quot;;1468737
-313584;&quot;mobile/Applications/68C74FC1-8A0C-4369-8E86-4E599335F7EC&quot;;589987
-254071;&quot;mobile/Applications/68C74FC1-8A0C-4369-8E86-4E599335F7EC/Library&quot;;589955
-254069;&quot;mobile/Applications/68C74FC1-8A0C-4369-8E86-4E599335F7EC/Library/Application Support/No_Backup&quot;;589947
-254069;&quot;mobile/Applications/68C74FC1-8A0C-4369-8E86-4E599335F7EC/Library/Application Support&quot;;589948
-204621;&quot;mobile/Media/DCIM/100APPLE/IMG_0199.mov&quot;;1454398
-181566;&quot;mobile/Library/VoiceServices/Assets/zh-CN&quot;;1453650
-181566;&quot;mobile/Library/VoiceServices/Assets&quot;;1453651
-181566;&quot;mobile/Library/VoiceServices&quot;;1453652
-143007;&quot;mobile/Library/Mail&quot;;1452332
-142401;&quot;stash/share.VNy9as&quot;;1468736
-140309;&quot;stash/Applications.50zavX&quot;;1466111
-139514;&quot;mobile/Library/VoiceServices/Assets/zh-CN/synth_ting-ting_full_155mrf22_270_06.dat&quot;;1453645
-134015;&quot;mobile/Media/PhotoData/Thumbnails&quot;;1455062
-131209;&quot;mobile/Applications/68C74FC1-8A0C-4369-8E86-4E599335F7EC/Library/Application Support/No_Backup/iphone&quot;;589920
-131208;&quot;mobile/Applications/68C74FC1-8A0C-4369-8E86-4E599335F7EC/Library/Application Support/No_Backup/iphone/1.0.226789.rsb&quot;;589919
-129490;&quot;mobile/Applications/06E1377D-3D25-4736-96B7-287255AC8DC3&quot;;556778
-129399;&quot;mobile/Applications/06E1377D-3D25-4736-96B7-287255AC8DC3/VoiceGuideAll.app&quot;;556774
-128167;&quot;mobile/Media/DCIM/100APPLE/IMG_0223.MOV&quot;;1454419
-122421;&quot;mobile/Applications/68C74FC1-8A0C-4369-8E86-4E599335F7EC/Library/Application Support/No_Backup/ipad2&quot;;589918
-122420;&quot;mobile/Applications/68C74FC1-8A0C-4369-8E86-4E599335F7EC/Library/Application Support/No_Backup/ipad2/1.0.226789.rsb&quot;;589917
-116232;&quot;mobile/Applications/F32D96FF-8020-4BFE-BF3A-C22B7F4E6EF6&quot;;660087
-116131;&quot;mobile/Applications/F32D96FF-8020-4BFE-BF3A-C22B7F4E6EF6/PvZ-iPhone_ZH.app&quot;;660084
-114695;&quot;mobile/Applications/9ADE3F3B-D880-4918-A565-09B879094997&quot;;617869
-110752;&quot;mobile/Applications/06E1377D-3D25-4736-96B7-287255AC8DC3/VoiceGuideAll.app/data&quot;;556488
-105033;&quot;mobile/Applications/F8F8FE94-CA5A-4272-92C4-276948EE1706&quot;;663324
-105029;&quot;mobile/Applications/F8F8FE94-CA5A-4272-92C4-276948EE1706/AR.Rescue.app&quot;;663310
-99381;&quot;mobile/Applications/0CCB1B6C-9EE9-4F4B-852F-1ED0C26113C2&quot;;558084
-99379;&quot;mobile/Applications/0CCB1B6C-9EE9-4F4B-852F-1ED0C26113C2/MerriamWebster.app&quot;;558081
-97250;&quot;root&quot;;1458263
-94877;&quot;root/Library&quot;;1458252
-94852;&quot;root/Library/Caches&quot;;1458221
-94550;&quot;mobile/Media/DCIM/100APPLE/IMG_0172.mov&quot;;1454373
-89964;&quot;mobile/Applications/0CCB1B6C-9EE9-4F4B-852F-1ED0C26113C2/MerriamWebster.app/definitions.db&quot;;557980
-89116;&quot;mobile/Library/Mail/ExchangeActiveSync979797EC-C70C-4940-9076-2BA004C4C5DD&quot;;1451893
-</code></pre>
-</p>
-      </div>
-
-    </div>
-
- 
-  </div>  <div id="content">    
-    <div class="post type-post status-publish format-standard hentry">
-      <div class="entry-meta-group clearfix">
-        <div class="grid_2 alpha">
-          <time class="entry-date entry-time updated" datetime="2013-07-23 13:07:02">
-            <a href="post/openerp-7-reortsxw格式.html" title="2013-07-23 13:07:02" rel="bookmark">
-              <span class="entry-date-day">23</span>
-              <span class="entry-date-month-year">2013-07</span>
-            </a>
-          </time>
-        </div>
-        <div class="grid_8 omega">
-          <h1 class="entry-title entry-title-single">
-            <a href="post/openerp-7-reortsxw格式.html">OPENERP 7 : 报表之sxw格式问题</a>
-          </h1>
-          <div class="entry-meta">    
-            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
-            <span class="tag-links">
-              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
-              <a href="tag/Linux.html" rel="tag">Linux</a>
-              <a href="tag/openerp.html" rel="tag">openerp</a>
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div class="entry-content clearfix">
-        <p><p>openerp 7的报表生成方式之一是用openoffice的sxw格式，转换成rml后，再生成pdf.</p>
-
-<p>但直接用openoffice新建文件，并保存为sxw格式时，openerp无法识别。在输出rml时，openoffice的报表插件也经常会出现无法响应的问题。开始以为是openoffice版本过高，换libreoffice 3,4都试了一下，问题依旧。</p>
-
-<ul>
-<li>解决方法一：直接编辑openerp直带sxw文件，再另存。此格式可识别。</li>
-<li>解决方法二：查询sxw并没有找到版本相关的问题，直接用openerp模块内的sxw2rm转换，有报uncode类错误。于是在ubuntu 12,utf-8语言环境下，用libreoffice 3,4生成新文件，发现无论sxw或odt格式，均能正确识别。可见python开发，还是linux下问题少点。</li>
-</ul>
-</p>
-      </div>
-
-    </div>
-
- 
-  </div>  <div id="content">    
-    <div class="post type-post status-publish format-standard hentry">
-      <div class="entry-meta-group clearfix">
-        <div class="grid_2 alpha">
-          <time class="entry-date entry-time updated" datetime="2013-05-11 11:46:47">
-            <a href="post/vdi-file-lost-network.html" title="2013-05-11 11:46:47" rel="bookmark">
-              <span class="entry-date-day">11</span>
-              <span class="entry-date-month-year">2013-05</span>
-            </a>
-          </time>
-        </div>
-        <div class="grid_8 omega">
-          <h1 class="entry-title entry-title-single">
-            <a href="post/vdi-file-lost-network.html">Ubuntu on Virtual Box VDI 复制后丢失网卡</a>
-          </h1>
-          <div class="entry-meta">    
-            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
-            <span class="tag-links">
-              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
-              <a href="tag/Linux.html" rel="tag">Linux</a>
-              <a href="tag/Network.html" rel="tag">Network</a>
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div class="entry-content clearfix">
-        <p><p>A机，VB安装Ubuntu 12.10 Server,网卡模式为桥接。此时Ubuntu中网卡为eth0，DHCP, 连接正常。复制硬盘VDI文件至B机。</p>
-
-<p>B机，VB安装完成后，新建立linux类虚拟机，并使用复制过来的Ａ机VDI文件启动，此时DHP无法取得ＩＰ，并且不能手工ifconfig eth0 up，查看发现eth0不存在，网卡设备转为eth1.估计网卡mac有变动.</p>
-
-<p>解决：
-- 修改/etc/network/interface,将其中二行eth0相关配置，修改成eth1</p>
-</p>
-      </div>
-
-    </div>
-
- 
-  </div>  <div id="content">    
-    <div class="post type-post status-publish format-standard hentry">
-      <div class="entry-meta-group clearfix">
-        <div class="grid_2 alpha">
-          <time class="entry-date entry-time updated" datetime="2013-04-19 12:14:20">
-            <a href="post/yahoomailbk.html" title="2013-04-19 12:14:20" rel="bookmark">
-              <span class="entry-date-day">19</span>
-              <span class="entry-date-month-year">2013-04</span>
-            </a>
-          </time>
-        </div>
-        <div class="grid_8 omega">
-          <h1 class="entry-title entry-title-single">
-            <a href="post/yahoomailbk.html">yahoo邮件备份</a>
-          </h1>
-          <div class="entry-meta">    
-            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
-            <span class="tag-links">
-              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
-              <a href="tag/blog.html" rel="tag">blog</a>
-              <a href="tag/Network.html" rel="tag">Network</a>
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div class="entry-content clearfix">
-        <p><p>yahoo中国邮箱要没了,试了一下转移到阿里云,一则死活收不到手机激活码,二则邮箱名还是有了变化,只能放弃. </p>
-
-<p>开通pop3后,用foxmail能收取收件箱里的内容,但所有自定义文件夹里的邮件取不下来,需要手工全部转移到收件箱后,再收取. 另外以前 yahoo 记事本的内容,手工copy下来吧...</p>
-
-<p>BTW,yahoo这是怎么了...变河西了呢.</p>
 </p>
       </div>
 
@@ -510,17 +647,18 @@ mobile/Library/Caches/com.apple.passd/com.apple.Shoebox
       <h3 class="widget-title">标签</h3>
       <ul>
         <li class="cat-item"><a href="tag/sip.html">sip &sdot; (2)</a></li>
-        <li class="cat-item"><a href="tag/Network.html">Network &sdot; (47)</a></li>
-        <li class="cat-item"><a href="tag/VPS.html">VPS &sdot; (3)</a></li>
+        <li class="cat-item"><a href="tag/network.html">network &sdot; (50)</a></li>
+        <li class="cat-item"><a href="tag/vps.html">vps &sdot; (3)</a></li>
         <li class="cat-item"><a href="tag/openerp.html">openerp &sdot; (2)</a></li>
         <li class="cat-item"><a href="tag/wow.html">wow &sdot; (1)</a></li>
         <li class="cat-item"><a href="tag/ipv6.html">ipv6 &sdot; (2)</a></li>
         <li class="cat-item"><a href="tag/game.html">game &sdot; (5)</a></li>
         <li class="cat-item"><a href="tag/wii.html">wii &sdot; (3)</a></li>
-        <li class="cat-item"><a href="tag/blog.html">blog &sdot; (18)</a></li>
+        <li class="cat-item"><a href="tag/blog.html">blog &sdot; (21)</a></li>
+        <li class="cat-item"><a href="tag/python.html">python &sdot; (3)</a></li>
         <li class="cat-item"><a href="tag/notag.html">notag &sdot; (2)</a></li>
         <li class="cat-item"><a href="tag/ssh.html">ssh &sdot; (2)</a></li>
-        <li class="cat-item"><a href="tag/Linux.html">Linux &sdot; (35)</a></li>
+        <li class="cat-item"><a href="tag/linux.html">linux &sdot; (35)</a></li>
         <li class="cat-item"><a href="tag/android.html">android &sdot; (1)</a></li>
         <li class="cat-item"><a href="tag/sofeware.html">sofeware &sdot; (3)</a></li>
       </ul>
@@ -531,11 +669,16 @@ mobile/Library/Caches/com.apple.passd/com.apple.Shoebox
     <div class="widget-wrap widget-inside">
       <h3 class="widget-title">最新文章</h3>
       <ul> 
+        <li><a href='post/yong_git_tong_bu_jing_tai_wang_zhan.html'>用git同步静态网站</a></li>
+        <li><a href='post/yong_addpost_sheng_cheng_de_di_yi_pian_jing_tai_Blog.html'>用addpost生成的第一篇静态Blog</a></li>
+        <li><a href='post/PYTENJINCACHE_wen_ti.html'>PYTENJIN CACHE问题</a></li>
+        <li><a href='post/wang_zhan_jing_tai_hua.html'>网站静态化</a></li>
         <li><a href='post/openerp-7-add-menu.html'>OPENERP 7:菜单添加</a></li>
         <li><a href='post/tips-upload-with-web-py.html'>Tips : upload with web.py</a></li>
         <li><a href='post/netgear-r6300v2-ngrep.html'>Netgear R6300v2上编译ngrep</a></li>
         <li><a href='post/test-100m.html'>联通100M体验</a></li>
         <li><a href='post/iphone-5-clean.html'>Iphone 5可用容量恢复</a></li>
+        <li><a href='post/openerp-7-reortsxw格式.html'>OPENERP 7 : 报表之sxw格式问题</a></li>
       </ul>
     </div>
   </div>

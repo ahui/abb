@@ -45,6 +45,207 @@
     <div class="post type-post status-publish format-standard hentry">
       <div class="entry-meta-group clearfix">
         <div class="grid_2 alpha">
+          <time class="entry-date entry-time updated" datetime="2010-07-30 12:07:07">
+            <a href="post/related-posts-by-category.html" title="2010-07-30 12:07:07" rel="bookmark">
+              <span class="entry-date-day">30</span>
+              <span class="entry-date-month-year">2010-07</span>
+            </a>
+          </time>
+        </div>
+        <div class="grid_8 omega">
+          <h1 class="entry-title entry-title-single">
+            <a href="post/related-posts-by-category.html">相关文章Related Posts by Category的配置</a>
+          </h1>
+          <div class="entry-meta">    
+            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
+            <span class="tag-links">
+              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
+              <a href="tag/blog.html" rel="tag">blog</a>
+              <a href="tag/network.html" rel="tag">network</a>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry-content clearfix">
+        <p><p>编辑single.php,放到comments_template之前.</p>
+
+<pre><code>&lt;div class=&quot;entry-title&quot;&quot;&gt;
+相关文章
+&lt;/div&gt;
+&lt;div id=&quot;related_posts&quot; class=&quot;box&quot;&gt;
+   &lt;?php do_action(
+    &#39;related_posts_by_category&#39;,
+    array(
+      &#39;orderby&#39; =&gt; &#39;post_date&#39;,
+      &#39;order&#39; =&gt; &#39;DESC&#39;,
+      &#39;limit&#39; =&gt; 5,
+      &#39;echo&#39; =&gt; true,
+      &#39;before&#39; =&gt; &#39;&amp;lt;li&gt;&#39;,
+      &#39;inside&#39; =&gt; &#39;&amp;raquo; &#39;,
+      &#39;outside&#39; =&gt; &#39;&#39;,
+      &#39;after&#39; =&gt; &#39;&amp;lt;/li&gt;&#39;,
+      &#39;rel&#39; =&gt; &#39;nofollow&#39;,
+      &#39;type&#39; =&gt; &#39;post&#39;,
+      &#39;image&#39; =&gt; array(50, 50),
+      &#39;hidden&#39; =&gt; &#39;image&#39;,
+      &#39;message&#39; =&gt; &#39;没有相关文章.&#39;
+    )
+  ) ?&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>其中&#39;hidden&#39; =&gt; &#39;image&#39;防止自动显示相关图片.</p>
+</p>
+      </div>
+
+    </div>
+
+ 
+  </div>  <div id="content">    
+    <div class="post type-post status-publish format-standard hentry">
+      <div class="entry-meta-group clearfix">
+        <div class="grid_2 alpha">
+          <time class="entry-date entry-time updated" datetime="2010-07-29 13:39:08">
+            <a href="post/burstnet-ipv6.html" title="2010-07-29 13:39:08" rel="bookmark">
+              <span class="entry-date-day">29</span>
+              <span class="entry-date-month-year">2010-07</span>
+            </a>
+          </time>
+        </div>
+        <div class="grid_8 omega">
+          <h1 class="entry-title entry-title-single">
+            <a href="post/burstnet-ipv6.html">BURSTNET支持IPv6了</a>
+          </h1>
+          <div class="entry-meta">    
+            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
+            <span class="tag-links">
+              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
+              <a href="tag/linux.html" rel="tag">linux</a>
+              <a href="tag/network.html" rel="tag">network</a>
+              <a href="tag/vps.html" rel="tag">vps</a>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry-content clearfix">
+        <p><p>今天收到burstnet的邮件,有个好消息,说是支持ipv6了</p>
+
+<p>BURSTNET®: IPv6 IP Addressing Now Available!</p>
+
+<p>SCRANTON, PA - July 27, 2010 - BurstNET Technologies, Inc.™ (http://www.burst.net), a leading provider of budget hosting services, today announced IPv6 addressing service available end-to-end on its entire product line: including Dedicated Servers, Virtual Private Servers (VPS), &amp; Co-Location.</p>
+
+<p>原生支持ipv6真是个相当好的消息,于是赶紧发了个Ticket进行申请. 有消息再update.
+Ticket发送的当地时间为07-29-2010 - 01:34AM,应该睡得正香的时候,或者还没开始睡.....</p>
+
+<p>update:
+07-29-2010 - 02:04AM收到回复,已经给我添加了二个ipv6的地址,回应速度很快啊,足以说明晚上有人值班,而且没有睡着...</p>
+
+<p>接下来看能用v6的地址做点什么.</p>
+</p>
+      </div>
+
+    </div>
+
+ 
+  </div>  <div id="content">    
+    <div class="post type-post status-publish format-standard hentry">
+      <div class="entry-meta-group clearfix">
+        <div class="grid_2 alpha">
+          <time class="entry-date entry-time updated" datetime="2010-07-26 23:45:53">
+            <a href="post/vps1.html" title="2010-07-26 23:45:53" rel="bookmark">
+              <span class="entry-date-day">26</span>
+              <span class="entry-date-month-year">2010-07</span>
+            </a>
+          </time>
+        </div>
+        <div class="grid_8 omega">
+          <h1 class="entry-title entry-title-single">
+            <a href="post/vps1.html">PS1值保存待用</a>
+          </h1>
+          <div class="entry-meta">    
+            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
+            <span class="tag-links">
+              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
+              <a href="tag/linux.html" rel="tag">linux</a>
+              <a href="tag/network.html" rel="tag">network</a>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry-content clearfix">
+        <p><p>常用的bash PS1值
+<pre class="brush:plain">
+PS1=&quot;[\033[35m]\t[\033[m] [\033[36m]\u[\033[m]@[\033[32m]\h:[\033[33;1m]\w[\033[m] -&gt;&quot;
+</pre>
+效果如下
+<a href="http://ahui.us/wp-content/uploads/2010/07/ps1.bmp"><img src="http://ahui.us/wp-content/uploads/2010/07/ps1.bmp" alt="" title="ps1"></a></p>
+
+<p>or
+<pre class="brush:plain">
+PS1=&quot;[\033[37m]\t[\033[m] [\033[36m]\u[\033[m]@[\033[32m]\h:[\033[33;1m]\w[\033[m]&gt;&quot;
+</pre></p>
+</p>
+      </div>
+
+    </div>
+
+ 
+  </div>  <div id="content">    
+    <div class="post type-post status-publish format-standard hentry">
+      <div class="entry-meta-group clearfix">
+        <div class="grid_2 alpha">
+          <time class="entry-date entry-time updated" datetime="2010-07-25 15:03:58">
+            <a href="post/linuxversion.html" title="2010-07-25 15:03:58" rel="bookmark">
+              <span class="entry-date-day">25</span>
+              <span class="entry-date-month-year">2010-07</span>
+            </a>
+          </time>
+        </div>
+        <div class="grid_8 omega">
+          <h1 class="entry-title entry-title-single">
+            <a href="post/linuxversion.html">用过的一些Linux发行版本</a>
+          </h1>
+          <div class="entry-meta">    
+            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
+            <span class="tag-links">
+              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
+              <a href="tag/linux.html" rel="tag">linux</a>
+              <a href="tag/network.html" rel="tag">network</a>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry-content clearfix">
+        <p><p>记得最早用的Linux发行版本就是Redhat,6,7,8,9的样子．记得８，９的时候，桌面就已经能用了．当然还不算好用．那时候其实也只会看看桌面是个啥样子，而且终究没有win好用，特别是中文支持方面，问题太多，基本每次都是安装几天后，就又删除了．中间还试用过国内出的redflag,bulepoint,magic之类的，虽然时间过去了很久，还是记得bulepoint似乎用起来不错，因为中文方面很多问题都被修正了，可惜后来就不见踪影了．</p>
+
+<p>刚开始工作的时候，主要还是应用MS在产品，几年后才转移到Unix/Linux类．生产平台用的是Sun的硬件，相应系统也是用的SunOS，也叫Solaris，可怜见的，现在应该叫Oracle的硬件了．说到Oracle,第一次用的似乎是7i,安装在win2000上的．第二次用的是8了，安装在Solaris上．那时候x86的版本用得还不多，所以内部测试，还是安装Linux类，而能一下想起的linux,还是当然的redhat．这时候用redhat，也就没怎么在乎桌面好不好了，大部分情况下，桌面根本就没有安装．</p>
+
+<p>差不多04,05年左右，因为工作环境变得复杂，才觉得win用起来不太方便，而且太过脆弱，才正式把linux做为主系统．这时候能想起的，还是redhat,不过开源桌面版本名字已经换成Fedora core，从fc2到fc3，感觉相当好用．在工作上，用fc3上gnome，已经能更好的完成在win桌面下能完成的工作了．fc3是用得比较久的发行版，之后有很长时间没换过，甚至也没升级．现在版本号破１０了，３之后的都基本没用过，只是从用老版本的感受推测，这个系列应该是都还很不错的．</p>
+
+<p>在自己家的电脑上用Linux做桌面时，发现要求高得多．除了能用，还要好用，除了好用，还要好看．而印象中Ubuntu也是那几年里横空出世．等我试用的时候，好象是6.04还是6.10的版本来着，然后7,8,9,10都有安装．对于Ubuntu的感觉，就是桌面应用方面．已经基本完美到安装好就能满足大部分的需求，除了某个银行的专业版没法运行外．这个严格说来，还不算是系统的问题，而是某行的刻意而为．所以除了这家，大部分别的银行都还是有解决办法．
+&lt;!--more--&gt;
+Ubuntu 8用了近二年时间，等我升级9的时候，10也快出来了．这时候才发现Ubuntu很是热情的一年二个版本，也是一种相当大的困扰，于是转而去寻找稳定期长点的版本．测试用了debian,LFS,gentoo,Arch linux等发行版，其中LFS一直没有全部完工过，要手工做的事太多，实在不是我等懒人坚持得下来，最主要还是担心后期的维护．而Arch linux的无缝升级，安装过程简单，包维护简便，理论上i686的编译方式也速度快等，正好符合要求．只是要把桌面配置成Ubuntu一样，还是得做不少手工工作．</p>
+
+<p>Centos则是很早前试用过一次外，在VPS可选系统不多的情况下，才采用的．我比较中意的VPS系统，还是Arch适合，可惜所有的vps都有提供centos,极少有能提供Arch.不过做为redhat as开源系列，也算是很熟悉的一个版本，以及那著名的rpm包．当然yum用起来方便得多．</p>
+
+<p>于是我个人主要还是用Archlinux做主系统，特别是虚拟机安装测试系统，Arch又小又方便．有朋友抱怨win xx老中病毒木马时，我则会推荐他们安装Ubuntu，基本上安装好就能用，我也能省不少事．而VPS上，就Centos到底了，这样换VPS时，有些东西还能直接使用．</p>
+
+<p>有可能的问题：
+无论Ubuntu还是Arch，刚安装调试好后，都是很正常很好用的．不平常不好用，往往发生在系统更新之后．Ubuntu的小更新还好，出的问题不多，但版本升级出的问题就不少了．Arch因为是无缝升级，导致几乎每天都有不少包要更新，特别在安装很多桌面软件后，常一更新就得100M+，而且每过一段时间，更新后都会出点小问题．在几个朋友都抱怨更新后啥啥啥不正常了，我都建议他们不再做更新．而我自己用的系统，也会在配置好后很长一段时间不做更新．如果只是用做桌面，这样可以免掉些麻烦，也不用太担心安全问题．</p>
+</p>
+      </div>
+
+    </div>
+
+ 
+  </div>  <div id="content">    
+    <div class="post type-post status-publish format-standard hentry">
+      <div class="entry-meta-group clearfix">
+        <div class="grid_2 alpha">
           <time class="entry-date entry-time updated" datetime="2010-07-20 16:12:33">
             <a href="post/sipser-0-9-6.html" title="2010-07-20 16:12:33" rel="bookmark">
               <span class="entry-date-day">20</span>
@@ -60,8 +261,8 @@
             <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
             <span class="tag-links">
               <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
-              <a href="tag/Linux.html" rel="tag">Linux</a>
-              <a href="tag/Network.html" rel="tag">Network</a>
+              <a href="tag/linux.html" rel="tag">linux</a>
+              <a href="tag/network.html" rel="tag">network</a>
               <a href="tag/sip.html" rel="tag">sip</a>
             </span>
           </div>
@@ -426,7 +627,7 @@ onreply_route[1] {
             <span class="tag-links">
               <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
               <a href="tag/game.html" rel="tag">game</a>
-              <a href="tag/Network.html" rel="tag">Network</a>
+              <a href="tag/network.html" rel="tag">network</a>
               <a href="tag/wow.html" rel="tag">wow</a>
             </span>
           </div>
@@ -651,7 +852,7 @@ add一个新的free ssh提供网站
             <span class="tag-links">
               <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
               <a href="tag/game.html" rel="tag">game</a>
-              <a href="tag/Network.html" rel="tag">Network</a>
+              <a href="tag/network.html" rel="tag">network</a>
             </span>
           </div>
         </div>
@@ -854,456 +1055,6 @@ End Sub
     </div>
 
  
-  </div>  <div id="content">    
-    <div class="post type-post status-publish format-standard hentry">
-      <div class="entry-meta-group clearfix">
-        <div class="grid_2 alpha">
-          <time class="entry-date entry-time updated" datetime="2010-07-16 22:12:36">
-            <a href="post/m-shcp.html" title="2010-07-16 22:12:36" rel="bookmark">
-              <span class="entry-date-day">16</span>
-              <span class="entry-date-month-year">2010-07</span>
-            </a>
-          </time>
-        </div>
-        <div class="grid_8 omega">
-          <h1 class="entry-title entry-title-single">
-            <a href="post/m-shcp.html">修正Syntax Highlighter ComPress的自动换行问题</a>
-          </h1>
-          <div class="entry-meta">    
-            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
-            <span class="tag-links">
-              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
-              <a href="tag/blog.html" rel="tag">blog</a>
-              <a href="tag/Linux.html" rel="tag">Linux</a>
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div class="entry-content clearfix">
-        <p><p>Syntax Highlighter ComPress语法加亮插件在我用的模板中不能自动换行．改了下ＣＳＳ先用着．可惜这个插件在IE下有小部分不能正常显示，FF下大部分正常．</p>
-
-<p>查找syntax-highlighter-compress/styles/shCoreEclipse.css中的
-<pre class="brush:css">
-.syntaxhighlighter .line {
-  white-space: pre !important;
-}
-</pre>
-改为
-<pre class="brush:css">
-.syntaxhighlighter .line {
- white-space: pre-wrap;<br>
- white-space: -moz-pre-wrap; 
- white-space: -pre-wrap;<br>
- white-space: -o-pre-wrap; 
- word-wrap: break-word;
-}
-</pre>
-保存就ok了.</p>
-</p>
-      </div>
-
-    </div>
-
- 
-  </div>  <div id="content">    
-    <div class="post type-post status-publish format-standard hentry">
-      <div class="entry-meta-group clearfix">
-        <div class="grid_2 alpha">
-          <time class="entry-date entry-time updated" datetime="2010-07-16 18:13:14">
-            <a href="post/m-wp-dbmanager-mail.html" title="2010-07-16 18:13:14" rel="bookmark">
-              <span class="entry-date-day">16</span>
-              <span class="entry-date-month-year">2010-07</span>
-            </a>
-          </time>
-        </div>
-        <div class="grid_8 omega">
-          <h1 class="entry-title entry-title-single">
-            <a href="post/m-wp-dbmanager-mail.html">修正WP-DBManager不能发送邮件与标题乱码的问题</a>
-          </h1>
-          <div class="entry-meta">    
-            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
-            <span class="tag-links">
-              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
-              <a href="tag/blog.html" rel="tag">blog</a>
-              <a href="tag/Linux.html" rel="tag">Linux</a>
-              <a href="tag/Network.html" rel="tag">Network</a>
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div class="entry-content clearfix">
-        <p><p>WP-DBManager是个不错的数据库管理插件，功能之一是把备份好的数据库打包发送到指定的邮箱．</p>
-
-<p>ＶＰＳ因为没有配置smtp服务，这样php的mail函数不能正常工作，更加考虑到用Gmail信箱用来备份是个很好的选择，于是下载了WP-Mail-SMTP插件，设置ＷＰ用SMTP发信．安装设置好后，测试邮件能发送成功，但WP-DBManager的邮件发送显示ＯＫ，Gmail里面却收不到东西．</p>
-
-<p>换了Configure SMTP再试，这个插件更智能点，配置Gmail的信箱很容易．一样安装设置好后，测试邮件能发送成功，但WP-DBManager的邮件发送显示ＯＫ，Gmail里面却收不到东西．</p>
-
-<p>于是估计大概可能也许是WP-DBManager的问题．查看了一下，与wp-dbmanager/wp-dbmanager.php及wp-dbmanager/database-manage.php二个文件有关．前者用于配置参数，其中有自动备份并发送邮件功能；后者用于管理备份文件，其中有将备份文件发送到指定信箱功能．果然这二个文件里都将邮件发送部分写成死死的php的mail函数，这样无论WP-Mail-SMTP还是Configure SMTP有多强大，它都不知道啊～～</p>
-
-<p>修改很简单，查找wp-dbmanager/wp-dbmanager.php中的
-&lt;!--more--&gt;
-<pre class="brush:php">
-mail($backup<em>email, $mail</em>subject, $mail<em>message, $mail</em>header);
-</pre>
-改为
-<pre class="brush:php">
-wp<em>mail($backup</em>email, $mail<em>subject, $mail</em>message, $mail<em>header);
-</pre>
-查找wp-dbmanager/database-manage.php中的
-<pre class="brush:php">
-mail($mail</em>to, $mail<em>subject, $mail</em>message, $mail<em>header）;
-</pre>
-改为
-<pre class="brush:php">
-wp</em>mail($mail<em>to, $mail</em>subject, $mail<em>message, $mail</em>header）;
-</pre></p>
-
-<p>啊，没错，前面加wp<em>就好，wp</em>mail的相关信息可以参考
-http://phpdoc.wordpress.org/trunk/WordPress/<em>wp-includes---pluggable.php.html#functionwp</em>mail
-这样修改后，wp_mail会使用WP-Mail-SMTP或Configure SMTP的配置SMTP发送邮件．这二个插件在wp3中都正常工作．</p>
-
-<p>WP-DBManage现在能成功发送打包后的数据库备份文件到指定的Gmail信箱了，8过标题是乱码，好在正文是全Ｅ文的，能看清．
-修正标题乱码，在前面所说的二个php文件中，查找
-<pre class="brush:php">
-$mail<em>subject = sprintf(</em><em>(&#39;%s Database Backup File For %s&#39;, &#39;wp-dbmanager&#39;), get</em>bloginfo(&#39;name&#39;), $file<em>date);
-</pre>
-均在后面加入下面这一行进行base64编码
-<pre class="brush:php">
-$mail</em>subject = &#39;=?UTF-8?B?&#39;.base64<em>encode($mail</em>subject).&#39;?=&#39;;
-</pre></p>
-
-<p>再试一次发送邮件，万事大吉了~</p>
-
-<p>可能的问题：
-WP-DBManager的设置页面，Path To mysqldump:以及Path To mysql:在自动检测失败时，要手动填入包含程序名的绝对路径，比如
-<pre class="brush:plain">
-Path To mysqldump:/usr/local/mysql/bin/mysqldump
-Path To mysql:/usr/local/mysql/bin/mysql
-</pre>
-或者在大多数机器上，是在/usr/bin下的．</p>
-
-<p>wp-content/backup-db放有备份文件，确保使用.htaccess进行保护，或者修改这个目录名.</p>
-
-<p>WP-Mail-SMTP或Configure SMTP配置时，都最好使用ssl加密连接，端口为465．使用Gmail时，也最好用https方式，这样你的网站数据，基本上都在加密通道跑来跑去，还算是比较安全的．</p>
-</p>
-      </div>
-
-    </div>
-
- 
-  </div>  <div id="content">    
-    <div class="post type-post status-publish format-standard hentry">
-      <div class="entry-meta-group clearfix">
-        <div class="grid_2 alpha">
-          <time class="entry-date entry-time updated" datetime="2010-07-16 00:40:13">
-            <a href="post/mmore.html" title="2010-07-16 00:40:13" rel="bookmark">
-              <span class="entry-date-day">16</span>
-              <span class="entry-date-month-year">2010-07</span>
-            </a>
-          </time>
-        </div>
-        <div class="grid_8 omega">
-          <h1 class="entry-title entry-title-single">
-            <a href="post/mmore.html">修改more标签</a>
-          </h1>
-          <div class="entry-meta">    
-            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
-            <span class="tag-links">
-              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
-              <a href="tag/blog.html" rel="tag">blog</a>
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div class="entry-content clearfix">
-        <p><p><a href="http://codex.wordpress.org/Customizing_the_Read_More">参考地址</a></p>
-
-<p>修改loop.php
-查找第二处&quot;continue reading&quot;，该行改为</p>
-
-<pre><code>&lt;?php the_content(&quot;......点此阅读&lt;span class=\&quot;widget-title\&quot;&gt;t &quot; . get_the_title(&#39;&#39;, &#39;&#39;, false) . &quot;&lt;/span&gt; 全文......&quot;); &gt;
-</code></pre>
-
-<p>function.php底部加入脚本，用于跳转到文章开头.</p>
-
-<pre><code>function remove_more_jump_link($link) { 
-    $offset = strpos($link, &#39;#more-&#39;);
-    if ($offset) {
-        $end = strpos($link, &#39;&quot;&#39;,$offset);
-    }
-    if ($end) {
-        $link = substr_replace($link, &#39;&#39;, $offset, $end-$offset);
-    }
-    return $link;
-}
-add_filter(&#39;the_content_more_link&#39;, &#39;remove_more_jump_link&#39;);
-</code></pre>
-</p>
-      </div>
-
-    </div>
-
- 
-  </div>  <div id="content">    
-    <div class="post type-post status-publish format-standard hentry">
-      <div class="entry-meta-group clearfix">
-        <div class="grid_2 alpha">
-          <time class="entry-date entry-time updated" datetime="2010-07-15 20:53:47">
-            <a href="post/blogsetup.html" title="2010-07-15 20:53:47" rel="bookmark">
-              <span class="entry-date-day">15</span>
-              <span class="entry-date-month-year">2010-07</span>
-            </a>
-          </time>
-        </div>
-        <div class="grid_8 omega">
-          <h1 class="entry-title entry-title-single">
-            <a href="post/blogsetup.html">我的博客架设笔记</a>
-          </h1>
-          <div class="entry-meta">    
-            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
-            <span class="tag-links">
-              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
-              <a href="tag/blog.html" rel="tag">blog</a>
-              <a href="tag/Linux.html" rel="tag">Linux</a>
-              <a href="tag/Network.html" rel="tag">Network</a>
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div class="entry-content clearfix">
-        <p><p>博客架设前，试用了很多相关程序，包括drupal,dedecms,wordpress等，甚至单文件的TiddlyWiki． 个人觉得TiddlyWiki在本地使用是很方便的，只是放在网上管理上会比较麻烦．drupal在定制一番后，也蛮好用，麻烦就麻烦在要定制不少东西．最后决定用wordpress，相对drupal来说，wordpress上手要容易得多，特别是新版本的wordpress 3的menu很好用.</p>
-
-<p>WP3计划放在安装了centos５的ＶＰＳ上，使用源代码编译安装apache,mod_php以及mysql三大件．Nginx要下次再换了，因为现在最新版本的php5.3.2编译成fpm方式比较麻烦．好在fpm已经进入ＰＨＰ的ＳＶＮ了，不久就应该有官方的fpm出来．</p>
-
-<p>安装过程写在下面，方便以后重个装，查个找什么的．</p>
-
-<ol>
-<li><p>安装apache</p>
-
-<p>从官方网站　http://httpd.apache.org/　下载　httpd-2.2.15.tar.gz
-把所有扩展功能都编译成模块，用--enable-modules=all与--enable-mods-shared=all二个参数．把all替换成most，则只编译大部分模块，或者指定模块名．懒人用all吧，编译完成后再去配置文件里，去掉不要的功能．</p>
-
-<pre><code>tar vzxf httpd-2.2.15.tar.gz
-cd httpd-2.2.15
-./configure --prefix=/usr/local/apache2 \
---enable-modules=all \
---enable-mods-shared=all
-</code></pre>
-
-<p>apache的配置文件在ＰＨＰ安装完成后再修改．</p></li>
-<li><p>安装mysql</p>
-
-<p>从官方网站http://mysql.com下载mysql-5.1.35.tar.gz
-其实mysql的安装，用yum最方便，我自己编译安装，是yum update时省点流量．虽然这个ＶＰＳ流量挺多...</p>
-
-<pre><code>tar -vzxf mysql-5.1.35.tar.gz
-cd mysql-5.1.35
-./configure --prefix=/usr/local/mysql \
---enable-assembler \
---with-charset=utf8 \
---enable-thread-safe-client \
---with-extra-charsets=all \
---with-big-tables \
---with-readline \
---with-ssl \
---with-embedded-server \
---enable-local-infile
-
-make &amp;amp;&amp;amp; make install
-groupadd mysql
-useradd -g mysql mysql
-cp /usr/local/mysql/share/mysql/my-medium.cnf /etc/my.cnf /usr/local/mysql/bin/mysql_install_db --user=mysql
-chown -R mysql /usr/local/mysql/var
-chgrp -R mysql /usr/local/mysql/.
-cp /usr/local/mysql/share/mysql/mysql.server /etc/init.d/mysql
-chmod 755 /etc/init.d/mysql
-echo &quot;/usr/local/mysql/lib/mysql&quot; &amp;gt;&amp;gt; /etc/ld.so.conf
-echo &quot;/usr/local/lib&quot; &amp;gt;&amp;gt;/etc/ld.so.conf
-ln -s /usr/local/mysql/lib/mysql /usr/lib/mysql
-ln -s /usr/local/mysql/include/mysql /usr/include/mysql
-ldconfig
-</code></pre>
-
-<p>安装完成后，修改/etc/my.cnf文件．用#注释掉skip-networking，开启ＴＣＰ监听．</p>
-
-<pre><code>#skip-networking
-</code></pre>
-
-<p>并在之后插入下面这行，只在本机监听：</p>
-
-<pre><code>bind-address=127.0.0.1
-</code></pre></li>
-<li><p>安装ＰＨＰ</p>
-
-<p>centos没有现成的libiconv包，所以在编译PHP之前要手动编译下libiconv.
-要用最新的1.13.1才行,1.13我这里编译后PHP死活找不到．</p>
-
-<pre><code>wget http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.13.1.tar.gz
-tar -zxvf libiconv-1.13.1.tar.gz
-cd libiconv-1.13.1
-./configure --prefix=/usr/local/libiconv
-make
-make install
-</code></pre>
-
-<p>从http://php.net上下载php-5.3.2.tar.gz
-现在可以编译PHP子，有一个老长老长的编译参数:</p>
-
-<pre><code>tar vzxf php-5.3.2.tar.gz
-cd php-5.3.2.tar.gz
-./configure \
---with-apxs2=/usr/local/apache2/bin/apxs \
---with-mysql \
---with-mysqli=/usr/local/mysql/bin/mysql_config \
---with-iconv=/usr/local/libiconv \
---with-freetype-dir \
---with-jpeg-dir \
---with-png-dir \
---with-zlib \
---with-libxml-dir=/usr \
---enable-xml \
---disable-rpath  \
---enable-magic-quotes \
---enable-safe-mode \
---enable-bcmath \
---enable-shmop \
---enable-sysvsem \
---enable-inline-optimization \
---with-curl \
---with-curlwrappers \
---enable-mbregex \
---enable-mbstring \
---with-mcrypt \
---enable-ftp \
---with-gd \
---enable-gd-native-ttf \
---with-openssl \
---with-mhash \
---enable-pcntl \
---enable-sockets \
---with-xmlrpc \
---enable-zip \
---enable-soap \
---without-pear \
---with-gettext
-make
-make install
-</code></pre>
-
-<p>安装后php说是会自动修改/usr/local/apache/conf/httpd.conf文件，检查了下，发现</p>
-
-<pre><code>LoadModule php5_module        modules/libphp5.so
-</code></pre>
-
-<p>会被自动加入，但还是要手工添加</p>
-
-<pre><code>AddType application/x-httpd-php .php
-</code></pre>
-
-<p>把这行放到任意一个AddType行之后就行.</p>
-
-<p>再次修改apache的配置文件/usr/local/apache/conf/httpd.conf，去掉所有不必要模块（用#注释掉相应的LoadModule行），只保留下面几个：</p>
-
-<pre><code>LoadModule log_config_module modules/mod_log_config.so
-LoadModule mime_module modules/mod_mime.so
-LoadModule dir_module modules/mod_dir.so
-LoadModule rewrite_module modules/mod_rewrite.so
-LoadModule php5_module        modules/libphp5.so
-</code></pre>
-
-<p>查找</p>
-
-<pre><code>&lt;IfModule dir_module&gt;
-    DirectoryIndex index.php index.html index.htm
-&lt;/IfModule&gt;
-</code></pre>
-
-<p>加入index.php作为默认页面．
-用#注释所有以Order用Deny开头的行：</p>
-
-<pre><code>#Order deny,allow
-#Deny from all
-</code></pre>
-
-<p>查找</p>
-
-<pre><code>#Include conf/extra/httpd-mpm.conf
-</code></pre>
-
-<p>去掉前面的#，并修改httpd-mpm.conf，考虑到现在来我这的客人会比较少，数字填写小点，省点内存．要想过好日子，能省点就省点吧...</p>
-
-<pre><code>&lt;IfModule mpm_prefork_module&gt;
-    StartServers          3
-    MinSpareServers       3
-    MaxSpareServers       5
-    MaxClients            50
-    MaxRequestsPerChild   500
-&lt;/IfModule&gt;
-</code></pre>
-
-<p>其中MaxRequestsPerChild默认值为0．最好改为非0值，500,1000都可．这样一个apache子进程在做完500个份内工作后，会光荣退休，换新鲜血液上来，防止他一直霸占工作岗位．</p></li>
-<li><p>启动mysql及apache</p>
-
-<p>麻烦的东西都安装好了，现在可以启动mysql和apache了．</p>
-
-<pre><code>/etc/init.d/mysql start
-/usr/local/apache2/bin/apachectl start
-</code></pre></li>
-<li><p>安装wordpress3
-从http://wordpress.org下载最新版本的wordpress，我下载的是3.0</p>
-
-<pre><code>wget http://wordpress.org/latest.tar.gz
-tar vzxf latest.tar.gz
-mv wordpress/* /usr/local/apache2/htdocs
-</code></pre>
-
-<p>这样就把wp3放到apache默认网站的根目录了</p>
-
-<p>安装wp3前，要先安装phpmyadmin，用来操作mysql数据库．yum install phpmyadmin 或者直接官网下载解开就好．放在htdocs/db下.
-默认mysql root口令为空，如果是新版本的phpmyadmin，要修改一下其配置文件config.inc.php，才能正常login.</p>
-
-<pre><code>$cfg[&#39;Servers&#39;][$i][&#39;AllowNoPassword&#39;] = true;
-</code></pre>
-
-<p>默认为false,改为true就好．没有这行就不用管．</p>
-
-<p>先在firefox打开　http://站点ip或域名/db　，首先修改root口令，然后在mysql里单独建立一个新用户如wp及新库如wp，并将库wp的所有权限授予新用户wp．完成后刷新下权限表．</p>
-
-<p>再打开　http://站点ip或域名　就可以正常安装wordpress了，数据库地址填写localhost 或127.0.0.1，最好mysql新用户wp对应的host字段也是localhost.　</p></li>
-<li><p>可能存在的问题
-安装程序如果提示配置文件wp-config.php无法创建，大部分原因是因为htdocs目录的权限问题．
-先查找用户名</p>
-
-<pre><code>cat /usr/local/apache2/conf/httpd.conf | grep -1 Group
-#
-# User/Group: The name (or #number) of the user/group to run httpd as.
-# It is usually good practice to create a dedicated user and group for
---
-User daemon
-Group daemon
-</code></pre>
-
-<p>可见apache是以daemon的身份运行的，更改用户并查看结果</p>
-
-<pre><code>chown -R daemon.daemon /usr/local/apache2/htdocs
-ls -ld /usr/local/apache2/htdocs/
-drwxr-xr-x 6 daemon daemon 4096 Jul 15 22:33 /usr/local/apache2/htdocs/
-</code></pre></li>
-</ol>
-
-<p>再运行wordpress安装程序就能自动建立配置文件了．以后也不会出现wordpress安装插件或升级时，要输入连接信息的错误．</p>
-
-<p>到这里安装就差不多完成了．接下来就是配置插件等内容了．有空再慢慢写.</p>
-</p>
-      </div>
-
-    </div>
-
- 
   </div>
  
 <div id="loop-nav-numeric" class="nav-numeric">
@@ -1342,17 +1093,18 @@ drwxr-xr-x 6 daemon daemon 4096 Jul 15 22:33 /usr/local/apache2/htdocs/
       <h3 class="widget-title">标签</h3>
       <ul>
         <li class="cat-item"><a href="tag/sip.html">sip &sdot; (2)</a></li>
-        <li class="cat-item"><a href="tag/Network.html">Network &sdot; (47)</a></li>
-        <li class="cat-item"><a href="tag/VPS.html">VPS &sdot; (3)</a></li>
+        <li class="cat-item"><a href="tag/network.html">network &sdot; (50)</a></li>
+        <li class="cat-item"><a href="tag/vps.html">vps &sdot; (3)</a></li>
         <li class="cat-item"><a href="tag/openerp.html">openerp &sdot; (2)</a></li>
         <li class="cat-item"><a href="tag/wow.html">wow &sdot; (1)</a></li>
         <li class="cat-item"><a href="tag/ipv6.html">ipv6 &sdot; (2)</a></li>
         <li class="cat-item"><a href="tag/game.html">game &sdot; (5)</a></li>
         <li class="cat-item"><a href="tag/wii.html">wii &sdot; (3)</a></li>
-        <li class="cat-item"><a href="tag/blog.html">blog &sdot; (18)</a></li>
+        <li class="cat-item"><a href="tag/blog.html">blog &sdot; (21)</a></li>
+        <li class="cat-item"><a href="tag/python.html">python &sdot; (3)</a></li>
         <li class="cat-item"><a href="tag/notag.html">notag &sdot; (2)</a></li>
         <li class="cat-item"><a href="tag/ssh.html">ssh &sdot; (2)</a></li>
-        <li class="cat-item"><a href="tag/Linux.html">Linux &sdot; (35)</a></li>
+        <li class="cat-item"><a href="tag/linux.html">linux &sdot; (35)</a></li>
         <li class="cat-item"><a href="tag/android.html">android &sdot; (1)</a></li>
         <li class="cat-item"><a href="tag/sofeware.html">sofeware &sdot; (3)</a></li>
       </ul>
@@ -1363,11 +1115,16 @@ drwxr-xr-x 6 daemon daemon 4096 Jul 15 22:33 /usr/local/apache2/htdocs/
     <div class="widget-wrap widget-inside">
       <h3 class="widget-title">最新文章</h3>
       <ul> 
+        <li><a href='post/yong_git_tong_bu_jing_tai_wang_zhan.html'>用git同步静态网站</a></li>
+        <li><a href='post/yong_addpost_sheng_cheng_de_di_yi_pian_jing_tai_Blog.html'>用addpost生成的第一篇静态Blog</a></li>
+        <li><a href='post/PYTENJINCACHE_wen_ti.html'>PYTENJIN CACHE问题</a></li>
+        <li><a href='post/wang_zhan_jing_tai_hua.html'>网站静态化</a></li>
         <li><a href='post/openerp-7-add-menu.html'>OPENERP 7:菜单添加</a></li>
         <li><a href='post/tips-upload-with-web-py.html'>Tips : upload with web.py</a></li>
         <li><a href='post/netgear-r6300v2-ngrep.html'>Netgear R6300v2上编译ngrep</a></li>
         <li><a href='post/test-100m.html'>联通100M体验</a></li>
         <li><a href='post/iphone-5-clean.html'>Iphone 5可用容量恢复</a></li>
+        <li><a href='post/openerp-7-reortsxw格式.html'>OPENERP 7 : 报表之sxw格式问题</a></li>
       </ul>
     </div>
   </div>

@@ -45,6 +45,283 @@
     <div class="post type-post status-publish format-standard hentry">
       <div class="entry-meta-group clearfix">
         <div class="grid_2 alpha">
+          <time class="entry-date entry-time updated" datetime="2012-05-03 16:41:25">
+            <a href="post/linux_youku_antiad.html" title="2012-05-03 16:41:25" rel="bookmark">
+              <span class="entry-date-day">03</span>
+              <span class="entry-date-month-year">2012-05</span>
+            </a>
+          </time>
+        </div>
+        <div class="grid_8 omega">
+          <h1 class="entry-title entry-title-single">
+            <a href="post/linux_youku_antiad.html">linux下youku去广告+黑屏</a>
+          </h1>
+          <div class="entry-meta">    
+            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
+            <span class="tag-links">
+              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
+              <a href="tag/linux.html" rel="tag">linux</a>
+              <a href="tag/network.html" rel="tag">network</a>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry-content clearfix">
+        <p><p>去广告
+hosts加入</p>
+
+<pre><code>127.0.0.1 atm.youku.com
+127.0.0.1 Fvid.atm.youku.com
+127.0.0.1 html.atm.youku.com
+127.0.0.1 valb.atm.youku.com
+127.0.0.1 valf.atm.youku.com
+127.0.0.1 valo.atm.youku.com
+127.0.0.1 valp.atm.youku.com
+127.0.0.1 lstat.youku.com
+127.0.0.1 speed.lstat.youku.com
+127.0.0.1 urchin.lstat.youku.com
+127.0.0.1 stat.youku.com
+127.0.0.1 static.lstat.youku.com
+127.0.0.1 valc.atm.youku.com
+127.0.0.1 vid.atm.youku.com
+127.0.0.1 walp.atm.youku.com
+</code></pre>
+
+<p>去黑屏</p>
+
+<pre><code>cd ~/.macromedia/Flash_Player/#SharedObjects/xxx/
+</code></pre>
+
+<p>xxx为随机串</p>
+
+<pre><code>rm -tf static.youku.com
+touch static.youku.com
+sudo chown root.root static.youku.com
+</code></pre>
+
+<p>重启浏览器。</p>
+</p>
+      </div>
+
+    </div>
+
+ 
+  </div>  <div id="content">    
+    <div class="post type-post status-publish format-standard hentry">
+      <div class="entry-meta-group clearfix">
+        <div class="grid_2 alpha">
+          <time class="entry-date entry-time updated" datetime="2011-10-24 16:24:01">
+            <a href="post/diy-nas-softeare.html" title="2011-10-24 16:24:01" rel="bookmark">
+              <span class="entry-date-day">24</span>
+              <span class="entry-date-month-year">2011-10</span>
+            </a>
+          </time>
+        </div>
+        <div class="grid_8 omega">
+          <h1 class="entry-title entry-title-single">
+            <a href="post/diy-nas-softeare.html">DIY家用NAS之软件篇</a>
+          </h1>
+          <div class="entry-meta">    
+            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
+            <span class="tag-links">
+              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
+              <a href="tag/blog.html" rel="tag">blog</a>
+              <a href="tag/linux.html" rel="tag">linux</a>
+              <a href="tag/network.html" rel="tag">network</a>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry-content clearfix">
+        <p><p>NAS系统的选择,首先放弃了windows系统. 然后在DIY linux与现成开源的类linux nas系统中,确定用现成的freenas,基于freebsd的nas. </p>
+
+<p>freenas现在主版本有7.x 与8.x二个系列. 7.x的风格更类linux一点,配置时要先加硬盘,格式化,再mount到对应目录,最后再共享目录.</p>
+
+<p>不过对于我配置的特定硬件,7.x    无法自动认出板上的网卡以及sata接口. 网卡驱动倒是可以换一个,不过认不出sata接口却无法解决,这样系统启动后一个硬盘都找不到.</p>
+
+<p>8.x系列,封装得更好一点,配置也简单很多. 当然DIY的自由度也少了很多.  另外8.x对ZFS的支持要完善很多,用raid z相当方便.</p>
+
+<ol>
+<li>首先去http://www.freenas.org/下载FreeNAS-8.0.2-RELEASE-amd64-Full_Install.xz,因为用到了8G内存,必须用64位版本,而且zfs文件系统,要求内存越大越好,6G+是必要的.</li>
+<li>用7zip解开FreeNAS-8.0.2-RELEASE-amd64-Full<em>Install.xz,是个2G左右的FreeNAS-8.0.2-RELEASE-amd64-Full</em>Install文件</li>
+<li>用dd或physdiskwrite.exe写到一个2G以上的u盘上.用u盘做系统盘,一是能省下一个sata接口以后好扩充,二是8.x的freenas不能再使用系统盘上的空闲空间.</li>
+<li>启动nas并配置好ip地址后web登录,默认帐号为admin/freenas</li>
+<li>在Storage中,用Create Volume,选取三块硬盘,fs选择zfs,zaid z模式.命名为public. 这时就创建好了一个总容易为3.8T的raid z卷. 并且以后所有的目录分配或iscsi都基于public卷.</li>
+<li>Create ZFS Dataset用来创建不用的应用目录,用于分配给不同的用户或是用作不同的用途.</li>
+<li>Create ZFS Volume创建一个指定容量的大文件,用于iscsi的虚拟磁盘.</li>
+<li>配置好后,在System-&gt;Settings,-&gt;Save Config里,保存好当前配置.这样万一系统损坏或u盘物理损坏后,通过前四步,然后导入现有配置就能恢复.</li>
+<li>最后在Services中,启用CIFS,FTP以及iSCSI三个主要共享功能.</li>
+</ol>
+
+<p>这样能通过ftp,windows的网上邻居,linux的smb,以及iscsi访问nas上的空间. </p>
+
+<p>1000Mbps网络环境中,上下传速度其中以iscsi速度最快,约70MB/s左右,然后是ftp,60MB/s左右,网上邻居要慢点,40~50MB/s左右. 100Mbps网络环境三者都能比较稳定在10MB/s左右. 由此可见,使用nas,1000Mbps的网络环境是必要的.</p>
+
+<p>最后从总功耗以及传输速度来看,基本上满足了自己的要求.</p>
+</p>
+      </div>
+
+    </div>
+
+ 
+  </div>  <div id="content">    
+    <div class="post type-post status-publish format-standard hentry">
+      <div class="entry-meta-group clearfix">
+        <div class="grid_2 alpha">
+          <time class="entry-date entry-time updated" datetime="2011-10-08 14:40:46">
+            <a href="post/diy_nas_hw.html" title="2011-10-08 14:40:46" rel="bookmark">
+              <span class="entry-date-day">08</span>
+              <span class="entry-date-month-year">2011-10</span>
+            </a>
+          </time>
+        </div>
+        <div class="grid_8 omega">
+          <h1 class="entry-title entry-title-single">
+            <a href="post/diy_nas_hw.html">DIY家用NAS之硬件篇</a>
+          </h1>
+          <div class="entry-meta">    
+            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
+            <span class="tag-links">
+              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
+              <a href="tag/blog.html" rel="tag">blog</a>
+              <a href="tag/linux.html" rel="tag">linux</a>
+              <a href="tag/network.html" rel="tag">network</a>
+              <a href="tag/sofeware.html" rel="tag">sofeware</a>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry-content clearfix">
+        <p><p>一则硬盘空间一直比较紧张,二则现在硬盘质量不再象以前那么可靠,数据容易丢失,于是计划购置一个能做阵列的家用NAS机器. 仔细研究了一下国内外不少品牌或山寨的NAS,最后比较满意希捷BlackArmor NAS 400系列. 可惜的是国内一直没有售,而且价格好象也悄悄涨过一次,不带硬盘拿下来也得3K多了. </p>
+
+<p>既然现成的不满意,就自己配一个好了.</p>
+
+<p>想要达到的目的:</p>
+
+<ol>
+<li>整机加4块左右硬盘的功耗要控制在50W左右.</li>
+<li>至少要能上4块硬盘,最好能升级到8块左右硬盘.能做RAID 5.</li>
+<li>千兆网络环境下,要有60MB/s的上下传速率.</li>
+<li>除了能做NAS,还要能增加SVN server之类的应用.</li>
+<li>有可能做HTPC,这样得有一个过得去的显卡或者至少有hdmi输出.</li>
+<li>噪音尽量小.</li>
+<li>不带硬盘价格控制在2K以下</li>
+</ol>
+
+<p>本来先考虑的atom平台,cpu功耗相当小,可惜加上对应的主板后就难看了点. 然后只能转向amd apu系列.  RAID5要消耗比较多的CPU资源,因此E350的性能要好得多. 再查询E350整合主板,品牌牌子有GIGABYTE和ASUS二家.此外梅捷,七彩虹都有类似的主板. 另外这类主板主要分二类,一是只有USB2以及SATA3G的,二是带USB3以及SATA6G的.显然后者参数要美妙得多.</p>
+
+<ol>
+<li>技嘉（GIGABYTE）GA-E350N-USB3, 1.6G双核CPU,集成HD 6310显卡,2USB3,4 SATA 6G,CPU带风扇. 功耗约22w. 699大洋.</li>
+<li>Asus APU E35M1-M PRO FUSION,1.6G双核CPU,集成HD 6310显卡,2USB3,5 SATA 6G,1 ESATA 6G,静音设计,无风扇. 功耗约22w. 1299大洋.</li>
+</ol>
+
+<p>这二块入眼的主板其实本不用考虑选哪个,ASUS的5SATA,无风扇设计,简直就是为NAS设计的. 可我还是纠结了二天才确定下来,因为ASUS的要1299块,TB也得1100+,而GIGABYTE的只要699块啊~,于是我决定用699块的.除了我一向勤俭节约外,主要还是考虑万一配出来的NAS不满意,这不就能减少不少损失么......当然前期4块硬盘也足够使用了. 至于那个明显是噪音制造者的CPU风扇,我就当没看见好了.</p>
+
+<p>机箱有大小二种选择,小机箱省地,大机箱散热和扩展性要好不少. 我觉得4块硬盘挤一起,那热量也挺吓人的,还是用大点的机箱好了.
+电源得配个好点的.烧主板烧硬盘的电源,碰到过不少. 查了一下JD上的存货,配了TT的机箱+电源:</p>
+
+<ol>
+<li>TT 金刚500高效电源,5SATA电源头,带14cm风扇一个.299大洋.</li>
+<li>TT Commander MS-I指挥官居中塔机箱,7HD位. 带12cm风扇一个.279大洋.</li>
+</ol>
+
+<p>主板最高支持8G内存,考虑到要使用ZFS文件系统,要求最少6G内存,这样内存得上满,好在现在这东西非常便宜.</p>
+
+<ul>
+<li>Samsung 三星 金条 DDR3 1066 4G x2, 275大洋.</li>
+</ul>
+
+<p>原有一块2T WD绿盘,再购置二块同型号硬盘. 花费998大洋.</p>
+
+<p>这样总计花费,不算硬盘约1500块,DIY出一个8G内存,1.6G双核CPU,4个SATA 6G接口,2个USB3接口的家用NAS. 相当超值了.</p>
+
+<p>所有硬件分别采购于JD,新蛋,易讯三家. 早上9点前下的订单,当天下午JD送到一部分,易讯送到.第二天上午JD送完剩下的,新蛋送到.  大体可见三家物流的情况.</p>
+
+<p>到手后主板要处理一下. CPU的散热片要拆下来,是个二层结构. 在二层金属片接触的地方,只是象征性的涂了不到一平方厘米的硅胶. 买管硅胶,恶狠狠地把它涂满吧~ 不然开机时间一长,CPU/GPU的温度会很高. 而且主板四个SATA接口,只配了二根SATA硬盘线, 在此BS一下GIGABYTE的偷工减料.</p>
+
+<p>硬件安装好后一次点亮, 不接硬盘,按下电源开机时有个100W+的瞬时功耗, 然后稳定在33W左右. 进BIOS把内置显卡频率下调到300M.能减少2W功耗. 这样不带硬盘功耗在31W左右. 
+加上三块硬盘,待机时功耗增加9W左右,全机约38W~40W, RAID 5读写时功耗增加10~20W左右,全机功耗50W~59W,基本上没超过60W. 虽然还是嫌功耗稍高了点,总体来说还是能够接受, 毕竟大多数时间还是待机, 不到40W的功耗也算是看得过去了.</p>
+
+<p>下篇再说说NAS系统软件的选择与安装.</p>
+</p>
+      </div>
+
+    </div>
+
+ 
+  </div>  <div id="content">    
+    <div class="post type-post status-publish format-standard hentry">
+      <div class="entry-meta-group clearfix">
+        <div class="grid_2 alpha">
+          <time class="entry-date entry-time updated" datetime="2011-06-21 17:58:09">
+            <a href="post/tomato-toastman-ipv6-he-net.html" title="2011-06-21 17:58:09" rel="bookmark">
+              <span class="entry-date-day">21</span>
+              <span class="entry-date-month-year">2011-06</span>
+            </a>
+          </time>
+        </div>
+        <div class="grid_8 omega">
+          <h1 class="entry-title entry-title-single">
+            <a href="post/tomato-toastman-ipv6-he-net.html">Tomato Toastman完美支持he.net的IPV6</a>
+          </h1>
+          <div class="entry-meta">    
+            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
+            <span class="tag-links">
+              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
+              <a href="tag/ipv6.html" rel="tag">ipv6</a>
+              <a href="tag/linux.html" rel="tag">linux</a>
+              <a href="tag/network.html" rel="tag">network</a>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry-content clearfix">
+        <p><p>he.net申请到的免费IPV6地址块只用到一台机器上太浪费了, 而Toastman的Tomato修改版, 对he.net的ipv6地址块支持得相当完美了. 这样可以把申请到的地址块放在路由器上, 并自动分配IPV6地址给所有接入路由器的机器.</p>
+
+<p>首先去https://www.tunnelbroker.net/申请一个64位的IPV6地址块,并记下</p>
+
+<pre><code>Server IPv4 Address
+Server IPv6 Address
+Client IPv4 Address
+Client IPv6 Address
+</code></pre>
+
+<p>然后你要有一个能刷tomato的路由器,并刷上相应的Tomato Toastman版. 我用的中兴h618b对应的版本是Tomato Firmware v1.28.7820 MIPSR1-Toastman K26 USB VPN.</p>
+
+<p>login到router,进入basic-&gt;ipv6菜单.</p>
+
+<p><a href="http://ahui.us/wp-content/uploads/2011/06/setipipv6.png"><img src="http://ahui.us/wp-content/uploads/2011/06/setipipv6.png" alt="" title="setipipv6"></a></p>
+
+<ul>
+<li>IPv6 Service Type 选择 6in4 Static Tunnel</li>
+<li>Assigned / Routed Prefix 填写要分配给接入机器的ipv6前缀,比如你申请到的是类x.x.x.x::1的地址,这儿填写x.x.x.x::</li>
+<li>Prefix Length填64</li>
+<li>Router IPv6 Address选择Default,会自动填写成he.net分配的Server IPv6 Address,不然选择Manual手工填写成Server IPv6 Address.</li>
+<li>Enable Router Advertisements勾上,</li>
+<li>Tunnel Remote Endpoint (IPv4 Address)填写he.net分配的Server IPv4 Address,</li>
+<li>Tunnel Client IPv6 Address填写he.net分配的Client IPv6 Address,64位长.</li>
+</ul>
+
+<p>如果你好运气路由器是固定的IPV4地址,那么设置这些就ok了.保存后radvd会自动启动用于分配ipv6地址.</p>
+
+<p>如果是pppoe之类拿的动态IP地址,那么这时候he.net上显示的Client IPv4 Address则会和你现在路由器地址不符. 这个时候所说的&quot;完美&quot;支持就表示出来了.
+进入basic-&gt;ddns菜单,看,下拉列表里有个&quot;HE.net IPv6 Tunnel Broker&quot;,贴心吧.帐号填写完后保存,这样地址改动后,会自动update he.net上的Client IPv4 Address数据.</p>
+
+<p>之后路由器给接入的机器分配IPv4地址时,会自动也分配一个IPv6地址. 这样router后面带的所有机器,都能实现IPV6接入了.</p>
+</p>
+      </div>
+
+    </div>
+
+ 
+  </div>  <div id="content">    
+    <div class="post type-post status-publish format-standard hentry">
+      <div class="entry-meta-group clearfix">
+        <div class="grid_2 alpha">
           <time class="entry-date entry-time updated" datetime="2011-06-21 16:23:36">
             <a href="post/tomato-firmware-v1-28-7820-mipsr1-toastman-k26-usb-vpn.html" title="2011-06-21 16:23:36" rel="bookmark">
               <span class="entry-date-day">21</span>
@@ -60,8 +337,8 @@
             <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
             <span class="tag-links">
               <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
-              <a href="tag/Linux.html" rel="tag">Linux</a>
-              <a href="tag/Network.html" rel="tag">Network</a>
+              <a href="tag/linux.html" rel="tag">linux</a>
+              <a href="tag/network.html" rel="tag">network</a>
               <a href="tag/sip.html" rel="tag">sip</a>
             </span>
           </div>
@@ -261,8 +538,8 @@ sip phone1 ----&gt; GW1,siproxd server &amp; openvpn server----&gt; internet &lt
             <span class="tag-links">
               <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
               <a href="tag/blog.html" rel="tag">blog</a>
-              <a href="tag/Linux.html" rel="tag">Linux</a>
-              <a href="tag/Network.html" rel="tag">Network</a>
+              <a href="tag/linux.html" rel="tag">linux</a>
+              <a href="tag/network.html" rel="tag">network</a>
             </span>
           </div>
         </div>
@@ -298,7 +575,7 @@ sip phone1 ----&gt; GW1,siproxd server &amp; openvpn server----&gt; internet &lt
             <span class="tag-links">
               <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
               <a href="tag/blog.html" rel="tag">blog</a>
-              <a href="tag/Network.html" rel="tag">Network</a>
+              <a href="tag/network.html" rel="tag">network</a>
             </span>
           </div>
         </div>
@@ -338,9 +615,9 @@ sip phone1 ----&gt; GW1,siproxd server &amp; openvpn server----&gt; internet &lt
             <span class="tag-links">
               <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
               <a href="tag/blog.html" rel="tag">blog</a>
-              <a href="tag/Linux.html" rel="tag">Linux</a>
-              <a href="tag/Network.html" rel="tag">Network</a>
-              <a href="tag/VPS.html" rel="tag">VPS</a>
+              <a href="tag/linux.html" rel="tag">linux</a>
+              <a href="tag/network.html" rel="tag">network</a>
+              <a href="tag/vps.html" rel="tag">vps</a>
             </span>
           </div>
         </div>
@@ -367,196 +644,6 @@ sip phone1 ----&gt; GW1,siproxd server &amp; openvpn server----&gt; internet &lt
 <p>用直接绑定的兴业卡renewal了一年,支付成功. 再renewal四年,支付成功. 好了.下次再有麻烦就等五年以后再麻烦吧. 万一那个2012成了现实, 这域名有效期能坚持到下一个纪元了吧?</p>
 
 <p>总结这问题的根本还是在name.com的系统出错,这的确也是出乎意料之外的事情. 恶意的猜测name自己也没想到系统会出错, 所以悄悄的修正后,也不肯回信留下证据什么的. 如果其他人的域名没有同样的问题,那还算后果不大,只是让我没头脑的忙活了半天, 在几张信用卡上都留下了不知真假的$8.99的扣款记录. 另外一问题就是招行的服务越来越差了,包括人工服务以及他们的系统服务. 特别是在Linux下,基本上没法使用他们的网上支付功能.</p>
-</p>
-      </div>
-
-    </div>
-
- 
-  </div>  <div id="content">    
-    <div class="post type-post status-publish format-standard hentry">
-      <div class="entry-meta-group clearfix">
-        <div class="grid_2 alpha">
-          <time class="entry-date entry-time updated" datetime="2011-04-12 23:05:09">
-            <a href="post/ulipadautoinput.html" title="2011-04-12 23:05:09" rel="bookmark">
-              <span class="entry-date-day">12</span>
-              <span class="entry-date-month-year">2011-04</span>
-            </a>
-          </time>
-        </div>
-        <div class="grid_8 omega">
-          <h1 class="entry-title entry-title-single">
-            <a href="post/ulipadautoinput.html">UliPad自动输入括号和引号</a>
-          </h1>
-          <div class="entry-meta">    
-            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
-            <span class="tag-links">
-              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
-              <a href="tag/Linux.html" rel="tag">Linux</a>
-              <a href="tag/sofeware.html" rel="tag">sofeware</a>
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div class="entry-content clearfix">
-        <p><p>打开 ulipad/conf/python.acp文件,在
-[autostring_append]
-行之后加入</p>
-
-<pre class="brush:html">
-' = "!^'"
-" = '!^"'
-< = "!^>"
-( = "!^)"
-{ = "!^}"
-&lt;square> = "!^]"
-
-</pre>
-</p>
-      </div>
-
-    </div>
-
- 
-  </div>  <div id="content">    
-    <div class="post type-post status-publish format-standard hentry">
-      <div class="entry-meta-group clearfix">
-        <div class="grid_2 alpha">
-          <time class="entry-date entry-time updated" datetime="2011-04-11 17:03:54">
-            <a href="post/flower2011.html" title="2011-04-11 17:03:54" rel="bookmark">
-              <span class="entry-date-day">11</span>
-              <span class="entry-date-month-year">2011-04</span>
-            </a>
-          </time>
-        </div>
-        <div class="grid_8 omega">
-          <h1 class="entry-title entry-title-single">
-            <a href="post/flower2011.html">春暖花开&amp;杨絮飘来</a>
-          </h1>
-          <div class="entry-meta">    
-            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
-            <span class="tag-links">
-              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
-              <a href="tag/blog.html" rel="tag">blog</a>
-              <a href="tag/Network.html" rel="tag">Network</a>
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div class="entry-content clearfix">
-        <p><p>花儿开得不错，不过一些早熟的柳絮杨絮已经开始飘啊飘了，鼻子又要开始难过了。</p>
-
-<p><a href="http://ahui.us/wp-content/uploads/2011/04/DSC00336.jpg"><img src="http://ahui.us/wp-content/uploads/2011/04/DSC00336-300x200.jpg" alt="" title="DSC00336"></a></p>
-
-<p><a href="http://ahui.us/wp-content/uploads/2011/04/DSC00342.jpg"><img src="http://ahui.us/wp-content/uploads/2011/04/DSC00342-300x200.jpg" alt="" title="DSC00342"></a></p>
-
-<p><a href="http://ahui.us/wp-content/uploads/2011/04/DSC00360.jpg"><img src="http://ahui.us/wp-content/uploads/2011/04/DSC00360-300x200.jpg" alt="" title="DSC00360"></a></p>
-
-<p><a href="http://ahui.us/wp-content/uploads/2011/04/DSC00407.jpg"><img src="http://ahui.us/wp-content/uploads/2011/04/DSC00407-300x200.jpg" alt="" title="DSC00407"></a></p>
-</p>
-      </div>
-
-    </div>
-
- 
-  </div>  <div id="content">    
-    <div class="post type-post status-publish format-standard hentry">
-      <div class="entry-meta-group clearfix">
-        <div class="grid_2 alpha">
-          <time class="entry-date entry-time updated" datetime="2011-03-25 20:30:26">
-            <a href="post/wii265.html" title="2011-03-25 20:30:26" rel="bookmark">
-              <span class="entry-date-day">25</span>
-              <span class="entry-date-month-year">2011-03</span>
-            </a>
-          </time>
-        </div>
-        <div class="grid_8 omega">
-          <h1 class="entry-title entry-title-single">
-            <a href="post/wii265.html">Wii保龄球记录265</a>
-          </h1>
-          <div class="entry-meta">    
-            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
-            <span class="tag-links">
-              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
-              <a href="tag/blog.html" rel="tag">blog</a>
-              <a href="tag/game.html" rel="tag">game</a>
-              <a href="tag/wii.html" rel="tag">wii</a>
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div class="entry-content clearfix">
-        <p><p>一不小心提高到265,差二次全中.可惜了~~</p>
-
-<p><a href="http://ahui.us/wp-content/uploads/2011/03/DSC00333.jpg"><img src="http://ahui.us/wp-content/uploads/2011/03/DSC00333-300x200.jpg" alt="" title="wii265"></a></p>
-</p>
-      </div>
-
-    </div>
-
- 
-  </div>  <div id="content">    
-    <div class="post type-post status-publish format-standard hentry">
-      <div class="entry-meta-group clearfix">
-        <div class="grid_2 alpha">
-          <time class="entry-date entry-time updated" datetime="2011-02-21 15:10:02">
-            <a href="post/youku去掉在线播放时的广告.html" title="2011-02-21 15:10:02" rel="bookmark">
-              <span class="entry-date-day">21</span>
-              <span class="entry-date-month-year">2011-02</span>
-            </a>
-          </time>
-        </div>
-        <div class="grid_8 omega">
-          <h1 class="entry-title entry-title-single">
-            <a href="post/youku去掉在线播放时的广告.html">Youku去掉在线播放时的广告</a>
-          </h1>
-          <div class="entry-meta">    
-            <span class="entry-meta-sep"><a href="http://ahui.us/" title="Ahui">Ahui</a> &sdot;</span>
-            <span class="tag-links">
-              <span class="entry-utility-prep entry-utility-prep-tag-links">Tagged:</span>
-              <a href="tag/Network.html" rel="tag">Network</a>
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div class="entry-content clearfix">
-        <p><p>最简单的,在hosts文件中,加入</p>
-
-<pre><code>127.0.0.1 valf.atm.youku.com
-</code></pre>
-
-<p>就能去掉播放前的广告.
-要想去掉所有广告,则要在hosts文件中加入下列行:</p>
-
-<pre><code>127.0.0.1 atm.youku.com 
-127.0.0.1 Fvid.atm.youku.com 
-127.0.0.1 html.atm.youku.com 
-127.0.0.1 valb.atm.youku.com 
-127.0.0.1 valf.atm.youku.com 
-127.0.0.1 valo.atm.youku.com 
-127.0.0.1 valp.atm.youku.com 
-127.0.0.1 lstat.youku.com 
-127.0.0.1 speed.lstat.youku.com 
-127.0.0.1 urchin.lstat.youku.com 
-127.0.0.1 stat.youku.com 
-127.0.0.1 static.lstat.youku.com 
-127.0.0.1 valc.atm.youku.com 
-127.0.0.1 vid.atm.youku.com 
-127.0.0.1 walp.atm.youku.com
-</code></pre>
-
-<p>win7系统下
-C:\Users\当前用户\AppData\Roaming\Macromedia\Flash Player#SharedObjects\随机串
-static.youku.com目录改名，并新建同名文件。</p>
-
-<p>参考连接</p>
-
-<p>http://www.itopdog.cn/software-tech/noad.html
-http://www.jcboy.info/2011/02/pingbiyoukutudoudengshipinwangzhan15miaoguanggaodezuiquanzuijiandanfangfa.htm</p>
 </p>
       </div>
 
@@ -601,17 +688,18 @@ http://www.jcboy.info/2011/02/pingbiyoukutudoudengshipinwangzhan15miaoguanggaode
       <h3 class="widget-title">标签</h3>
       <ul>
         <li class="cat-item"><a href="tag/sip.html">sip &sdot; (2)</a></li>
-        <li class="cat-item"><a href="tag/Network.html">Network &sdot; (47)</a></li>
-        <li class="cat-item"><a href="tag/VPS.html">VPS &sdot; (3)</a></li>
+        <li class="cat-item"><a href="tag/network.html">network &sdot; (50)</a></li>
+        <li class="cat-item"><a href="tag/vps.html">vps &sdot; (3)</a></li>
         <li class="cat-item"><a href="tag/openerp.html">openerp &sdot; (2)</a></li>
         <li class="cat-item"><a href="tag/wow.html">wow &sdot; (1)</a></li>
         <li class="cat-item"><a href="tag/ipv6.html">ipv6 &sdot; (2)</a></li>
         <li class="cat-item"><a href="tag/game.html">game &sdot; (5)</a></li>
         <li class="cat-item"><a href="tag/wii.html">wii &sdot; (3)</a></li>
-        <li class="cat-item"><a href="tag/blog.html">blog &sdot; (18)</a></li>
+        <li class="cat-item"><a href="tag/blog.html">blog &sdot; (21)</a></li>
+        <li class="cat-item"><a href="tag/python.html">python &sdot; (3)</a></li>
         <li class="cat-item"><a href="tag/notag.html">notag &sdot; (2)</a></li>
         <li class="cat-item"><a href="tag/ssh.html">ssh &sdot; (2)</a></li>
-        <li class="cat-item"><a href="tag/Linux.html">Linux &sdot; (35)</a></li>
+        <li class="cat-item"><a href="tag/linux.html">linux &sdot; (35)</a></li>
         <li class="cat-item"><a href="tag/android.html">android &sdot; (1)</a></li>
         <li class="cat-item"><a href="tag/sofeware.html">sofeware &sdot; (3)</a></li>
       </ul>
@@ -622,11 +710,16 @@ http://www.jcboy.info/2011/02/pingbiyoukutudoudengshipinwangzhan15miaoguanggaode
     <div class="widget-wrap widget-inside">
       <h3 class="widget-title">最新文章</h3>
       <ul> 
+        <li><a href='post/yong_git_tong_bu_jing_tai_wang_zhan.html'>用git同步静态网站</a></li>
+        <li><a href='post/yong_addpost_sheng_cheng_de_di_yi_pian_jing_tai_Blog.html'>用addpost生成的第一篇静态Blog</a></li>
+        <li><a href='post/PYTENJINCACHE_wen_ti.html'>PYTENJIN CACHE问题</a></li>
+        <li><a href='post/wang_zhan_jing_tai_hua.html'>网站静态化</a></li>
         <li><a href='post/openerp-7-add-menu.html'>OPENERP 7:菜单添加</a></li>
         <li><a href='post/tips-upload-with-web-py.html'>Tips : upload with web.py</a></li>
         <li><a href='post/netgear-r6300v2-ngrep.html'>Netgear R6300v2上编译ngrep</a></li>
         <li><a href='post/test-100m.html'>联通100M体验</a></li>
         <li><a href='post/iphone-5-clean.html'>Iphone 5可用容量恢复</a></li>
+        <li><a href='post/openerp-7-reortsxw格式.html'>OPENERP 7 : 报表之sxw格式问题</a></li>
       </ul>
     </div>
   </div>
