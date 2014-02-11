@@ -3,3 +3,4 @@ public1/
 sources.p/
 tmp/
 *.cache
+*.pyc
