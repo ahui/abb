@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # coding=utf-8
 # Ahui at ahui.us,2014
+# 修改或发布时请保留以上声明
+
 __version__ = '0.1'
 
 from mdreader import *
@@ -9,14 +11,16 @@ from tenjin.helpers import *
 import misaka as m
 import os
 from operator import itemgetter
+import config
 
-content={}                  #传送给模板的参数
-posts = {}                  #保存post信息，以时间为key
-inputdir = "sources"        #md文件目录
-outputdir = "public"        #静态文件输出目录
-theme = "default"           #主题
-tags = {}                   #保存所有tag,格式为tag:tag内文章数目
-files = {}                  #保存所有预处理后的文件信息
+inputdir = config.dir["input"]          #md文件目录
+outputdir = config.dir["output"]        #静态文件输出目录
+theme = config.theme                    #主题
+
+content={}                              #传送给模板的参数
+posts = {}                              #保存post信息，以时间为key
+tags = {}                               #保存所有tag,格式为tag:tag内文章数目
+files = {}                              #保存所有预处理后的文件信息
 
 
 
@@ -189,12 +193,14 @@ def addpost(title):
     #print engine.render("init.md",content)
     with open("%s/%s" % (inputdir,mdfilename),"w") as fp:
         fp.write(engine.render("init.md",content))
+
     print "文章%s模板已经生成，是否进入编辑? ([y]es or [n]o)" % mdfilename
     answer = raw_input()
     if answer.lower() in ("y","yes"):
 
-        cmd = "vi %s/%s" % (inputdir,mdfilename)
+        cmd = "%s %s/%s" % (config.editor,inputdir,mdfilename)
         os.system(cmd)
+
     sys.exit()
 
 def printhelp():

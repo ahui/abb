@@ -61,5 +61,6 @@ if __name__ == "__main__":
     # from timeit import Timer
     # t1=Timer('md("adsl20.md")','from __main__ import md')
     # print t1.timeit(1000)
+    print "ok"
     pass
 
