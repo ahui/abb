@@ -171,7 +171,7 @@ def gethtml(mdfile):
 def addpost(title):
     import tools.pinyin
     py = tools.pinyin.PinYin()
-    py.load_word()
+    #py.load_word()
     mdfilename = " ".join(title)
     content["title"] = mdfilename
     #print mdfilename
@@ -252,3 +252,5 @@ if __name__ == "__main__":
             print "请输入文章标题."
             sys.exit()
         addpost(sys.argv[2:])
+    else:
+        printhelp()
