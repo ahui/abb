@@ -13,8 +13,8 @@ import os
 from operator import itemgetter
 import config
 
-inputdir = config.dir["input"]          #md文件目录
-outputdir = config.dir["output"]        #静态文件输出目录
+inputdir = config.path["input"]          #md文件目录
+outputdir = config.path["output"]        #静态文件输出目录
 theme = config.theme                    #主题
 
 content={}                              #传送给模板的参数

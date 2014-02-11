@@ -9,7 +9,7 @@ blog = {
 }
 
 #theme路径， 位于./theme下
-theme = "default",
+theme = "default"
 
 #路径相关
 path = {
