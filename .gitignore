@@ -1,3 +1,4 @@
+*.bak/
 public/
 public1/
 sources.p/

@@ -12,6 +12,7 @@ import misaka as m
 import os
 from operator import itemgetter
 import config
+import time
 
 inputdir = config.path["input"]          #md文件目录
 outputdir = config.path["output"]        #静态文件输出目录
@@ -64,9 +65,12 @@ def write_post(postdir="default"):
         postdir = "%s/post" % outputdir
     else:
         postdir = "."
+    i = 0
     for post in files:
+        i = i + 1
         with open("%s/%s" % (postdir,post),"w") as fp:
             fp.write(engine.render("post.html",files[post]))
+    print "总共生成 %s 篇文章." % i
 
 def render_rightside(dirprefix="../"):
     content = {}
@@ -99,6 +103,7 @@ def render_tags():
         content["title"] = "标签 %s 所有文章列表" % tag
         with open("%s/%s.html" % (tagdir,tag),"w") as fp:
             fp.write(engine.render("tag.html",content))
+            #print "%s/%s.html" % (tagdir,tag)
 
     
 def render_index():
@@ -163,6 +168,7 @@ def getallhtml():
     #生成index
     render_index()
 
+
 def gethtml(mdfile):
     render_post(mdfile)
     write_post()
@@ -211,6 +217,7 @@ def printhelp():
         help            :显示帮助
         addpost 标题    :添加新文章(标题可以有空格)
         build           :生成整个站点
+        html            :生成单个页面
         version         :查看版本
     """
     print helpmsg
@@ -230,7 +237,10 @@ if __name__ == "__main__":
         #生成source及public目录并copy theme文件
         pass
     elif case == "build":
+        time_s = time.time()
         getallhtml()
+        time_e = time.time()
+        print "总共花费时间: %f 秒." % (time_e - time_s)
         sys.exit()
     elif case == "help":
         printhelp()
