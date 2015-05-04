@@ -631,7 +631,6 @@ input[type="button"]:active {
 .searchform input[type="submit"] {
 	width: 33px;
 	height: 33px;
-	background: url(images/zoom.jpg) no-repeat;
 	border: 0;
 	cursor: pointer;
 	text-indent: -9999px;

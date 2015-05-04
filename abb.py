@@ -3,7 +3,7 @@
 # Ahui at ahui.us,2014
 # 修改或发布时请保留以上声明
 
-__version__ = '0.1'
+__version__ = '0.2'
 
 from tools.mdreader import *
 import tenjin
@@ -13,10 +13,11 @@ import os
 from operator import itemgetter
 import config
 import time
+import shutil
 
-inputdir = config.path["input"]          #md文件目录
-outputdir = config.path["output"]        #静态文件输出目录
-theme = config.theme                    #主题
+inputdir = config.path["input"]         #md文件目录
+outputdir = config.path["output"]       #静态文件输出目录
+theme = config.theme["name"]            #主题
 
 content={}                              #传送给模板的参数
 posts = {}                              #保存post信息，以时间为key
@@ -43,6 +44,7 @@ def render_post(mdfile):
     content["sidebar"] = "_sidebar.html"
     content["mode"] = "post"
     content["url"] = outputfile
+    content["blog"] = config.blog
     content["body"] = m.html(newmd.body)
 
     for tag in newmd.tags:
@@ -76,6 +78,7 @@ def render_rightside(dirprefix="../"):
     content = {}
     content["tags"] = tags
     content["dir"] = dirprefix
+    content["blog"] = config.blog
     if dirprefix == "":
         sidebar = "_sidebar_index.html"
     else:
@@ -100,6 +103,7 @@ def render_tags():
         content["dir"] = "../"
         content["sidebar"] = "_sidebar.html"
         content["posts"] = taglist[tag]
+        content["blog"] = config.blog
         content["title"] = "标签 %s 所有文章列表" % tag
         with open("%s/%s.html" % (tagdir,tag),"w") as fp:
             fp.write(engine.render("tag.html",content))
@@ -138,6 +142,7 @@ def render_index():
         content["page"] = p
         content["pages"] = pages
         content["body"] = tmpbody
+        content["blog"] = config.blog
         if p == 0:
             outputfile = "index.html"
         else:
@@ -167,6 +172,12 @@ def getallhtml():
 
     #生成index
     render_index()
+
+    #copy theme 下的静态文件目录,如 css,img,js 等
+    for static in config.theme["static"]:
+        #os.system('cp -R ./themes/%s/%s/ ./%s/%s/' % (theme, static, outputdir, static))
+        if not os.path.exists("%s/%s" % (outputdir, static)):
+            shutil.copytree("themes/%s/%s" % (theme, static),"%s/%s" % (outputdir, static))
 
 
 def gethtml(mdfile):
