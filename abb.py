@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # coding=utf-8
+# 静态博客生成器 by ahui
 # Ahui at ahui.us,2014
 # 修改或发布时请保留以上声明
 
@@ -107,7 +108,6 @@ def render_tags():
         content["title"] = "标签 %s 所有文章列表" % tag
         with open("%s/%s.html" % (tagdir,tag),"w") as fp:
             fp.write(engine.render("tag.html",content))
-            #print "%s/%s.html" % (tagdir,tag)
 
     
 def render_index():
@@ -147,7 +147,6 @@ def render_index():
             outputfile = "index.html"
         else:
             outputfile = "index.%s.html" % p
-        #print outputfile
         with open("%s/%s" % (outputdir,outputfile),"w") as fp:
             fp.write(engine.render("index.html",content))
 
@@ -156,7 +155,6 @@ def getallhtml():
     for inputfn in os.listdir(inputdir):
         fullpath = "%s/%s" % (inputdir,inputfn)
         if os.path.isfile(fullpath):
-            #newmd = md(fullpath)
             render_post(inputfn)
 
     #生成右侧
@@ -175,7 +173,6 @@ def getallhtml():
 
     #copy theme 下的静态文件目录,如 css,img,js 等
     for static in config.theme["static"]:
-        #os.system('cp -R ./themes/%s/%s/ ./%s/%s/' % (theme, static, outputdir, static))
         if not os.path.exists("%s/%s" % (outputdir, static)):
             shutil.copytree("themes/%s/%s" % (theme, static),"%s/%s" % (outputdir, static))
 
@@ -188,11 +185,10 @@ def gethtml(mdfile):
 def addpost(title):
     import tools.pinyin
     py = tools.pinyin.PinYin()
-    #py.load_word()
     mdfilename = " ".join(title)
     content["title"] = mdfilename
-    #print mdfilename
     mdfilename = "%s.md" % py.hanzi2pinyin_split(mdfilename,"_")
+    #检查重复文件名,存在则添加数字后缀
     i = 0
     tmpfilename = mdfilename
     while 1:
@@ -201,13 +197,13 @@ def addpost(title):
             tmpfilename = "%s_%s" % (i,mdfilename)
         else:
             break
-    mdfilename = tmpfilename
+    #文件名全部用小写字母
+    mdfilename = tmpfilename.lower()
     engine = tenjin.Engine(path=[''], layout='')
     from datetime import datetime
     dt = datetime.now()
     content["date"] = dt.strftime('%Y-%m-%d %I:%M:%S')
     content["filename"] = mdfilename
-    #print engine.render("init.md",content)
     with open("%s/%s" % (inputdir,mdfilename),"w") as fp:
         fp.write(engine.render("init.md",content))
 
